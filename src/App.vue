@@ -13,7 +13,6 @@
 </template>
 
 <script>
-
 export default {
 
 }
@@ -23,10 +22,19 @@ export default {
 body{
   margin: 0px;
 }
-header{
+.header{
   height: 100px;
   color: white;
   background-color: black;
   margin: 0px;
+  position: sticky;
+  top:0;
 }
+.header.sticky ::after{
+  content:'';
+  position: absolute;
+}
+/* main{
+  overflow: scroll;
+} */
 </style>
