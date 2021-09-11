@@ -4,15 +4,17 @@
       <span id="logo">LUSH</span>
       <div id="menu">
         <ul class="top_menu">
+
           <li class="dropdown" @mouseover="listOne = true" 
               @mouseleave="listOne = false">
             <a href="#" class="dropdown-cont" >제품</a>
-            <div class="dropdown-menu" v-if="listOne">
+          </li>
+          <div class="dropdown-menu" v-if="listOne">
               <ul>
                 <li><span>halo</span></li>
               </ul>
             </div>
-          </li>
+
           <li>
             <a href="#">러쉬 소개</a>
           </li>
@@ -104,7 +106,7 @@ img{
   text-decoration: none;
   color: #fff;
   font-family: 'Roboto', sans-serif;
-  width: 20px;
+  /* width: 20px; */
   padding: 20px;
 }
 .top_menu{
@@ -123,18 +125,18 @@ img{
     text-align: center;
     position: relative;
 }
-.dropdown_menu{
+.dropdown-menu{
   list-style: none;
   margin: 0;
   position: absolute;
-  top: 100;
+  top: 100px;
   left: 0;
-  width: 100%;
+  width:100%;
   padding: 50px 0 50px;
   background: #333;
   text-align: left;
   z-index: 100;
-  transform: translateY(-50%);
+  transform: translateY(-20%);
 }
 
 </style>
