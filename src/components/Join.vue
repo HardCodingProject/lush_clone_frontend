@@ -17,67 +17,152 @@
                 <h id="infonoti">표시는 반드시 입력하셔야하는 항목입니다.</h>
             </div>
             <div class="divider"></div>
-            <fieldset>
-                <div class="idclass">
-                    <label id="idlabel">아이디</label>
-                    <input type="text" id="idinput">
-                </div>
-                <div class="pwclass">
-                    <label id="pwlabel">비밀번호</label>
-                    <input type="password" id="pwinput">
-                </div>
-                <div class="pw2class">
-                    <label id="pw2label">비밀번호 확인</label>
-                    <input type="password" id="pw2input">
-                </div>
-                <div class="name">
-                    <label id="namelabel">이름</label>
-                    <input type="text" id="nameinput">
-                </div>
-                <div class="nicname">
-                    <label id="nicnamelabel">닉네임</label>
-                    <input type="text" id="nicnameinput">
-                </div>
 
-                <div class="email">
-                    <label id="emaillabel">이메일</label>
-                    <input type="text" id="emailinput">
-                    <select id="emailselect">
-                        <option>직접입력</option>
-                        <option>naver.com</option>
-                        <option>hanmail.net</option>
-                        <option>daum.net</option>
-                        <option>nate.com</option>
-                        <option>hotmail.com</option>
-                        <option>gmail.com</option>
-                        <option>icloud.com</option>
-                    </select>
-                </div>
-                <div class="chkform1">
-                    <input type="checkbox" class="checkbox" id="mailchk" name="mailing" aria-invalid="false">
-                    <label for="mailchk" class="on" id="mailchk2">정보/이벤트 메일에 수신동의합니다.</label>
-                </div>
-                <div class="phone">
-                    <label id="phonelabel">전화번호</label>
-                    <input type="text" id="phoneinput" placeholder=" - 없이 입력하세요.">
-                </div>
-                                <div class="nicname">
-                    <label id="nicnamelabel">닉네임</label>
-                    <input type="text" id="nicnameinput">
-                </div>
-                                <div class="nicname">
-                    <label id="nicnamelabel">닉네임</label>
-                    <input type="text" id="nicnameinput">
-                </div>
-                                <div class="nicname">
-                    <label id="nicnamelabel">닉네임</label>
-                    <input type="text" id="nicnameinput">
-                </div>
-                                <div class="nicname">
-                    <label id="nicnamelabel">닉네임</label>
-                    <input type="text" id="nicnameinput">
-                </div>
-            </fieldset>
+            <table class>
+                <colgroup>
+                    <col class="th_area">
+                    <col class="td_area">
+                </colgroup>
+                <tbody>
+                    <!-- 아이디 -->
+                    <tr>
+                        <th>아이디</th>
+                        <td>
+                            <div class="txt-field">
+                                <input type="text" class="text">
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 비밀번호 -->
+                    <tr>
+                        <th>비밀번호</th>
+                        <td>
+                            <div class="txt-field">
+                                <input type="password" class="text" autocomplete="off" placeholder aria-placeholder="list">
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 비밀번호 확인 -->
+                    <tr>
+                        <th>비밀번호 확인</th>
+                        <td>
+                            <div class="txt-field">
+                                <input type="password" class="text check-id" autocomplete="off">
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 이름 -->
+                    <tr>
+                        <th aria-required="true">이름</th>
+                        <td>
+                            <div class="txt-field">
+                                <input type="text" class="text" maxlength="30">
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 닉네임 -->
+                    <tr>
+                        <th>닉네임</th>
+                        <td>
+                            <div class="text-field">
+                                <input type="text" class="text" maxlength="20">
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 이메일 -->
+                    <tr>
+                        <th>이메일</th>
+                        <td>
+                            <div class="email">
+                                <div class="txt-field">
+                                    <input type="text" class="text" id="emailinput" name="email">
+                                    <div class="select-box" @click="isOpen=true">
+                                        <div class="options-container" v-if="isOpen">
+                                            <div class="option">
+                                                <input type="radio" class="radio" id="self" name="selectoption"/>
+                                                <label for="self">직접입력</label>
+                                            </div>
+                                            <div class="option">
+                                                <input type="radio" class="radio" id="naver.com" name="selectoption"/>
+                                                <label for="naver.com">naver.com</label>
+                                            </div>
+                                            <div class="option">
+                                                <input type="radio" class="radio" id="hanmail.net" name="selectoption"/>
+                                                <label for="hanmail.net">hanmail.net</label>
+                                            </div>    
+                                            <div class="option">
+                                                <input type="radio" class="radio" id="daum.net" name="selectoption"/>
+                                                <label for="daum.net">daum.net</label>
+                                            </div>                                                                              
+                                            <div class="option">
+                                                <input type="radio" class="radio" id="nate.com" name="selectoption"/>
+                                                <label for="nate.com">nate.com</label>
+                                            </div>                                          
+                                            <div class="option">
+                                                <input type="radio" class="radio" id="hotmail.com" name="selectoption"/>
+                                                <label for="hotmail.com">hotmail.com</label>
+                                            </div>  
+                                            <div class="option">
+                                                <input type="radio" class="radio" id="gmail.com" name="selectoption"/>
+                                                <label for="gmail.com">gmail.com</label>
+                                            </div>
+                                            <div class="option">
+                                                <input type="radio" class="radio" id="icloud.com" name="selectoption"/>
+                                                <label for="icloud.com">icloud.com</label>
+                                            </div>
+                                        </div>  
+                                        <div class="selected">
+                                            직접입력
+                                            <svg xmlns="http://www.w3.org/2000/svg" 
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+                                                <polyline points="6 9 12 15 18 9" ></polyline>
+                                            </svg>
+                                        </div>                                                                                                                     
+                                    </div>
+                                    <div class="form-element">
+                                        <input type="checkbox" class="checkbox" id="mailling" value="" aria-invalid="false">
+                                        <label for="mailling" class="checkboxlabel">정보/이벤트 메일 수신에 동의합니다.</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 휴대폰 번호 -->
+                    <tr>
+                        <th>휴대폰 번호</th>
+                        <td>
+                            <div class="txt-field">
+                                <input type="text" id="cellPhone" name="cellPhone" class="text" maxlength="12" placeholder="- 없이 입력하세요.">
+                                <div class="form-element">
+                                    <input type="checkbox" class="checkbox" id="smsFl" name="smsFl" value="">
+                                    <label for="smsFl" class="checkboxlabel">정보/이벤트 SMS 수신에 동의합니다.</label>
+                                </div>                              
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 주소 -->
+                    <tr>
+                        <th class="ta-l">주소</th>
+                        <td>
+                            <div class="post">
+                                <div class="txt-field">
+                                    <input type="text" class="text" readonly value>
+                                    <input type="hidden" value>
+                                    <button class="postcodesSearchBtn" type="button" id="btnPostcode">
+                                        <em>우편번호검색</em>
+                                    </button>                                    
+                                </div>
+                            </div>
+                            <div class="txt-field-adress">
+                                <input type="text" class="text" name="address" readonly value>
+                                <input type="text" class="text1" name="addressSub" readonly value>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+ 
 
             
 
@@ -94,11 +179,18 @@
 
 <script>
     export default {
-        
+        data(){
+            return{
+                isOpen :false
+            }
+        },
+        methods : {
+        }
     }
 </script>
 
 <style scoped>
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
@@ -152,6 +244,8 @@
     height: 15px;
 }
 .infocontainer{
+    position: relative;
+    width: max-content;
     display: inline-block; 
     margin-top: 80px;
 }
@@ -167,57 +261,157 @@
 }
 #infonoti{
     position: absolute;
-    right: 190px;
+    transform: translateX(320%);
     font-family: Dotum,Arial, sans-serif;
     font-size: 14px;
     color: rgb(104, 104, 104);
 }
+
+/* 구분선 */
 .divider{
     margin-top: 10px;
     height: 1px;
     background-color: black;
 }
-fieldset{
-    font-family: Dotum,Arial, sans-serif;
-    font-size: 15px;
-    border: none;
+
+/* 정보입력칸 */
+col{
+    display: table-column;
 }
-label {
-    margin-left: 10px;
-    display: inline-block;
-    width: 100px;
+table{
+    text-align: left;
+    /* width: 900px; */
+    padding: 20px;
+    font-weight: 200px;
+}
+.th_area { 
+    width: 200px;
+}
+.td_area {
+    width: 1000px;
+}
+th{
+    width: 150px;
+    font-family: Arial, sans-serif;
+    font-size : 15px;
+    font-weight: 100px;
+    text-decoration: none;
 }
 input{
-    width: 400px;
+    width: 380px;
     border: 1px solid rgb(197, 197, 197);
     height: 35px;
-    margin-top: 20px;
-    margin-left: 40px;
+    margin-bottom: 25px;
+}
+.email{
+    width: max-content;
 }
 #emailinput{
     width: 250px;
 }
-#emailselect{
+
+/* 이메일 선택 */
+.select-box{
     color : rgb(117, 117, 117);
-    width: 140px;
-    height: 39px;
+    width: 120px;
     margin-left: 10px;
     background-color: white;
     border: 1px solid rgb(197, 197, 197);
+    display: inline-flex;
+    flex-direction: column;
+    transform: translateY(5%);
 }
-option {
-    background: white;
+.select-box .options-container{
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    transition: all 0.4s;
+    overflow: hidden;
+
+    order: 1;
 }
-.chkform1 .email{
-    width: 400px;
-    display: inline-block;
+.selected {
+    background: rgb(255, 255, 255);
+    height:27px;
+    color : rgb(37, 36, 36);
+    position: relative;
+    padding: 0;
+
+    order: 0;
 }
+.selected svg {
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+    transform: translateY(27%);
+}
+.selected svg ::after{
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    position: absolute;
+    transition: all 0.4s;
+}
+.select-box .options-container.active{
+    max-height: 250px;
+    opacity: 1;
+}
+.select-box .options-container.active + .selected::after{
+    transform: rotateX(180deg);
+    top: -6px;
+}
+.select-box .option,
+.selected {
+    padding: 5px 8px;
+    cursor: pointer;
+}
+.select-box .option:hover{
+    background: rgb(212, 212, 212);
+}
+.select-box label {
+  cursor: pointer;
+}
+.select-box .option .radio {
+  display: none;
+}
+
+/* 체크박스 */
 input[type="checkbox"]{
     width: 15px;
     margin: 0;
 }
-#mailchk2 {
-    width: 250px;
+.form-element{
+    width: max-content;
+    display: inline-flex;
+    flex-direction: row;
+    transform: translateY(60%);
+    margin-left: 10px;
 }
+.form-element .checkbox{
+    transform: translateY(-24%);
+    margin-right: 10px;
+    border: 1px solid rgb(197, 197, 197);
+    size: 15px 15px;
+}
+.form-element .checkboxlabel{
+    color: rgb(104, 104, 104);
+}
+
+/* 주소 */
+.txt-field-adress input{
+    width: 430px;
+    display: inline-flex;
+    flex-direction: row;
+}
+.text1{
+    margin-left: 10px;
+}
+.postcodesSearchBtn{
+    background-color: white;
+    border: 1px solid black;
+    font-style: none;
+    margin-left: 10px;
+}
+
+
 
 </style>
