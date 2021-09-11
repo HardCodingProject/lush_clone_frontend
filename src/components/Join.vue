@@ -66,7 +66,7 @@
                     </tr>
                     <!-- 닉네임 -->
                     <tr>
-                        <th>닉네임</th>
+                        <th class="th_nickname">닉네임</th>
                         <td>
                             <div class="nickname">
                                 <input type="text" class="text" maxlength="20">
@@ -148,7 +148,7 @@
                     </tr>
                     <!-- 주소 -->
                     <tr>
-                        <th class="thaddress">주소</th>
+                        <th class="th_address">주소</th>
                         <td>
                             <div class="post">
                                 <div class="txt-field">
@@ -328,7 +328,8 @@ th{
     text-decoration: none;
     transform: translateY(-15%);
 }
-.thaddress{
+.th_address{
+    padding-left: 13px;
     transform: translateY(-35%);
 }
 .nickname input{
@@ -346,6 +347,9 @@ input{
 #emailinput{
     width: 250px;
     margin-bottom: 15px;
+}
+.th_nickname{
+    padding-left: 13px;
 }
 
 /* 이메일 선택 */
