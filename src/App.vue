@@ -2,19 +2,20 @@
   <div class="wrapper">
     <div class="header">
       <span id="logo">LUSH</span>
+
       <div id="menu">
         <ul class="top_menu">
-
           <li class="dropdown" @mouseover="listOne = true" 
               @mouseleave="listOne = false">
-            <a href="#" class="dropdown-cont" >제품</a>
+            <router-link to="/join">
+              <p class="dropdown-cont">제품</p>
+            </router-link> 
           </li>
           <div class="dropdown-menu" v-if="listOne">
               <ul>
                 <li><span>halo</span></li>
               </ul>
             </div>
-
           <li>
             <a href="#">러쉬 소개</a>
           </li>
@@ -29,7 +30,10 @@
       </div>
     </div>
 
-    <div class="content">content</div>
+    <div class="content">
+      <router-view></router-view>
+    </div>
+    
     <div class="footer">Footer</div>
   </div>
 </template>
@@ -42,8 +46,9 @@ export default {
     }
   },
   methods: {
-    
+
   }
+
 }
 </script>
 
