@@ -76,7 +76,7 @@
                             <div class="email">
                                 <div class="txt-field">
                                     <input type="text" class="text" id="emailinput" name="email">
-                                    <div class="select-box" @click="isOpen=true">
+                                    <div class="select-box" @click="openOption">
                                         <div class="options-container" v-if="isOpen">
                                             <div class="option">
                                                 <input type="radio" class="radio" id="self" name="selectoption"/>
@@ -189,6 +189,9 @@
             }
         },
         methods : {
+            openOption(){
+                this.isOpen = !this.isOpen;
+            }
         }
     }
 </script>
