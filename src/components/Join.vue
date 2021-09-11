@@ -64,7 +64,7 @@
                     <tr>
                         <th>닉네임</th>
                         <td>
-                            <div class="text-field">
+                            <div class="nickname">
                                 <input type="text" class="text" maxlength="20">
                             </div>
                         </td>
@@ -133,7 +133,7 @@
                         <th>휴대폰 번호</th>
                         <td>
                             <div class="txt-field">
-                                <input type="text" id="cellPhone" name="cellPhone" class="text" maxlength="12" placeholder="- 없이 입력하세요.">
+                                <input type="text" id="cellPhone" name="cellPhone" class="text" maxlength="12" placeholder=" - 없이 입력하세요.">
                                 <div class="form-element">
                                     <input type="checkbox" class="checkbox" id="smsFl" name="smsFl" value="">
                                     <label for="smsFl" class="checkboxlabel">정보/이벤트 SMS 수신에 동의합니다.</label>
@@ -143,11 +143,11 @@
                     </tr>
                     <!-- 주소 -->
                     <tr>
-                        <th class="ta-l">주소</th>
+                        <th class="thaddress">주소</th>
                         <td>
                             <div class="post">
                                 <div class="txt-field">
-                                    <input type="text" class="text" readonly value>
+                                    <input type="text" class="mainaddress" readonly value>
                                     <input type="hidden" value>
                                     <button class="postcodesSearchBtn" type="button" id="btnPostcode">
                                         <em>우편번호검색</em>
@@ -162,6 +162,10 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="divider2"></div>
+            <button class="JoinBtn" type="button">
+                <em>회원가입</em>
+            </button>
  
 
             
@@ -219,6 +223,7 @@
     margin: 0 auto;
     font-size: 45px;
     margin-top: 65px;
+    color: black;
 }
 .JoinProgress{
     width: max-content;
@@ -247,7 +252,7 @@
     position: relative;
     width: max-content;
     display: inline-block; 
-    margin-top: 80px;
+    margin-top: 100px;
 }
 #infotitle, #infonoti {
     width: max-content;
@@ -262,6 +267,7 @@
 #infonoti{
     position: absolute;
     transform: translateX(320%);
+    /* transform: translateX(320%); */
     font-family: Dotum,Arial, sans-serif;
     font-size: 14px;
     color: rgb(104, 104, 104);
@@ -272,6 +278,11 @@
     margin-top: 10px;
     height: 1px;
     background-color: black;
+}
+.divider2{
+    margin-top: 3px;
+    height: 1px;
+    background-color: rgb(226, 226, 226);
 }
 
 /* 정보입력칸 */
@@ -296,6 +307,13 @@ th{
     font-size : 15px;
     font-weight: 100px;
     text-decoration: none;
+    transform: translateY(-15%);
+}
+.thaddress{
+    transform: translateY(-35%);
+}
+.nickname input{
+    margin-bottom: 15px;
 }
 input{
     width: 380px;
@@ -308,6 +326,7 @@ input{
 }
 #emailinput{
     width: 250px;
+    margin-bottom: 15px;
 }
 
 /* 이메일 선택 */
@@ -397,20 +416,50 @@ input[type="checkbox"]{
 }
 
 /* 주소 */
+.mainaddress{
+    width: 270px;
+    margin-bottom: 0;
+}
+.txt-field-adress{
+    margin-top: 10px;
+}
 .txt-field-adress input{
-    width: 430px;
+    width: 441px;
     display: inline-flex;
     flex-direction: row;
+    margin-bottom: 10px;
 }
 .text1{
-    margin-left: 10px;
+    margin-left: 5px;
 }
 .postcodesSearchBtn{
     background-color: white;
     border: 1px solid black;
-    font-style: none;
     margin-left: 10px;
+    width: 100px;
+    height: 38px;
 }
+.postcodesSearchBtn em{
+    font-style: normal;
+    margin-bottom: 5px;
+}
+.JoinBtn{
+    display: flex;
+    justify-content: center;
+    background: black;
+    border: 1px solid black;
+    color: white;
+    margin: 0 auto;
+    width : 300px;
+    height: 70px;
+    margin-top: 35px;
+}
+.JoinBtn em {
+    margin-top: 23px;
+    font-style: normal;
+    font-size: 15px;
+}
+
 
 
 
