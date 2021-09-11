@@ -13,8 +13,11 @@
             </div>
 
             <div class="infocontainer">
-                <h id="infotitle">기본정보</h>
-                <h id="infonoti">표시는 반드시 입력하셔야하는 항목입니다.</h>
+                <span id="infotitle">기본정보</span>
+                <div class="requirednoti">
+                    <span class="required"></span>
+                    <h id="infonoti">표시는 반드시 입력하셔야하는 항목입니다.</h>
+                </div>
             </div>
             <div class="divider"></div>
 
@@ -26,7 +29,8 @@
                 <tbody>
                     <!-- 아이디 -->
                     <tr>
-                        <th>아이디</th>
+                        <th>
+                            <span class="required"></span>아이디</th>
                         <td>
                             <div class="txt-field">
                                 <input type="text" class="text">
@@ -35,7 +39,7 @@
                     </tr>
                     <!-- 비밀번호 -->
                     <tr>
-                        <th>비밀번호</th>
+                        <th><span class="required"></span>비밀번호</th>
                         <td>
                             <div class="txt-field">
                                 <input type="password" class="text" autocomplete="off" placeholder aria-placeholder="list">
@@ -44,7 +48,7 @@
                     </tr>
                     <!-- 비밀번호 확인 -->
                     <tr>
-                        <th>비밀번호 확인</th>
+                        <th><span class="required"></span>비밀번호 확인</th>
                         <td>
                             <div class="txt-field">
                                 <input type="password" class="text check-id" autocomplete="off">
@@ -53,7 +57,7 @@
                     </tr>
                     <!-- 이름 -->
                     <tr>
-                        <th aria-required="true">이름</th>
+                        <th aria-required="true"><span class="required"></span>이름</th>
                         <td>
                             <div class="txt-field">
                                 <input type="text" class="text" maxlength="30">
@@ -71,54 +75,55 @@
                     </tr>
                     <!-- 이메일 -->
                     <tr>
-                        <th>이메일</th>
+                        <th><span class="required"></span>이메일</th>
                         <td>
                             <div class="email">
                                 <div class="txt-field">
                                     <input type="text" class="text" id="emailinput" name="email">
                                     <div class="select-box" @click="openOption">
-                                        <div class="options-container" v-if="isOpen">
+                                        <div class="options-container active" v-if="isOpen" >
+                                            
                                             <div class="option">
-                                                <input type="radio" class="radio" id="self" name="selectoption"/>
+                                                <input type="radio" class="radio" id="self" v-model="select"/>
                                                 <label for="self">직접입력</label>
                                             </div>
                                             <div class="option">
-                                                <input type="radio" class="radio" id="naver.com" name="selectoption"/>
+                                                <input type="radio" class="radio" id="naver.com"  v-model="select"/>
                                                 <label for="naver.com">naver.com</label>
                                             </div>
                                             <div class="option">
-                                                <input type="radio" class="radio" id="hanmail.net" name="selectoption"/>
+                                                <input type="radio" class="radio" id="hanmail.net" v-model="select"/>
                                                 <label for="hanmail.net">hanmail.net</label>
                                             </div>    
                                             <div class="option">
-                                                <input type="radio" class="radio" id="daum.net" name="selectoption"/>
+                                                <input type="radio" class="radio" id="daum.net" v-model="select"/>
                                                 <label for="daum.net">daum.net</label>
                                             </div>                                                                              
                                             <div class="option">
-                                                <input type="radio" class="radio" id="nate.com" name="selectoption"/>
+                                                <input type="radio" class="radio" id="nate.com"  v-model="select"/>
                                                 <label for="nate.com">nate.com</label>
                                             </div>                                          
                                             <div class="option">
-                                                <input type="radio" class="radio" id="hotmail.com" name="selectoption"/>
+                                                <input type="radio" class="radio" id="hotmail.com"  v-model="select"/>
                                                 <label for="hotmail.com">hotmail.com</label>
                                             </div>  
                                             <div class="option">
-                                                <input type="radio" class="radio" id="gmail.com" name="selectoption"/>
+                                                <input type="radio" class="radio" id="gmail.com" v-model="select"/>
                                                 <label for="gmail.com">gmail.com</label>
                                             </div>
                                             <div class="option">
-                                                <input type="radio" class="radio" id="icloud.com" name="selectoption"/>
+                                                <input type="radio" class="radio" id="icloud.com" value="icloud.com" v-model="select"/>
                                                 <label for="icloud.com">icloud.com</label>
-                                            </div>
-                                        </div>  
+                                            </div>                                            
+                                        </div> 
                                         <div class="selected">
                                             직접입력
                                             <svg xmlns="http://www.w3.org/2000/svg" 
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
-                                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+                                                stroke-linecap="round" stroke-linejoin="round" class="downarrow">
                                                 <polyline points="6 9 12 15 18 9" ></polyline>
                                             </svg>
-                                        </div>                                                                                                                     
+                                        </div>                                                                                                                  
                                     </div>
                                     <div class="form-element">
                                         <input type="checkbox" class="checkbox" id="mailling" value="" aria-invalid="false">
@@ -130,7 +135,7 @@
                     </tr>
                     <!-- 휴대폰 번호 -->
                     <tr>
-                        <th>휴대폰 번호</th>
+                        <th><span class="required"></span>휴대폰 번호</th>
                         <td>
                             <div class="txt-field">
                                 <input type="text" id="cellPhone" name="cellPhone" class="text" maxlength="12" placeholder=" - 없이 입력하세요.">
@@ -166,17 +171,8 @@
             <button class="JoinBtn" type="button">
                 <em>회원가입</em>
             </button>
- 
-
-            
-
-
-
 
         </div>
-
-
-
 
     </div>
 </template>
@@ -185,19 +181,24 @@
     export default {
         data(){
             return{
-                isOpen :false
+                isOpen :false,
             }
         },
         methods : {
             openOption(){
                 this.isOpen = !this.isOpen;
-            }
+            },
+            // handleSelect(){
+
+            //     const o = optionList.forEach
+                
+            //     selected.innerHTML = o.querySelector("label").innerHTML;
+            // }
         }
     }
 </script>
 
 <style scoped>
-
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
@@ -253,9 +254,10 @@
 }
 .infocontainer{
     position: relative;
-    width: max-content;
+    width: fit-content;
     display: inline-block; 
     margin-top: 100px;
+    height: 40px;
 }
 #infotitle, #infonoti {
     width: max-content;
@@ -266,19 +268,33 @@
     font-family: Arial, sans-serif;
     font-size: 28px;
     margin-left: 10px;
+    margin: 0 auto;
+}
+.required{
+    display: block;
+    background: rgb(204, 10, 10);
+    height: 0.4rem;
+    width : 0.4rem;
+    display: inline-block;
+    transform: translateY(-30%);
+    margin-right: 6px;
 }
 #infonoti{
     position: absolute;
-    transform: translateX(320%);
-    /* transform: translateX(320%); */
     font-family: Dotum,Arial, sans-serif;
     font-size: 14px;
     color: rgb(104, 104, 104);
+    display: inline-block;
+}
+.requirednoti{
+    display: inline-block;
+    transform: translateX(750px);
+    margin-bottom: 20px;
 }
 
 /* 구분선 */
 .divider{
-    margin-top: 10px;
+    /* margin-top: 10px; */
     height: 1px;
     background-color: black;
 }
@@ -360,24 +376,29 @@ input{
 
     order: 0;
 }
-.selected svg {
+.selected .downarrow {
     width: 20px;
     height: 20px;
     margin-left: 20px;
     transform: translateY(27%);
 }
-.selected svg ::after{
+.selected .downarrow::after{
     content: "";
     background-repeat: no-repeat;
     background-size: 20px 20px;
     position: absolute;
     transition: all 0.4s;
+        transform: rotateX(180deg);
+    top: -6px;
 }
 .select-box .options-container.active{
-    max-height: 250px;
+    border: 1px solid rgb(197, 197, 197);
+    position: absolute;
+    max-height: 270px;
     opacity: 1;
+    transform: translateY(16%);
 }
-.select-box .options-container.active + .selected::after{
+.select-box .options-container.active + .downarrow::after{
     transform: rotateX(180deg);
     top: -6px;
 }
