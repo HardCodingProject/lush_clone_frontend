@@ -2,14 +2,11 @@
   <div class="wrapper">
     <div class="header">
       <span id="logo">LUSH</span>
-
       <div id="menu">
         <ul class="top_menu">
           <li class="dropdown" @mouseover="listOne = true" 
               @mouseleave="listOne = false">
-            <router-link to="/join">
-              <p class="dropdown-cont">제품</p>
-            </router-link> 
+            <router-link to="/join" class="dropdown-cont">제품</router-link> 
           </li>
           <div class="dropdown-menu" v-if="listOne">
               <ul>
@@ -72,7 +69,8 @@ img{
 
 .content {
   grid-area: content;
-  background-color: rgb(205, 228, 79);
+  background-color: rgb(255, 255, 255);
+  overflow-y: scroll;
 }
 
 .header {
@@ -89,7 +87,7 @@ img{
 .wrapper {
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 50% 300% 100px; 
+  grid-template-rows: 100px 670px 200px; 
   grid-template-areas:
   "header"
   "content"
