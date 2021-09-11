@@ -3,51 +3,40 @@
     <div class="header">
       <span id="logo">LUSH</span>
       <div id="menu">
-        <a href="#" @mouseover="viewNav(0)" @mouseout="hiddenNave(0)">제품</a>
-        <a href="#" >러쉬 소개</a> 
-        <a href="#">매장 안내</a>
+        <ul class="top_menu">
+          <li class="dropdown" @mouseover="listOne = true" 
+              @mouseleave="listOne = false">
+            <a href="#" class="dropdown-cont" >제품</a>
+            <div class="dropdown-menu" >
+              uiui
+            </div>
+          </li>
+          <li>
+            <a href="#">러쉬 소개</a>
+          </li>
+          <li>
+            <a href="#">매장 안내</a>
+          </li>
+        </ul>
       </div>
 
       <span id="logo">LUSH</span>
     </div>
 
-    <div class="content">
-      <div v-if="product" id="product">
-        
-      </div>
-      <div v-if="introduce" id="introduce">
-        
-      </div>
-    </div>
+    <div class="content">content</div>
     <div class="footer">Footer</div>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
   data(){
     return {
-      product   : false, // 제품 서브나브
-      introduce : true, // 소개
+      listOne : false,
     }
   },
   methods: {
-    viewNav(val){
-      if(val === 0){
-        this.product = true;
-      }
-      if(val === 1){
-        this.introduce = true;
-      }
-    },
-    hiddenNave(val){
-      if(val === 0){
-        this.product = false;
-      }
-      if(val === 1){
-        this.introduce = false;
-      }
-    }
+    
   }
 }
 </script>
@@ -64,6 +53,7 @@ body {
   letter-spacing: 2px;
   padding-left: 90px;
 }
+
 .content {
   grid-area: content;
   background-color: rgb(205, 228, 79);
@@ -73,7 +63,7 @@ body {
   grid-area: header;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  place-items: center;;
+  place-items: center;
 }
 
 .footer {
@@ -89,24 +79,56 @@ body {
   "content"
   "footer";
   background-color: rgb(167, 89, 89);
-  color: #444;
+  color: rgb(68, 68, 68);
 }
 
 .header,
 .footer {
   background-color: rgb(0, 0, 0);
 }
-#product, #introduce{
-  width: 100%;
-  height: 100px;
-  background: rgb(71, 71, 71);
-  position: relative;
+
+.top_menu li{
+  float: left;
+  margin-right: 20px;
 }
-#menu a{
+.top_menu li a{
   text-decoration: none;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   width: 20px;
   padding: 20px;
 }
+.top_menu{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.dropdown{
+    color: rgb(233, 22, 22);
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+}
+.dropdown_menu{
+  letter-spacing: -0.5px;
+    -webkit-font-smoothing: antialiased;
+  list-style: none;
+  margin: 0;
+  position: absolute;
+  top: 500px;
+  left: 0;
+  width: 100%;
+  padding: 50px 0 50px;
+  background: #333;
+  text-align: left;
+  z-index: 100;
+}
+
 </style>
