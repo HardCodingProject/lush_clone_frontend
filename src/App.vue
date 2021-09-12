@@ -152,15 +152,14 @@
         </ul>
       </div>
       <div class="img">
-        <img :src = 'search'>
-        <img :src = 'shop'>
-        <img :src = 'login'>
+        <img :src = 'search' id="img1">
+        <img :src = 'shop' id="img2">
+        <img :src = 'login' id="img3">
       </div>
     </div>
 
     <div class="content">
       <router-view></router-view>
-      <Footer></Footer>
     </div>
     
   </div>
@@ -170,7 +169,6 @@
 import shop from '@/assets/shop.png';
 import login from '@/assets/login.png';
 import search from '@/assets/search.png';
-import Footer from './components/Footer.vue'
 
 export default {
   data(){
@@ -180,7 +178,6 @@ export default {
       shop   : shop,
       login  : login,
       search : search,
-      Footer : Footer,
     }
   },
   methods: {
@@ -196,11 +193,21 @@ body {
   margin: 0;
 }
 .img{
-  padding-right: 180px;
+  padding-right: 200px;
 }
-img{
-  width: 20px;
-  height: 20px;
+#img1{
+  width: 25px;
+  height: 25px;
+  margin-right: 40px;
+}
+#img2{
+  width:30px;
+  height: 30px;
+  margin-right: 40px;
+}
+#img3{
+  width: 30px;
+  height: 30px;
   margin-right: 30px;
 }
 #logo{
