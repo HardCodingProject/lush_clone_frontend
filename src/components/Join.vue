@@ -171,18 +171,23 @@
             <button class="JoinBtn" type="button">
                 <em>회원가입</em>
             </button>
-
+            
         </div>
-
+    <Footer></Footer>
     </div>
 </template>
 
 <script>
+import Footer from '@/components/Footer.vue';
+
     export default {
         data(){
             return{
                 isOpen :false,
             }
+        },
+        components:{
+            Footer : Footer,
         },
         methods : {
             openOption(){
@@ -204,6 +209,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Overpass:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
 /* .parent{
     display: flex;
     justify-content: center;
