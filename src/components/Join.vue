@@ -81,48 +81,23 @@
                                 <div class="txt-field">
                                     <input type="text" class="text" id="emailinput" name="email">
                                     <div class="select-box" @click="openOption">
-                                        <div class="options-container active" v-if="isOpen" >
-                                            
-                                            <div class="option">
-                                                <input type="radio" class="radio" id="self" v-model="select"/>
-                                                <label for="self">직접입력</label>
-                                            </div>
-                                            <div class="option">
-                                                <input type="radio" class="radio" id="naver.com"  v-model="select"/>
-                                                <label for="naver.com">naver.com</label>
-                                            </div>
-                                            <div class="option">
-                                                <input type="radio" class="radio" id="hanmail.net" v-model="select"/>
-                                                <label for="hanmail.net">hanmail.net</label>
-                                            </div>    
-                                            <div class="option">
-                                                <input type="radio" class="radio" id="daum.net" v-model="select"/>
-                                                <label for="daum.net">daum.net</label>
-                                            </div>                                                                              
-                                            <div class="option">
-                                                <input type="radio" class="radio" id="nate.com"  v-model="select"/>
-                                                <label for="nate.com">nate.com</label>
-                                            </div>                                          
-                                            <div class="option">
-                                                <input type="radio" class="radio" id="hotmail.com"  v-model="select"/>
-                                                <label for="hotmail.com">hotmail.com</label>
-                                            </div>  
-                                            <div class="option">
-                                                <input type="radio" class="radio" id="gmail.com" v-model="select"/>
-                                                <label for="gmail.com">gmail.com</label>
-                                            </div>
-                                            <div class="option">
-                                                <input type="radio" class="radio" id="icloud.com" value="icloud.com" v-model="select"/>
-                                                <label for="icloud.com">icloud.com</label>
-                                            </div>                                            
-                                        </div> 
+                                        <select v-model="selected" multiple  class="options-container" v-if="isOpen" >
+                                            <option class="option">직접입력</option>
+                                            <option class="option">2</option>
+                                            <option class="option">hanmail.net</option>
+                                            <option class="option">daum.net</option>
+                                            <option class="option">nate.com</option>
+                                            <option class="option">hotmail.com</option>
+                                            <option class="option">gmail.com</option>
+                                            <option class="option">icloud.com</option>
+                                        </select>
                                         <div class="selected">
-                                            직접입력
-                                            <svg xmlns="http://www.w3.org/2000/svg" 
+                                            {{ selected }}
+                                            <!-- <svg xmlns="http://www.w3.org/2000/svg" 
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
                                                 stroke-linecap="round" stroke-linejoin="round" class="downarrow">
                                                 <polyline points="6 9 12 15 18 9" ></polyline>
-                                            </svg>
+                                            </svg> -->
                                         </div>                                                                                                                  
                                     </div>
                                     <div class="form-element">
@@ -165,12 +140,14 @@
                             </div>
                         </td>
                     </tr>
+
                 </tbody>
             </table>
             <div class="divider2"></div>
             <button class="JoinBtn" type="button">
                 <em>회원가입</em>
             </button>
+
             
         </div>
     <Footer></Footer>
@@ -214,6 +191,14 @@ import Footer from '@/components/Footer.vue';
     display: flex;
     justify-content: center;
     align-items: center;
+} */
+/* .selectone{
+    color : rgb(117, 117, 117);
+    width: 120px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: white;
+    border: 1px solid rgb(197, 197, 197);
 } */
 .titlecontainer{
     padding: 20px;
@@ -342,7 +327,7 @@ th{
     margin-bottom: 15px;
 }
 input{
-    width: 380px;
+    width: 400px;
     border: 1px solid rgb(197, 197, 197);
     height: 35px;
     margin-bottom: 25px;
@@ -361,54 +346,49 @@ input{
 /* 이메일 선택 */
 .select-box{
     color : rgb(117, 117, 117);
-    width: 120px;
+    width: 137px;
+    height:37px;
+    position:sticky;
     margin-left: 10px;
     background-color: white;
     border: 1px solid rgb(197, 197, 197);
-    display: inline-flex;
-    flex-direction: column;
-    transform: translateY(5%);
-}
-.select-box .options-container{
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    transition: all 0.4s;
-    overflow: hidden;
-
-    order: 1;
+    display: inline-block;
+    transform: translateY(39%);
 }
 .selected {
     background: rgb(255, 255, 255);
-    height:27px;
     color : rgb(37, 36, 36);
-    position: relative;
-    padding: 0;
+    position: absolute;
+    padding:0px;
 
     order: 0;
 }
-.selected .downarrow {
+/* .selected .downarrow {
     width: 20px;
     height: 20px;
     margin-left: 20px;
     transform: translateY(27%);
-}
-.selected .downarrow::after{
+} */
+/* .selected .downarrow::after{
     content: "";
     background-repeat: no-repeat;
     background-size: 20px 20px;
     position: absolute;
     transition: all 0.4s;
-        transform: rotateX(180deg);
+    transform: rotateX(180deg);
     top: -6px;
-}
-.select-box .options-container.active{
+} */
+.select-box .options-container{
+    color:black;
     border: 1px solid rgb(197, 197, 197);
     position: absolute;
-    max-height: 270px;
+    width: 100%;
+    height: 210px;
     opacity: 1;
-    transform: translateY(16%);
+    transform: translateY(18%);
+    flex-flow: column;
 }
-.select-box .options-container.active + .downarrow::after{
+.select-box .options-container + .downarrow::after{
     transform: rotateX(180deg);
     top: -6px;
 }
@@ -420,11 +400,8 @@ input{
 .select-box .option:hover{
     background: rgb(212, 212, 212);
 }
-.select-box label {
+.select-box option{
   cursor: pointer;
-}
-.select-box .option .radio {
-  display: none;
 }
 
 /* 체크박스 */
