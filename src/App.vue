@@ -191,6 +191,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 body {
   margin: 0;
+  width: 100%;
 }
 .img{
   padding-right: 200px;
