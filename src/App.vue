@@ -258,21 +258,20 @@ body {
   padding: 49px;
 }
 .top_menu{
-  list-style-type: none;
   margin: 0;
   padding: 0;
 }
-.dropdown :not(.dropdown-menu){
+.dropdown {
     font-size: 14px;
     line-height: 1.4;
     margin: 0;
     padding: 0;
-    list-style: none;
     display: inline-block;
     text-align: center;
     position: relative;
 }
 .dropdown-menu{
+  float: left;
   list-style: none;
   margin: 0;
   position: absolute;
