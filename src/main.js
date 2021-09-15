@@ -3,6 +3,7 @@ import App from './App.vue'
 
 // router
 import router from './routes';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // socket
 // import io from 'socket.io-client';
