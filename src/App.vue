@@ -173,8 +173,8 @@ import search from '@/assets/search.png';
 export default {
   data(){
     return {
-      listOne : false,
-      listTwo : true,
+      listOne : true,
+      listTwo : false,
       shop   : shop,
       login  : login,
       search : search,
@@ -262,8 +262,7 @@ body {
   margin: 0;
   padding: 0;
 }
-.dropdown{
-    color: rgb(233, 22, 22);
+.dropdown :not(.dropdown-menu){
     font-size: 14px;
     line-height: 1.4;
     margin: 0;
@@ -279,8 +278,7 @@ body {
   position: absolute;
   top: 60px;
   left: 0;
-  width:100vw;
-  margin-left: calc(-39.5vw + 50%);  
+  width:100%; 
   height: 370px;
   background: #333;
   display: flex;
