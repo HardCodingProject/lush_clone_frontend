@@ -5,8 +5,9 @@ import Home from '@/components/Home.vue';
 import Join from '@/components/Join.vue';
 import Footer from '@/components/Footer.vue';
 
+
 const routes = [
-    {path : '/' , name :'Home', component : Home},
+    {path : '/' , name :'home', component : Home},
     {path : '/join' , name :'Join', component : Join},
     {path : '/footer' , name :'Footer', component : Footer},
 

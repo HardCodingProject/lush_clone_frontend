@@ -285,7 +285,8 @@ import Footer from '@/components/Footer.vue';
 
 /* 구분선 */
 .divider{
-    /* margin-top: 10px; */
+    margin-top: 10px;
+    margin-bottom: 20px;
     height: 1px;
     background-color: black;
 }

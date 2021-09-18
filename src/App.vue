@@ -337,8 +337,8 @@ body {
   position: absolute;
   top: 60px;
   left: 0;
-  width:100vw;
-  margin-left: calc(-49vw + 50%);  
+  min-width:100vw;
+  margin-left: calc(-48.2vw + 50%);  
   height: 200px;
   background: #333;
   display: flex;
@@ -388,3 +388,4 @@ body {
   transition: color .2s;
 }
 </style>
+
