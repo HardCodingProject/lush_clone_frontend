@@ -98,6 +98,7 @@ body {
 }
 
 .content {
+  width: 100vw;
   grid-area: content;
   background-color: rgb(255, 255, 255);
   overflow-y: scroll;
