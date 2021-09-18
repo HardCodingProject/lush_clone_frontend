@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper">
     <div class="header">
-      <span id="logo">LUSH</span>
       <nav>
         <ul>
           <li><a href="#">제품</a></li>
@@ -26,11 +25,6 @@
           </li>
         </ul>
       </nav>
-      <div class="img">
-        <img :src = 'search' id="img1">
-        <img :src = 'shop' id="img2">
-        <img :src = 'login' id="img3">
-      </div>
     </div>
 
     <div class="content">
@@ -41,21 +35,9 @@
 </template>
 
 <script>
-import shop from '@/assets/shop.png';
-import login from '@/assets/login.png';
-import search from '@/assets/search.png';
-
-export default {
-  data(){
-    return {
-      listOne : false,
-      listTwo : true,
-      shop   : shop,
-      login  : login,
-      search : search,
-    }
+  export default {
+      
   }
-}
 </script>
 
 <style>
@@ -63,13 +45,6 @@ export default {
 body {
   margin: 0;
   width: 100%;
-}
-#logo{
-  font-family: 'Roboto', sans-serif;
-  font-size: 30px;
-  color: white;
-  letter-spacing: 2px;
-  padding-left: 160px;
 }
 .img{
   padding-right: 200px;
@@ -123,70 +98,61 @@ body {
 nav {
   text-align:center;
   width: 100%;
-  background: #000000;
+  background: #bebebe;
   padding: 0;
   margin: 0;
   height: 60px;
   position:relative;
 }
+
 nav ul {
-  background: #000000;
+  background: #bebebe;
   list-style:none;
   padding:0 20px;
   margin: 0;
-  height: 80px;
+  height: 60px;
+
 }
+
+
 nav ul li {
   display: inline-block;
 }
+
+
 nav ul li a {
-  color:#ffffff;
+  color:#333333;
   display:block;
   padding:0px 40px;
   text-decoration:none;
   float: left;
   height: 60px;
-  line-height: 60px;
+   line-height: 60px;
 }
-nav ul li ul a {
-  color:#807e7e;
+
+nav ul li:hover {
+  background: #333333;
 }
-nav ul li ul li a{
-  color: #FFFFFF;
-}
-nav ul li a:hover{
+
+
+nav ul li:hover > a{
     color:#FFFFFF;
 }
-nav ul li ul li a:hover{
-    color:#FFFFFF;
-}
-nav ul li ul li ul li a:hover > {
-    color:#FFFFFF;
-    transition: color .2s;
-}
+
 nav ul li:hover > ul {
   display:block;
 }
+
 nav ul ul {
-  background: #333;
+  background: #BEBEBE;
   padding:0;
   text-align: center;
-  display: none;
-  width: 100%;
+  display:none;
+    width: 100%;
   position: absolute;
   top: 60px;
   left: 0px;
 }
-nav ul li ul li ul{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-nav ul li ul li ul li a{
-  display: block;
-  padding: 5px;
-  color:  rgb(146, 146, 146);
-  font-size: 14px;
-  text-decoration: none;
-}
+
+
 </style>

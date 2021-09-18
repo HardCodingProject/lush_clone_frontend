@@ -3,12 +3,14 @@ import { createWebHistory, createRouter } from "vue-router";
 
 import Home from '@/components/Home.vue';
 import Join from '@/components/Join.vue';
+import MyPage from '@/components/MyPage.vue';
 import Footer from '@/components/Footer.vue';
 
 
 const routes = [
     {path : '/' , name :'home', component : Home},
     {path : '/join' , name :'Join', component : Join},
+    {path : '/mypage' , name :'MyPage', component : MyPage},
     {path : '/footer' , name :'Footer', component : Footer},
 
 ];
