@@ -1,13 +1,14 @@
 <template>
     <div class="brand"> 
-        <ul class="img">
+        <img :src = 'footer_icons'>
+        <!-- <ul class="img">
             <li><img :src = 'img1'></li>
             <li><img :src = 'img2'></li>
             <li><img :src = 'img3'></li>
             <li><img :src = 'img4'></li>
             <li><img :src = 'img5'></li>
             <li><img :src = 'img6'></li>
-        </ul>
+        </ul> -->
     </div>
     <div class="footer">
         <span>footer</span>
@@ -21,6 +22,7 @@ import img3 from '@/assets/3.png';
 import img4 from '@/assets/4.png';
 import img5 from '@/assets/5.png';
 import img6 from '@/assets/6.png';
+import footer_icons from '@/assets/footer_icons.svg';
 
     export default {
         name : 'footer',
@@ -32,6 +34,7 @@ import img6 from '@/assets/6.png';
                 img4 : img4,
                 img5 : img5,
                 img6 : img6,
+                footer_icons : footer_icons
             }
         }
     }
@@ -40,11 +43,14 @@ import img6 from '@/assets/6.png';
 <style scoped>
 
 .brand{
-    width: 100%;
+    width: 100vw;
     background: rgb(242, 242, 242);
     height: 160px;
-    margin:0 auto; 
+    margin:0 auto;
     display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 15px 0px;
 }
 .footer{
     width: 100%;
@@ -52,11 +58,10 @@ import img6 from '@/assets/6.png';
     height: 490px;
 }
 img{
-    width: 150px;
-    height: 100px;
-    margin-right: 80px;
+    width: 100%;
+    height: 100%;
 }
-.img{
+/* .img{
   list-style: none;
   margin: auto;
   display: flex;
@@ -68,5 +73,5 @@ img{
   display:inline-block; 
   margin: 0% auto;
   height: auto;
-}
+} */
 </style>
