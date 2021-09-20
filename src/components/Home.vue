@@ -11,7 +11,7 @@
             <div class="inner_wrap">
                 <div class="display_list">
                     <h2>나만 알고 싶은 향기</h2>
-                    <div class="products_list">
+                    <!-- <div class="products_list">
                         <VueSlickCarousel v-bind="settings">
                             <div>
                                 <img :src="best_product_1">
@@ -23,7 +23,7 @@
                                 <img :src="best_product_1">
                             </div>
                         </VueSlickCarousel>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="review_float">
                     
@@ -37,7 +37,6 @@
 
 <script>
 import 'element-plus/dist/index.css'
-import VueSlickCarousel from 'vue-slick-carousel'
 import main_banner_1 from '@/assets/main_banner_1.jpg';
 import main_banner_2 from '@/assets/main_banner_2.jpg';
 import main_banner_3 from '@/assets/main_banner_3.jpg';
@@ -65,16 +64,6 @@ import best_product_1 from '@/assets/best_product_1.jpg';
                     main_banner_5,
                     main_banner_6
                 ],
-                settings :{
-                    "dots": true,
-                    "focusOnSelect": true,
-                    "infinite": true,
-                    "speed": 500,
-                    "slidesToShow": 3,
-                    "slidesToScroll": 3,
-                    "touchThreshold": 5
-                },
-                components: { VueSlickCarousel }
             }
         },
     }
