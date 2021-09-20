@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="header">
-      <span id="logo">LUSH</span>
+      <div id="logo">LUSH</div>
       <nav>
         <ul>
           <li><a href="#">제품</a></li>
@@ -72,7 +72,8 @@ body {
   padding-left: 160px;
 }
 .img{
-  padding-right: 200px;
+  /* padding-right: 200px; */
+  width:max-content;
 }
 #img1{
   width: 25px;
@@ -94,7 +95,8 @@ body {
   font-size: 30px;
   color: white;
   letter-spacing: 2px;
-  padding-left: 160px;
+  display: inline-block;
+  /* padding-left: 160px; */
 }
 
 .content {
@@ -106,8 +108,7 @@ body {
 
 .header {
   grid-area: header;
-  display: grid;
-  place-items: center;
+  display: inline-block;
   background-color: rgb(0, 0, 0);
 }
 
@@ -123,12 +124,14 @@ body {
 }
 nav {
   text-align:center;
-  width: 100%;
+  width: 500px;
   background: #000000;
   padding: 0;
   margin: 0;
   height: 60px;
   position:relative;
+  z-index: 10000;
+  display: inline-block;
 }
 nav ul {
   background: #000000;
@@ -165,9 +168,7 @@ nav ul li ul li ul li a:hover > {
     color:#FFFFFF;
     transition: color .2s;
 }
-nav ul li:hover > ul {
-  display:block;
-}
+
 nav ul ul {
   background: #333;
   padding:0;
@@ -177,6 +178,9 @@ nav ul ul {
   position: absolute;
   top: 60px;
   left: 0px;
+}
+nav ul li:hover > ul {
+  display:block;
 }
 nav ul li ul li ul{
   margin: 0;

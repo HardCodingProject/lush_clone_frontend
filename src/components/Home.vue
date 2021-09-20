@@ -91,7 +91,7 @@ import best_product_1 from '@/assets/best_product_1.jpg';
 .main_banner_1, .main_banner_2, .main_banner_3, .main_banner_4 {
     width: 100vw;
     /* height: 100%; */
-    /* border: 1px solid black; */
+    border: 1px solid black;
 
 }
 .main_banner_2{
@@ -110,9 +110,6 @@ import best_product_1 from '@/assets/best_product_1.jpg';
     color: black;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
-
-}
-.main_banner_2 .inner_wrap .display_list .products_list el-carousel-item{
 
 }
 .el-carousel__item img {
