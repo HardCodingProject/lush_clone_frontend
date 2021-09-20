@@ -12,19 +12,17 @@
                 <div class="display_list">
                     <h2>나만 알고 싶은 향기</h2>
                     <div class="products_list">
-                        <el-carousel trigger="click" height="300px">
-                            <el-carousel-item v-for="item in 4" :key="item">
-                                <el-row :gutter="15">
-                                    <el-col :span="5">
-                                        <div class="grid-content bg-purple">
-                                            <img :src="best_product_1">
-                                        </div>
-                                    </el-col>
-                                    <el-col :span="5"><div class="grid-content bg-purple"></div></el-col>
-                                    <el-col :span="5"><div class="grid-content bg-purple"></div></el-col>
-                                </el-row>
-                            </el-carousel-item>
-                        </el-carousel>
+                        <VueSlickCarousel v-bind="settings">
+                            <div>
+                                <img :src="best_product_1">
+                            </div>
+                            <div>
+                                <img :src="best_product_1">
+                            </div>
+                            <div>
+                                <img :src="best_product_1">
+                            </div>
+                        </VueSlickCarousel>
                     </div>
                 </div>
                 <div class="review_float">
@@ -39,6 +37,7 @@
 
 <script>
 import 'element-plus/dist/index.css'
+import VueSlickCarousel from 'vue-slick-carousel'
 import main_banner_1 from '@/assets/main_banner_1.jpg';
 import main_banner_2 from '@/assets/main_banner_2.jpg';
 import main_banner_3 from '@/assets/main_banner_3.jpg';
@@ -65,12 +64,19 @@ import best_product_1 from '@/assets/best_product_1.jpg';
                     main_banner_4,
                     main_banner_5,
                     main_banner_6
-                ]
+                ],
+                settings :{
+                    "dots": true,
+                    "focusOnSelect": true,
+                    "infinite": true,
+                    "speed": 500,
+                    "slidesToShow": 3,
+                    "slidesToScroll": 3,
+                    "touchThreshold": 5
+                },
+                components: { VueSlickCarousel }
             }
         },
-        methods:{
-
-        }
     }
 </script>
 
@@ -86,7 +92,7 @@ import best_product_1 from '@/assets/best_product_1.jpg';
     grid-template-columns: 100%;
     grid-template-areas:
     "main_banner_1","main_banner_2","main_banner_3","main_banner_4";
-    grid-template-rows: 582px 300px 300px 300px;
+    grid-template-rows: 582px 600px 300px 300px;
 }
 .main_banner_1, .main_banner_2, .main_banner_3, .main_banner_4 {
     width: 100vw;
@@ -96,14 +102,14 @@ import best_product_1 from '@/assets/best_product_1.jpg';
 }
 .main_banner_2{
     width: 100%;
-    padding-top: 80px;
-    padding-bottom: 120px;
+    margin-top: 70px;
+    /* margin-bottom: 120px; */
 }
 .main_banner_2 .inner_wrap{
     width: 100%;
 }
-.main_banner_2 .inner_wrap .display_list {
-    margin-left: 100px;
+.display_list {
+    margin-left: 200px;
 }
 .main_banner_2 .inner_wrap .display_list > h2 {
     font-size: 35px;
@@ -112,37 +118,33 @@ import best_product_1 from '@/assets/best_product_1.jpg';
     font-family: 'Roboto', sans-serif;
 
 }
+#carousel2_items{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.el-carousel__container{
+    height: 400px;
+}
 .el-carousel__item img {
     height: 100%;
     width: 100vw;
 }
-.el-row {
-    /* margin-bottom: 20px; */
-    margin-left: 20px;
+#carousel2{
+    width: 850px;
+    height: 400px;
+    border: 1px solid black;
 }
-.el-col {
-border-radius: 4px;
+.banner2_box{
+    width: 250px;
+    height: 298px;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 10px 10px;
 }
-.bg-purple-dark {
-    height: 100%;
-    background: #99a9bf;
+.banner2_box > #carousel2img{
+    width: 100%;
+    height: 250px;
 }
-.bg-purple {
-    background: #d3dce6;
-}
-.bg-purple img {
-    height: 100%;
 
-}
-.bg-purple-light {
-    background: #e5e9f2;
-}
-.grid-content {
-border-radius: 4px;
-min-height: 36px;
-}
-.row-bg {
-padding: 10px 0;
-background-color: #f9fafc;
-}
 </style>

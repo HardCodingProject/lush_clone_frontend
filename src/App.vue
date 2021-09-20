@@ -118,6 +118,7 @@ body {
   background-color: inherit;
   font: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
+  
 }
 
 /* Dropdown content (hidden by default) */
@@ -140,7 +141,7 @@ body {
 
 /* Create three equal columns that floats next to each other */
 .column {
-  float: left;
+  float:left;
   margin-left: 50px;
   width: 20%;
   height: 250px;
@@ -157,6 +158,12 @@ body {
   text-decoration: none;
   display: block;
   text-align: left;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 /* Add a background color on hover */
