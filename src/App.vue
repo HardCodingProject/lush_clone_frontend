@@ -209,6 +209,7 @@ body {
   width: 25px;
   height: 25px;
   margin-right: 30px;
+  cursor: pointer;
 }
 
 .content {
