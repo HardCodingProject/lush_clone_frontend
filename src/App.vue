@@ -147,7 +147,14 @@
         <a href="#">매장 안내</a>
         <img :src = 'search' id="img1">
         <img :src = 'shop' id="img2">
-        <img :src = 'login' id="img3">
+        <div class="dropdown2">
+          <img :src = 'login' id="img3">
+          <div class="dropdown-content2">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -264,7 +271,28 @@ body {
   margin-top: 10px;
   /* transform: translateY(10px); transfrom으로 안주면 옆의 다른 로고등이 움직임. 줬더니 드롭다운이 안내려옴*/
 }
-
+.dropdown2{
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content2 {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 100;
+}
+.dropdown-content2 a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown2:hover .dropdown-content2 {
+  display: block;
+}
 /* Dropdown button */
 .dropdown .dropbtn, .dropdown1 .dropbtn1 {
   font-size: 16px;
