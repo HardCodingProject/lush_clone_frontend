@@ -2,33 +2,152 @@
   <div class="wrapper">
     <div class="header">
       <div class="navbar">
-        <a href="#home">LUSH</a>
-        <a href="#news">제품</a>
-        <div class="dropdown">
-          <button class="dropbtn">러쉬소개
-            <i class="fa fa-caret-down"></i>
+        <a id="Logo">LUSH</a>
+        <div class="dropdown1">
+          <button class="dropbtn1">
+            제품
           </button>
-          <div class="dropdown-content">
+          <div class="dropdown-content1">
             <div class="row">
               <div class="column">
-                <h3>러쉬소개</h3>
-                <a href="#">러쉬 역사</a>
-                <a href="#">이념과 가치</a>
+                <h4>베스트</h4>
+                <a href="#">주간베스트</a>
+                <a href="#">별다섯개후기</a>
+                <a href="#">온라인전용</a>
+                <a href="#">국내제조</a>
+                <a href="#">네이키드</a>
+                <a href="#">선물고수되기</a>
               </div>
               <div class="column">
-                <h3>채러티팟</h3>
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+                <h4>신제품</h4>
+                <a href="#">퍼퓸디스커버리기프트</a>
+                <a href="#">버블바큐레이션</a>
+                <a href="#">비건메이크업</a>
+                <a href="#">기프트</a>
+                <a href="#">립스틱</a>
               </div>
               <div class="column">
-                <h3>커뮤니티</h3>
-                <a href="#">젤러쉬</a>
-                <a href="#">덕찌</a>
+                <h4>배쓰</h4>
+                <a href="#">배쓰밤</a>
+                <a href="#">배쓰오일</a>
+                <a href="#">비건메이크업</a>
+                <a href="#">펀</a>
+              </div>
+              <div class="column">
+                <h4>샤워</h4>
+                <a href="#">솝</a>
+                <a href="#">샤워젤&젤리</a>
+                <a href="#">보디컨디셔너</a>
+                <a href="#">샤워밤</a>
+                <a href="#">샤워오일</a>
+                <a href="#">스크럽&버터</a>
+                <a href="#">펀</a>
+              </div>
+              <div class="column">
+                <h4>보디</h4>
+                <a href="#">클렌져</a>
+                <a href="#">로션</a>
+                <a href="#">핸드앤풋</a>
+                <a href="#">마사지바</a>
+                <a href="#">더스팅파우더</a>
+                <a href="#">쉐이빙크림</a>
+              </div>
+              <div class="column">
+                <h4>페이스</h4>
+                <a href="#">클렌져</a>
+                <a href="#">페이스마스크</a>
+                <a href="#">토너</a>
+                <a href="#">모이스춰라이져</a>
+                <a href="#">프라이머</a>
+                <a href="#">립</a>
+                <a href="#">쉐이빙크림</a>
+              </div>
+              <div class="column">
+                <h4>헤어</h4>
+                <a href="#">샴푸바</a>
+                <a href="#">샴푸</a>
+                <a href="#">컨디셔너</a>
+                <a href="#">트리트먼트</a>
+                <a href="#">스타일링</a>
+              </div>
+              <div class="column">
+                <h4>메이크업</h4>
+                <a href="#">페이스파우더</a>
+                <a href="#">아이메이크업</a>
+                <a href="#">립</a>
+                <a href="#">파운데이션</a>
+                <a href="#">스킨틴트</a>
+                <a href="#">비건브러쉬</a>
+              </div>
+              <div class="column">
+                <h4>퍼퓸</h4>
+                <a href="#">보디스프레이</a>
+                <a href="#">퍼퓸라이브러리</a>
+                <a href="#">코어레인지</a>
+                <a href="#">솔리드퍼퓸</a>
+                <a href="#">워시카드</a>
+                <a href="#">퍼퓸낫랩</a>
+                <a href="#">르네상스퍼퓸</a>
+              </div>
+              <div class="column">
+                <h4>기프트</h4>
+                <a href="#">기프트베스트</a>
+                <a href="#">1-3만원대</a>
+                <a href="#">4-6만원대</a>
+                <a href="#">7만원이상</a>
+                <a href="#">낫랩</a>
+                <a href="#">스웨그</a>
+                <a href="#">악세사리</a>
+                <a href="#">북</a>
+              </div>
+              <div class="column">
+                <h4>비건</h4>
+                 <a href="#">배쓰</a>
+                <a href="#">샤워</a>
+                <a href="#">보디</a>
+                <a href="#">페이스</a>
+                <a href="#">헤어</a>
+                <a href="#">메이크업</a>
+                <a href="#">퍼퓸</a>
               </div>
             </div>
           </div>
         </div>
+        <div class="dropdown">
+          <button class="dropbtn">
+            러쉬소개
+          </button>
+          <div class="dropdown-content">
+            <div class="row">
+              <div class="column">
+                <h4>러쉬소개</h4>
+                <a href="#">러쉬 역사</a>
+                <a href="#">이념과 가치</a>
+              </div>
+              <div class="column">
+                <h4>러쉬이야기</h4>
+              </div>
+              <div class="column">
+                <h4>채러티팟</h4>
+              </div>
+              <div class="column">
+                <h4>커뮤니티</h4>
+                <a href="#">젤러쉬</a>
+                <a href="#">덕찌</a>
+              </div>
+              <div class="column">
+                <h4>서명캠페인</h4>
+              </div>
+              <div class="column">
+                <h4>기업 선물</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#">매장 안내</a>
+        <img :src = 'search' id="img1">
+        <img :src = 'shop' id="img2">
+        <img :src = 'login' id="img3">
       </div>
     </div>
 
@@ -63,6 +182,28 @@ body {
   margin: 0;
   width: 100%;
 }
+.img{
+  width: 200px;
+  margin: 0;
+}
+#img1{
+  width: 22px;
+  height: 22px;
+  padding-top: 40px;
+  padding-left: 100px;
+  margin-right: 40px;
+}
+#img2{
+  width:25px;
+  height: 25px;
+  margin-right: 40px;
+}
+#img3{
+  width: 25px;
+  height: 25px;
+  margin-right: 30px;
+}
+
 .content {
   width: 100vw;
   grid-area: content;
@@ -87,9 +228,20 @@ body {
   background-color: rgb(167, 89, 89);
   color: rgb(68, 68, 68);
 }
+#Logo{
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+  color: white;
+  letter-spacing: 2px;
+  padding-bottom: 0;
+  padding-left: 460px;
+  padding-right: 260px;
+}
+
 .navbar {
   overflow: hidden;
   font-family: Arial;
+  width: 100%;
 }
 
 /* Links inside the navbar */
@@ -99,17 +251,22 @@ body {
   color: white;
   text-align: center;
   padding: 30px 16px;
+  margin-top: 10px;
   text-decoration: none;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* The dropdown container */
-.dropdown {
+.dropdown, .dropdown1 {
   float: left;
   overflow: hidden;
+  padding-right: 50px;
+  margin-top: 10px;
+  /* transform: translateY(10px); transfrom으로 안주면 옆의 다른 로고등이 움직임. 줬더니 드롭다운이 안내려옴*/
 }
 
 /* Dropdown button */
-.dropdown .dropbtn {
+.dropdown .dropbtn, .dropdown1 .dropbtn1 {
   font-size: 16px;
   border: none;
   outline: none;
@@ -122,11 +279,10 @@ body {
 }
 
 /* Dropdown content (hidden by default) */
-.dropdown-content {
+.dropdown-content, .dropdown-content1 {
   display: none;
   position: absolute;
   background-color: #333;
-  
   width: 100%;
   left: 0;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -138,26 +294,37 @@ body {
   display: block;
   padding: 16px;
 }
-
+.dropdown1:hover .dropdown-content1 {
+  display: block;
+  padding: 16px;
+}
+.dropdown-content1 .column{
+  height: 300px;
+}
 /* Create three equal columns that floats next to each other */
 .column {
   float:left;
-  margin-left: 50px;
-  width: 20%;
-  height: 250px;
+  width: 6%;
+  height: 160px; /* dropdown메뉴의 높이 */
+  padding-top: 10px;
 }
-.column h3 {
+.column h4 {
   color: rgb(255, 255, 255);
+  font-family: 'Roboto', sans-serif;
+  line-height: 2;
 }
 
 /* Style links inside the columns */
 .column a {
   float: none;
   color: rgb(146, 146, 146);
-  padding: 16px;
   text-decoration: none;
+  line-height: 2;
+  padding: 0;
   display: block;
   text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
 }
 
 .row{
