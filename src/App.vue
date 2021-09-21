@@ -381,7 +381,7 @@ body {
 }
 .dropdown-content .column{
   height: 170px;
-  margin-right: 5px;
+  margin-right: 20px;
   padding-top: 0px;
   margin-bottom: 10px;
 }
@@ -393,7 +393,7 @@ body {
 }
 .dropdown-content1 .column:nth-child(2){
   height: 350px;
-  margin-right: 30px;
+  margin-right: 40px;
   padding-top: 0px;
   margin-bottom: 10px;
 }
@@ -422,7 +422,7 @@ body {
   display: block;
   text-align: left;
   font-family: 'Roboto', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   width: max-content;
 }
 
