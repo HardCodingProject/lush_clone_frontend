@@ -11,8 +11,8 @@
             <div class="inner_wrap">
                 <div class="display_list">
                     <h2>나만 알고 싶은 향기</h2>
-                    <!-- <div class="products_list">
-                        <VueSlickCarousel v-bind="settings">
+                    <div class="products_list">
+                        <!-- <VueSlickCarousel v-bind="settings">
                             <div>
                                 <img :src="best_product_1">
                             </div>
@@ -22,8 +22,8 @@
                             <div>
                                 <img :src="best_product_1">
                             </div>
-                        </VueSlickCarousel>
-                    </div> -->
+                        </VueSlickCarousel> -->
+                    </div>
                 </div>
                 <div class="review_float">
                     
@@ -64,13 +64,15 @@ import best_product_1 from '@/assets/best_product_1.jpg';
                     main_banner_5,
                     main_banner_6
                 ],
-            }
+            }   
         },
+
     }
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
 .container{
     margin: 0;
     padding: 0;
