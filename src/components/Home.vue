@@ -12,17 +12,11 @@
                 <div class="display_list">
                     <h2>나만 알고 싶은 향기</h2>
                     <div class="products_list">
-                        <!-- <VueSlickCarousel v-bind="settings">
-                            <div>
-                                <img :src="best_product_1">
-                            </div>
-                            <div>
-                                <img :src="best_product_1">
-                            </div>
-                            <div>
-                                <img :src="best_product_1">
-                            </div>
-                        </VueSlickCarousel> -->
+                        <el-carousel indicator-position="none" id="carousel2">
+                            <el-carousel-item v-for="item in banner2" :key="item" id="carousel2">
+                                <img :src="item" class="image2">
+                            </el-carousel-item>
+                        </el-carousel>
                     </div>
                 </div>
                 <div class="review_float">
@@ -43,7 +37,10 @@ import main_banner_3 from '@/assets/main_banner_3.jpg';
 import main_banner_4 from '@/assets/main_banner_4.jpg';
 import main_banner_5 from '@/assets/main_banner_5.jpg';
 import main_banner_6 from '@/assets/main_banner_6.jpg';
-import best_product_1 from '@/assets/best_product_1.jpg';
+import banner2_img1 from '@/assets/banner2_img1.png';
+import banner2_img2 from '@/assets/banner2_img2.png';
+import banner2_img3 from '@/assets/banner2_img3.png';
+import banner2_img4 from '@/assets/banner2_img4.png';
 
     export default {
         data(){
@@ -54,8 +51,6 @@ import best_product_1 from '@/assets/best_product_1.jpg';
                     main_banner_4 : main_banner_4,
                     main_banner_5 : main_banner_5,
                     main_banner_6 : main_banner_6,
-                    best_product_1 : best_product_1,
-
                 banners : [
                     main_banner_1,
                     main_banner_2,
@@ -64,6 +59,12 @@ import best_product_1 from '@/assets/best_product_1.jpg';
                     main_banner_5,
                     main_banner_6
                 ],
+                banner2 : [
+                    banner2_img1,
+                    banner2_img2,
+                    banner2_img3,
+                    banner2_img4,
+                ]
             }   
         },
 
@@ -100,42 +101,25 @@ import best_product_1 from '@/assets/best_product_1.jpg';
     width: 100%;
 }
 .display_list {
-    margin-left: 200px;
+    margin-left: 150px;
 }
 .main_banner_2 .inner_wrap .display_list > h2 {
     font-size: 35px;
     color: black;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
-
 }
-#carousel2_items{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-}
-.el-carousel__container{
+.products_list #carousel2{
     height: 400px;
 }
-.el-carousel__item img {
+.el-carousel__item .image2 {
     height: 100%;
-    width: 100vw;
+    width: 100%;
 }
 #carousel2{
     width: 850px;
-    height: 400px;
-    border: 1px solid black;
-}
-.banner2_box{
-    width: 250px;
-    height: 298px;
-    border: 1px solid black;
-    display: inline-block;
-    margin: 10px 10px;
-}
-.banner2_box > #carousel2img{
-    width: 100%;
-    height: 250px;
+    /* height: 460px; */
+    /* border: 1px solid black; */
 }
 
 </style>
