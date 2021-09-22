@@ -240,7 +240,7 @@ import banner4_img from '@/assets/banner4_img.gif';
 }
 .main_banner_4 .banner4_textbox{
     width: 350px;
-    padding-left: 250px;
+    padding-left: 280px;
 }
 .main_banner_4 h3{
     font-family: 'Roboto', sans-serif;
@@ -251,7 +251,7 @@ import banner4_img from '@/assets/banner4_img.gif';
 .main_banner_4 .inner_wrap .banner4img{
     position: absolute;
     top: -40px;
-    right: 150px;
+    right: 100px;
     width: 380px;
     z-index: 1;
 }
