@@ -127,8 +127,8 @@ import banner4_img from '@/assets/banner4_img.gif';
 .container{
     margin: 0;
     padding: 0;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     box-sizing: content-box;
     display: grid;
     grid-template-columns: 100%;
@@ -137,13 +137,13 @@ import banner4_img from '@/assets/banner4_img.gif';
     grid-template-rows: 582px 600px 600px 750px;
 }
 .main_banner_1, .main_banner_2, .main_banner_3, .main_banner_4 {
-    width: 100vw;
+    width: 100%;
     /* height: 100%; */
     /* border: 1px solid black; */
 
 }
 .main_banner_2{
-    width: 100%;
+    /* width: 100vw; */
     margin-top: 70px;
     /* margin-bottom: 120px; */
 }
@@ -234,5 +234,8 @@ import banner4_img from '@/assets/banner4_img.gif';
     right: 250px;
     width: 380px;
     z-index: 1;
+}
+.image{
+    width: 100%;
 }
 </style>
