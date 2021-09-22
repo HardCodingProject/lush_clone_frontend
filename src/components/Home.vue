@@ -7,26 +7,37 @@
                 </el-carousel-item>
             </el-carousel>
         </div>
-        <div class="display_list">
-            <h2>나만 알고 싶은 향기</h2>
-            <div class="products_list">
-                <el-carousel indicator-position="none" id="carousel2">
-                    <el-carousel-item v-for="item in banner2" :key="item" id="carousel2">
-                        <img :src="item" class="image2">
-                    </el-carousel-item>
-                </el-carousel>
+        <div class="main_banner_2">
+            <div class="display_list">
+                <h2>나만 알고 싶은 향기</h2>
+                <div class="products_list">
+                    <el-carousel indicator-position="none" id="carousel2">
+                        <el-carousel-item v-for="item in banner2" :key="item" id="carousel2">
+                            <img :src="item" class="image2">
+                        </el-carousel-item>
+                    </el-carousel>
+                </div>
+            </div>
+            <div class="review_float">
+                <div class="review_slide">
+                    <el-carousel indicator-position="none" id="carousel3">
+                        <el-carousel-item v-for="item in review_slider" :key="item" id="carousel3">
+                            <img :src="item" class="image3">
+                        </el-carousel-item>
+                    </el-carousel>
+                </div>
             </div>
         </div>
-        <div class="review_float">
-            <div class="review_slide">
-                <el-carousel indicator-position="none" id="carousel3">
-                    <el-carousel-item v-for="item in review_slider" :key="item" id="carousel3">
-                        <img :src="item" class="image3">
-                    </el-carousel-item>
-                </el-carousel>
+        <div class="main_banner_3">
+            <div class="grid-container">
+                <img :src="banner3_img1" class="img1">
+                <img :src="banner3_img2" class="img2">
+                <img :src="banner3_img3" class="img3">
+                <img :src="banner3_img4" class="img4">
             </div>
+
         </div>
-        <div class="main_banner_3"></div>
+
         <div class="main_banner_4"></div>
     </div>
 </template>
@@ -49,6 +60,10 @@ import review_img3 from '@/assets/review_img3.jpg';
 import review_img4 from '@/assets/review_img4.jpg';
 import review_img5 from '@/assets/review_img5.jpg';
 import review_img6 from '@/assets/review_img6.jpg';
+import banner3_img1 from '@/assets/banner3_img1.jpg';
+import banner3_img2 from '@/assets/banner3_img2.gif';
+import banner3_img3 from '@/assets/banner3_img3.jpg';
+import banner3_img4 from '@/assets/banner3_img4.jpg';
 
     export default {
         data(){
@@ -59,6 +74,10 @@ import review_img6 from '@/assets/review_img6.jpg';
                     main_banner_4 : main_banner_4,
                     main_banner_5 : main_banner_5,
                     main_banner_6 : main_banner_6,
+                    banner3_img1 : banner3_img1,
+                    banner3_img2 : banner3_img2,
+                    banner3_img3 : banner3_img3,
+                    banner3_img4 : banner3_img4,
                 banners : [
                     main_banner_1,
                     main_banner_2,
@@ -100,7 +119,7 @@ import review_img6 from '@/assets/review_img6.jpg';
     grid-template-columns: 100%;
     grid-template-areas:
     "main_banner_1","main_banner_2","main_banner_3","main_banner_4";
-    grid-template-rows: 582px 300px 300px 300px;
+    grid-template-rows: 582px 600px 600px 300px;
 }
 .main_banner_1, .main_banner_2, .main_banner_3, .main_banner_4 {
     width: 100vw;
@@ -117,7 +136,7 @@ import review_img6 from '@/assets/review_img6.jpg';
     width: 100%;
 }
 .display_list {
-    margin-top: 70px;
+    margin-top: 40px;
     margin-left: 130px;
     width: fit-content;
 }
@@ -147,12 +166,37 @@ import review_img6 from '@/assets/review_img6.jpg';
     height: 652px;
     z-index: 1;
     margin-left: 1000px;
-    transform: translateY(-60%);
+    transform: translateY(-100%);
 }
 #carousel3{
     height: 652px;
 }
 #carousel3 .image3{
     height: 652px;
+}
+
+.grid-container{
+    margin: 0 auto;
+    margin-top: 10px;
+    width: fit-content;
+    height: 555px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.img1 {
+  grid-row-end: span 3;
+  grid-column-start:span 1;
+}
+.img1 > img{
+
+}
+.img2 {
+  grid-column-start:span 2;
+}
+.img3 {
+  grid-row-end: span 2;
+}
+.img4 {
+  grid-row-end: span 2;
 }
 </style>
