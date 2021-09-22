@@ -1,32 +1,34 @@
 <template>
     <div class="container" >
         <div class="main_banner_1">
-            <el-carousel height="580px" direction="vertical" :autoplay="false">
-                <el-carousel-item v-for="item in banners" :key="item">
+            <el-carousel height="580px" direction="vertical" :autoplay="false" id="carousel1">
+                <el-carousel-item v-for="item in banners" :key="item" id="carousel1">
                     <img :src="item" class="image">
                 </el-carousel-item>
             </el-carousel>
         </div>
         <div class="main_banner_2">
-            <div class="display_list">
-                <h2>나만 알고 싶은 향기</h2>
-                <div class="products_list">
-                    <el-carousel indicator-position="none" id="carousel2">
-                        <el-carousel-item v-for="item in banner2" :key="item" id="carousel2">
-                            <img :src="item" class="image2">
-                        </el-carousel-item>
-                    </el-carousel>
+            <div class="inner_wrap1">
+                <div class="display_list">
+                    <h2>나만 알고 싶은 향기</h2>
+                    <div class="products_list">
+                        <el-carousel indicator-position="none" id="carousel2">
+                            <el-carousel-item v-for="item in banner2" :key="item" id="carousel2">
+                                <img :src="item" class="image2">
+                            </el-carousel-item>
+                        </el-carousel>
+                    </div>
                 </div>
-            </div>
-            <div class="review_float">
-                <div class="review_slide">
-                    <el-carousel indicator-position="none" id="carousel3">
-                        <el-carousel-item v-for="item in review_slider" :key="item" id="carousel3">
-                            <img :src="item" class="image3">
-                        </el-carousel-item>
-                    </el-carousel>
+                <div class="review_float">
+                    <div class="review_slide">
+                        <el-carousel indicator-position="none" id="carousel3">
+                            <el-carousel-item v-for="item in review_slider" :key="item" id="carousel3">
+                                <img :src="item" class="image3">
+                            </el-carousel-item>
+                        </el-carousel>
+                    </div>
                 </div>
-            </div>
+            </div>    
         </div>
         <div class="main_banner_3">
             <div class="grid-container">
@@ -140,23 +142,41 @@ import banner4_img from '@/assets/banner4_img.gif';
     width: 100%;
     /* height: 100%; */
     /* border: 1px solid black; */
-
+}
+#carousel1 {
+    width: 100%;
+}
+.main_banner_1{
+    height: 580px;
+}
+.image{
+    width: 100%;
+    height: 580px;
+    object-fit: cover;
 }
 .main_banner_2{
     /* width: 100vw; */
     margin-top: 70px;
     /* margin-bottom: 120px; */
 }
+.main_banner_2 .inner_wrap1{
+    height: 100%;
+}
+.inner_wrap1 {
+    width: 1180px;
+    position: relative;
+    margin: 0 auto;
+}
 .main_banner_4{
-    padding: 100px 0px 120px 0px;
+    padding: 150px 0px 120px 0px;
 }
 .display_list {
     margin-top: 40px;
-    margin-left: 130px;
+    /* margin-left: 130px; */
     width: fit-content;
 }
 .display_list > h2 {
-    font-size: 35px;
+    font-size: 45px;
     color: black;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
@@ -167,21 +187,19 @@ import banner4_img from '@/assets/banner4_img.gif';
 .products_list #carousel2{
     height: 400px;
 }
-.el-carousel__item .image2 {
+#carousel2 .image2 {
     height: 100%;
     width: 100%;
 }
 #carousel2{
-    width: 860px;
-    /* height: 460px; */
-    /* border: 1px solid black; */
+    width: 880px;
 }
 .review_float{
     width: 280px;
     height: 652px;
-    z-index: 1;
-    margin-left: 1000px;
-    transform: translateY(-100%);
+    position: absolute;
+    top: -175px;
+    right: 0px;
 }
 #carousel3{
     height: 652px;
@@ -215,14 +233,16 @@ import banner4_img from '@/assets/banner4_img.gif';
     position: relative;
 }
 .inner_wrap{
-    width: 100%;
+    padding-top: 40px;
+    position: relative;
+    width: 1180px;
     margin: 0 auto;
 }
 .main_banner_4 .banner4_textbox{
     width: 350px;
-    padding-left: 410px;
+    padding-left: 250px;
 }
-.main_banner_4 .banner4_textbox > h3{
+.main_banner_4 h3{
     font-family: 'Roboto', sans-serif;
     font-size: 45px;
     color: black;
@@ -230,12 +250,13 @@ import banner4_img from '@/assets/banner4_img.gif';
 }
 .main_banner_4 .inner_wrap .banner4img{
     position: absolute;
-    top: -60px;
-    right: 250px;
+    top: -40px;
+    right: 150px;
     width: 380px;
     z-index: 1;
 }
-.image{
-    width: 100%;
+.main_banner_4 .banner4img{
+    transition: margin 0.3s ease;
 }
+
 </style>
