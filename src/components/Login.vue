@@ -52,9 +52,11 @@
             </div>
         </div>
     </div>
+    <Footer></Footer>
 </template>
 
 <script>
+import Footer from '@/components/Footer.vue';
 import icon_id from '@/assets/icon_id.png';
 import icon_password from '@/assets/icon_password.png';
 import logo_naver from '@/assets/logo_naver.gif';
@@ -65,7 +67,10 @@ import logo_naver from '@/assets/logo_naver.gif';
                 icon_password : icon_password,
                 logo_naver : logo_naver
             }
-        }
+        },
+        components:{
+            Footer : Footer,
+        },
     }
 </script>
 
