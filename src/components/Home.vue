@@ -38,12 +38,22 @@
 
         </div>
 
-        <div class="main_banner_4"></div>
+        <div class="main_banner_4">
+            <div class="inner_wrap">
+                <div class="banner4_textbox">
+                    <h3>NEW 탱글드 헤어 트리트먼트</h3>
+                    <p>전통악기에서 영감을 받은 두피 트리트먼트로, 기분좋은 낮잠에 빠져들듯 부드럽고 편안한 시간을 선사합니다.</p>
+                </div>
+                <img :src="banner4_img" class="banner4img">
+            </div>
+        </div>
+        <Footer></Footer>
     </div>
 </template>
 
 <script>
 import 'element-plus/dist/index.css'
+import Footer from '@/components/Footer.vue';
 import main_banner_1 from '@/assets/main_banner_1.jpg';
 import main_banner_2 from '@/assets/main_banner_2.jpg';
 import main_banner_3 from '@/assets/main_banner_3.jpg';
@@ -64,6 +74,7 @@ import banner3_img1 from '@/assets/banner3_img1.jpg';
 import banner3_img2 from '@/assets/banner3_img2.gif';
 import banner3_img3 from '@/assets/banner3_img3.jpg';
 import banner3_img4 from '@/assets/banner3_img4.jpg';
+import banner4_img from '@/assets/banner4_img.gif';
 
     export default {
         data(){
@@ -78,6 +89,7 @@ import banner3_img4 from '@/assets/banner3_img4.jpg';
                     banner3_img2 : banner3_img2,
                     banner3_img3 : banner3_img3,
                     banner3_img4 : banner3_img4,
+                    banner4_img : banner4_img,
                 banners : [
                     main_banner_1,
                     main_banner_2,
@@ -102,6 +114,9 @@ import banner3_img4 from '@/assets/banner3_img4.jpg';
                 ]
             }   
         },
+        components:{
+            Footer : Footer,
+        },
 
     }
 </script>
@@ -119,12 +134,12 @@ import banner3_img4 from '@/assets/banner3_img4.jpg';
     grid-template-columns: 100%;
     grid-template-areas:
     "main_banner_1","main_banner_2","main_banner_3","main_banner_4";
-    grid-template-rows: 582px 600px 600px 300px;
+    grid-template-rows: 582px 600px 600px 750px;
 }
 .main_banner_1, .main_banner_2, .main_banner_3, .main_banner_4 {
     width: 100vw;
     /* height: 100%; */
-    border: 1px solid black;
+    /* border: 1px solid black; */
 
 }
 .main_banner_2{
@@ -132,8 +147,8 @@ import banner3_img4 from '@/assets/banner3_img4.jpg';
     margin-top: 70px;
     /* margin-bottom: 120px; */
 }
-.main_banner_2{
-    width: 100%;
+.main_banner_4{
+    padding: 100px 0px 120px 0px;
 }
 .display_list {
     margin-top: 40px;
@@ -177,7 +192,7 @@ import banner3_img4 from '@/assets/banner3_img4.jpg';
 
 .grid-container{
     margin: 0 auto;
-    margin-top: 10px;
+    margin-top: 50px;
     width: fit-content;
     height: 555px;
     display: grid;
@@ -187,9 +202,6 @@ import banner3_img4 from '@/assets/banner3_img4.jpg';
   grid-row-end: span 3;
   grid-column-start:span 1;
 }
-.img1 > img{
-
-}
 .img2 {
   grid-column-start:span 2;
 }
@@ -198,5 +210,29 @@ import banner3_img4 from '@/assets/banner3_img4.jpg';
 }
 .img4 {
   grid-row-end: span 2;
+}
+.main_banner_4 .inner_wrap {
+    position: relative;
+}
+.inner_wrap{
+    width: 100%;
+    margin: 0 auto;
+}
+.main_banner_4 .banner4_textbox{
+    width: 350px;
+    padding-left: 410px;
+}
+.main_banner_4 .banner4_textbox > h3{
+    font-family: 'Roboto', sans-serif;
+    font-size: 45px;
+    color: black;
+    margin-bottom: 10px;
+}
+.main_banner_4 .inner_wrap .banner4img{
+    position: absolute;
+    top: -60px;
+    right: 250px;
+    width: 380px;
+    z-index: 1;
 }
 </style>
