@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="header">
       <div class="navbar">
-        <a id="Logo">LUSH</a>
+        <a href="/" id="Logo">LUSH</a>
 
         <div class="linkbox">
           <div class="dropdown1">
@@ -158,7 +158,7 @@
             <img :src = 'login' id="img3">
             <div class="dropdown-content2">
               <div class="column2">
-                <a href="#">로그인</a>
+                <a href="/login">로그인</a>
                 <a href="/join">회원가입</a>
                 <a href="#">스카우트</a>
                 <a href="#">고객센터</a>

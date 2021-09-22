@@ -5,6 +5,7 @@ import Home from '@/components/Home.vue';
 import Join from '@/components/Join.vue';
 import MyPage from '@/components/MyPage.vue';
 import Footer from '@/components/Footer.vue';
+import Login from '@/components/Login.vue';
 
 
 const routes = [
@@ -12,7 +13,7 @@ const routes = [
     {path : '/join' , name :'Join', component : Join},
     {path : '/mypage' , name :'MyPage', component : MyPage},
     {path : '/footer' , name :'Footer', component : Footer},
-
+    {path : '/login' , name :'Loign', component : Login},
 ];
 
 const router = createRouter({
