@@ -62,6 +62,8 @@ import main_banner_3 from '@/assets/main_banner_3.jpg';
 import main_banner_4 from '@/assets/main_banner_4.jpg';
 import main_banner_5 from '@/assets/main_banner_5.jpg';
 import main_banner_6 from '@/assets/main_banner_6.jpg';
+import main_banner_7 from '@/assets/main_banner_7.jpg';
+import main_banner_8 from '@/assets/main_banner_8.jpg';
 import banner2_img1 from '@/assets/banner2_img1.png';
 import banner2_img2 from '@/assets/banner2_img2.png';
 import banner2_img3 from '@/assets/banner2_img3.png';
@@ -81,18 +83,22 @@ import banner4_img from '@/assets/banner4_img.gif';
     export default {
         data(){
             return{
-                    main_banner_1 : main_banner_1,
-                    main_banner_2 : main_banner_2,
-                    main_banner_3 : main_banner_3,
-                    main_banner_4 : main_banner_4,
-                    main_banner_5 : main_banner_5,
-                    main_banner_6 : main_banner_6,
+                    // main_banner_1 : main_banner_1,
+                    // main_banner_2 : main_banner_2,
+                    // main_banner_3 : main_banner_3,
+                    // main_banner_4 : main_banner_4,
+                    // main_banner_5 : main_banner_5,
+                    // main_banner_6 : main_banner_6,
+                    // main_banner_7 : main_banner_7,
+                    // main_banner_8 : main_banner_8,
                     banner3_img1 : banner3_img1,
                     banner3_img2 : banner3_img2,
                     banner3_img3 : banner3_img3,
                     banner3_img4 : banner3_img4,
                     banner4_img : banner4_img,
                 banners : [
+                    main_banner_7,
+                    main_banner_8,
                     main_banner_1,
                     // main_banner_2,
                     main_banner_3,
