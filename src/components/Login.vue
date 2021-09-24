@@ -196,7 +196,6 @@ input.text, input.password {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
 }
 input.checkbox{
     width: 13px;
