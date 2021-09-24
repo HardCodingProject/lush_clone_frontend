@@ -81,27 +81,31 @@
                                 <div class="txt-field">
                                     <input type="text" class="text" id="emailinput" name="email">
                                 </div>
-                                <div class="select-box" @click="openOption">
-                                    <div name class="options-container" v-if="isOpen" >
-                                        <input type="radio" id="1" v-model="selected" value="직접입력">
+
+                                <div class="select-option">
+                                    <div class="select-box" @click="openOption">
+                                        <span class="selected">{{selected}}</span>
+                                    </div>
+                                    <div name class="options-container" v-if="isOpen">
+                                        <input type="radio" id="1" v-model="selected" value="직접입력" >
                                         <label for="1">직접입력</label>
-                                        <input type="radio" id="2" v-model="selected" value="naver.com">
+                                        <input type="radio" id="2" v-model="selected" value="naver.com" >
                                         <label for="2">naver.com</label>
-                                        <input type="radio" id="3" v-model="selected" value="hanmail.net">
+                                        <input type="radio" id="3" v-model="selected" value="hanmail.net" >
                                         <label for="3">hanmail.net</label>
-                                        <input type="radio" id="4" v-model="selected" value="daum.net">
+                                        <input type="radio" id="4" v-model="selected" value="daum.net" >
                                         <label for="4">daum.net</label>
-                                        <input type="radio" id="5" v-model="selected" value="nate.com">
+                                        <input type="radio" id="5" v-model="selected" value="nate.com" >
                                         <label for="5">nate.com</label>
-                                        <input type="radio" id="6" v-model="selected" value="hotmail.com">
+                                        <input type="radio" id="6" v-model="selected" value="hotmail.com" >
                                         <label for="6">hotmail.com</label>
-                                        <input type="radio" id="7" v-model="selected" value="gmail.com">
+                                        <input type="radio" id="7" v-model="selected" value="gmail.com" >
                                         <label for="7">gmail.com</label>
-                                        <input type="radio" id="8" v-model="selected" value="icloud.com">
+                                        <input type="radio" id="8" v-model="selected" value="icloud.com" >
                                         <label for="8">icloud.com</label>
                                     </div>
-                                    <span class="selected">{{selected}}</span>                                                                                                                 
                                 </div>
+                                                                                                              
                                 <div class="form-element">
                                     <input type="checkbox" class="checkbox" id="mailling" value="" aria-invalid="false">
                                     <label for="mailling" class="checkboxlabel">정보/이벤트 메일 수신에 동의합니다.</label>
@@ -359,6 +363,7 @@ table{
 }
 th{
     width: 150px;
+    height: none;
     font-family: Arial, sans-serif;
     font-size : 15px;
     font-weight: 100px;
@@ -379,7 +384,9 @@ input{
     margin-bottom: 25px;
 }
 .email{
-    width: max-content;
+    width: 100%;
+    height: 36px;
+    display: inline-flex;
 }
 #emailinput{
     width: 250px;
@@ -390,14 +397,18 @@ input{
 }
 
 /* 이메일 선택 */
+.select-option{
+    width: 137px;
+    display: block;
+    margin-left: 10px;
+}
 .select-box{
+    border: 1px solid rgb(197, 197, 197);
     color : rgb(117, 117, 117);
+    overflow: hidden;
     width: 137px;
     height:37px;
-    position:sticky;
-    margin-left: 10px;
-    background-color: white;
-    border: 1px solid rgb(197, 197, 197);
+    position:relative;
     display: inline-block;
 }
 .selected {
@@ -407,25 +418,24 @@ input{
     background: rgb(255, 255, 255);
     color : rgb(37, 36, 36);
     position: absolute;
-    padding:0px;
-
-    order: 0;
+    text-align: center;
+    padding-top: 10px;
 }
-
-.select-box .options-container{
+.options-container{
+    display: block;
     color:black;
     border: 1px solid rgb(197, 197, 197);
-    position: absolute;
-    width: 100%;
+    width: 137px;
     height: fit-content;
     opacity: 1;
     background: white;
-    transform: translateY(16%);
     flex-flow: column;
+    transform: translateY(-2.2%);
+    z-index: 100000;
 }
 .options-container label {
     display: block;
-    width: 100%;
+    width: 137px;
     text-align: center;
     font-size: 17px;
     line-height: 9px;
@@ -445,9 +455,9 @@ input[type="checkbox"]{
 }
 .form-element{
     width: max-content;
+    align-self: center;
     display: inline-flex;
     flex-direction: row;
-    transform: translateY(60%);
     margin-left: 10px;
 }
 .form-element .checkbox{
