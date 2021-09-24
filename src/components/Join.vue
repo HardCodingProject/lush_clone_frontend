@@ -85,6 +85,7 @@
                                 <div class="select-option">
                                     <div class="select-box" @click="openOption">
                                         <span class="selected">{{selected}}</span>
+                                        <img :src="select_arrow_down">
                                     </div>
                                     <div name class="options-container" v-if="isOpen">
                                         <input type="radio" id="1" v-model="selected" value="직접입력" >
@@ -119,7 +120,7 @@
                         <td>
                             <div class="txt-field">
                                 <input type="text" id="cellPhone" name="cellPhone" class="text" maxlength="12" placeholder=" - 없이 입력하세요.">
-                                <div class="form-element">
+                                <div class="form-element2">
                                     <input type="checkbox" class="checkbox" id="smsFl" name="smsFl" value="">
                                     <label for="smsFl" class="checkboxlabel">정보/이벤트 SMS 수신에 동의합니다.</label>
                                 </div>                              
@@ -165,11 +166,13 @@
 
 <script>
 import Footer from '@/components/Footer.vue';
+import select_arrow_down from '@/assets/select_arrow_down.png';
     export default {
         data(){
             return{
                 isOpen :false,
-                selected : ''
+                selected : '',
+                select_arrow_down : select_arrow_down
             }
         },
         components:{
@@ -235,6 +238,7 @@ import Footer from '@/components/Footer.vue';
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Overpass:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
 
 /* .parent{
     display: flex;
@@ -375,7 +379,7 @@ th{
     transform: translateY(-35%);
 }
 .nickname input{
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 input{
     width: 400px;
@@ -387,6 +391,7 @@ input{
     width: 100%;
     height: 36px;
     display: inline-flex;
+    margin-bottom: 25px;
 }
 #emailinput{
     width: 250px;
@@ -395,6 +400,7 @@ input{
 .th_nickname{
     padding-left: 13px;
 }
+
 
 /* 이메일 선택 */
 .select-option{
@@ -411,15 +417,23 @@ input{
     position:relative;
     display: inline-block;
 }
+.select-box > img {
+    width: 15px;
+    height: 8px;
+    top: 40%;
+    right: 10%;
+    position: absolute;
+}
 .selected {
-    width: 100%;
+    width: 110px;
     height: 100%;
     /* border: 1px solid black; */
     background: rgb(255, 255, 255);
     color : rgb(37, 36, 36);
     position: absolute;
-    text-align: center;
-    padding-top: 10px;
+    text-align: left;
+    font-size: 15px;
+    padding: 10px 0px 8px 8px;
 }
 .options-container{
     display: block;
@@ -435,14 +449,15 @@ input{
 }
 .options-container label {
     display: block;
-    width: 137px;
-    text-align: center;
-    font-size: 17px;
-    line-height: 9px;
-    padding: 10px 0;
+    width: 130px;
+    color: rgb(37, 36, 36);
+    text-align: left;
+    font-size: 15px;
+    line-height: 0.6em;
+    padding: 10px 0px 8px 8px;
 }
 .options-container label:hover{
-    background: rgb(197, 197, 197);
+    background: rgb(228, 228, 228);
 }
 input[type="radio"]{
     display: none;
@@ -459,15 +474,34 @@ input[type="checkbox"]{
     display: inline-flex;
     flex-direction: row;
     margin-left: 10px;
+    vertical-align: middle;
 }
 .form-element .checkbox{
-    transform: translateY(-24%);
-    margin-right: 10px;
+    margin-left: 10px;
     border: 1px solid rgb(197, 197, 197);
     size: 15px 15px;
 }
 .form-element .checkboxlabel{
     color: rgb(104, 104, 104);
+    padding: 10px;
+}
+
+.form-element2{
+    width: max-content;
+    align-self: center;
+    display: inline-flex;
+    flex-direction: row;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.form-element2 .checkbox{
+    margin-left: 10px;
+    border: 1px solid rgb(197, 197, 197);
+    size: 15px 15px;
+}
+.form-element2 .checkboxlabel{
+    color: rgb(104, 104, 104);
+    padding: 10px;
 }
 
 /* 주소 */
