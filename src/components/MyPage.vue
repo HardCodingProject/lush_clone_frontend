@@ -59,7 +59,36 @@
             </div>
         </div>
         <div class="main">
-            222
+            <div class="menu1">
+                <div class="member-img">
+                    <img src="https://lush.co.kr/data/icon/group_image/ico_member_upload1.png" alt="">
+                </div>
+                <div class="member-text">
+                    <p>정지희님의</p>
+                    <p>회원등급은 일반회원등급 입니다.</p>
+                </div>
+                <div class="cupon">
+                    <img :src="icon1" class="icon-ticket">
+                    <p>혜택</p>
+                </div>
+                <div class="duczzi">
+                    <img :src="icon2" class="icon-smile">
+                    <p>덕찌</p>
+                </div>
+                <div class="qna">
+                    <img :src="icon3" class="icon-chat">
+                    <p>문의</p>
+                </div>
+            </div>
+            <div class="menu2">
+
+            </div>
+            <div class="menu3">
+
+            </div>
+            <div class="menu4">
+
+            </div>
         </div>
     </div>
     <Footer></Footer>
@@ -67,8 +96,19 @@
 </template>
 
 <script>
+import icon1 from '@/assets/ticket.png';
+import icon2 from '@/assets/duczzi.png';
+import icon3 from '@/assets/qna.png';
+
 import Footer from './Footer.vue'
     export default {
+        data(){
+            return{
+                icon1 : icon1,
+                icon2 : icon2,
+                icon3 : icon3
+            }
+        },
         components:{
             Footer : Footer
         }
@@ -86,7 +126,7 @@ import Footer from './Footer.vue'
     height : 100%;
     grid-template-areas :
         "side main";
-    margin: 0 330px 0 330px;
+    margin: 0 420px 0 420px;
     padding: 0;
 }
 .side{
@@ -102,7 +142,7 @@ import Footer from './Footer.vue'
     grid-area : main;
     grid-template-rows: repeat(4, 1fr);
     border: 1px solid black;
-    padding: 90px 0 100px 0;
+    padding: 60px 0 800px 0;
 }
 .item1{
     font-size: 16px;
@@ -130,5 +170,46 @@ li a{
     color: #333;
     text-decoration: none;
     font-size: 13px;
+}
+.menu1{
+    border: 1px solid #e9e9e9;
+    padding: 20px 20px 20px 10px;
+}
+.member-img{
+    display: table-cell;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+img{
+    height: 70px;
+    width: 70px;
+}
+.member-text{
+    display: table-cell;
+    font-size: 14px;
+    font-family: 'Nanum Gothic', sans-serif;
+    width: 350px;
+}
+.cupon, .duczzi, .qna{
+    display: table-cell;
+    width: 146px;
+    height: 77px;
+}
+.icon-ticket{
+    width: 35px;
+    height: 25px;
+    background-position: 0 0;
+}
+.icon-smile{
+    width: 43px;
+    height: 25px;
+    background-position: 0 0;
+}
+.icon-chat{
+    width: 35px;
+    height: 25px;
+    background-position: 0 0;
 }
 </style>
