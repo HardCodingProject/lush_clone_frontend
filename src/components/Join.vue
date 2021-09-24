@@ -80,30 +80,31 @@
                             <div class="email">
                                 <div class="txt-field">
                                     <input type="text" class="text" id="emailinput" name="email">
-                                    <div class="select-box" @click="openOption">
-                                        <select v-model="selected" multiple  class="options-container" v-if="isOpen" >
-                                            <option class="option">직접입력</option>
-                                            <option class="option">2</option>
-                                            <option class="option">hanmail.net</option>
-                                            <option class="option">daum.net</option>
-                                            <option class="option">nate.com</option>
-                                            <option class="option">hotmail.com</option>
-                                            <option class="option">gmail.com</option>
-                                            <option class="option">icloud.com</option>
-                                        </select>
-                                        <div class="selected">
-                                            {{ selected }}
-                                            <!-- <svg xmlns="http://www.w3.org/2000/svg" 
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
-                                                stroke-linecap="round" stroke-linejoin="round" class="downarrow">
-                                                <polyline points="6 9 12 15 18 9" ></polyline>
-                                            </svg> -->
-                                        </div>                                                                                                                  
+                                </div>
+                                <div class="select-box" @click="openOption">
+                                    <div name class="options-container" v-if="isOpen" >
+                                        <input type="radio" id="1" v-model="selected" value="직접입력">
+                                        <label for="1">직접입력</label>
+                                        <input type="radio" id="2" v-model="selected" value="naver.com">
+                                        <label for="2">naver.com</label>
+                                        <input type="radio" id="3" v-model="selected" value="hanmail.net">
+                                        <label for="3">hanmail.net</label>
+                                        <input type="radio" id="4" v-model="selected" value="daum.net">
+                                        <label for="4">daum.net</label>
+                                        <input type="radio" id="5" v-model="selected" value="nate.com">
+                                        <label for="5">nate.com</label>
+                                        <input type="radio" id="6" v-model="selected" value="hotmail.com">
+                                        <label for="6">hotmail.com</label>
+                                        <input type="radio" id="7" v-model="selected" value="gmail.com">
+                                        <label for="7">gmail.com</label>
+                                        <input type="radio" id="8" v-model="selected" value="icloud.com">
+                                        <label for="8">icloud.com</label>
                                     </div>
-                                    <div class="form-element">
-                                        <input type="checkbox" class="checkbox" id="mailling" value="" aria-invalid="false">
-                                        <label for="mailling" class="checkboxlabel">정보/이벤트 메일 수신에 동의합니다.</label>
-                                    </div>
+                                    <span class="selected">{{selected}}</span>                                                                                                                 
+                                </div>
+                                <div class="form-element">
+                                    <input type="checkbox" class="checkbox" id="mailling" value="" aria-invalid="false">
+                                    <label for="mailling" class="checkboxlabel">정보/이벤트 메일 수신에 동의합니다.</label>
                                 </div>
                             </div>
                         </td>
@@ -164,6 +165,7 @@ import Footer from '@/components/Footer.vue';
         data(){
             return{
                 isOpen :false,
+                selected : ''
             }
         },
         components:{
@@ -397,9 +399,11 @@ input{
     background-color: white;
     border: 1px solid rgb(197, 197, 197);
     display: inline-block;
-    transform: translateY(39%);
 }
 .selected {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid black; */
     background: rgb(255, 255, 255);
     color : rgb(37, 36, 36);
     position: absolute;
@@ -407,45 +411,31 @@ input{
 
     order: 0;
 }
-/* .selected .downarrow {
-    width: 20px;
-    height: 20px;
-    margin-left: 20px;
-    transform: translateY(27%);
-} */
-/* .selected .downarrow::after{
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
-    position: absolute;
-    transition: all 0.4s;
-    transform: rotateX(180deg);
-    top: -6px;
-} */
+
 .select-box .options-container{
     color:black;
     border: 1px solid rgb(197, 197, 197);
     position: absolute;
     width: 100%;
-    height: 210px;
+    height: fit-content;
     opacity: 1;
-    transform: translateY(18%);
+    background: white;
+    transform: translateY(16%);
     flex-flow: column;
 }
-.select-box .options-container + .downarrow::after{
-    transform: rotateX(180deg);
-    top: -6px;
+.options-container label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    line-height: 9px;
+    padding: 10px 0;
 }
-.select-box .option,
-.selected {
-    padding: 5px 8px;
-    cursor: pointer;
+.options-container label:hover{
+    background: rgb(197, 197, 197);
 }
-.select-box .option:hover{
-    background: rgb(212, 212, 212);
-}
-.select-box option{
-  cursor: pointer;
+input[type="radio"]{
+    display: none;
 }
 
 /* 체크박스 */
