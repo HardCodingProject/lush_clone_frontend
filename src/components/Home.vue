@@ -57,11 +57,11 @@
 import 'element-plus/dist/index.css'
 import Footer from '@/components/Footer.vue';
 import main_banner_1 from '@/assets/main_banner_1.jpg';
-import main_banner_2 from '@/assets/main_banner_2.jpg';
+// import main_banner_2 from '@/assets/main_banner_2.jpg';
 import main_banner_3 from '@/assets/main_banner_3.jpg';
 import main_banner_4 from '@/assets/main_banner_4.jpg';
 import main_banner_5 from '@/assets/main_banner_5.jpg';
-import main_banner_6 from '@/assets/main_banner_6.jpg';
+// import main_banner_6 from '@/assets/main_banner_6.jpg';
 import main_banner_7 from '@/assets/main_banner_7.jpg';
 import main_banner_8 from '@/assets/main_banner_8.jpg';
 import banner2_img1 from '@/assets/banner2_img1.png';
