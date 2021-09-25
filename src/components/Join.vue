@@ -227,7 +227,13 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                             this.detailAddress = '';
                         }
                     },
-                }).open()
+                    theme: {
+                        searchBgColor: "#1B1B1C",
+                        queryTextColor: "#FFFFFF"
+                    }
+                }).open()({
+                    popupTitle: 'LUSH 우편번호 검색' //팝업창 타이틀 설정 (영문,한글,숫자 모두 가능)
+                });
             },
 
         }
@@ -506,7 +512,7 @@ input[type="checkbox"]{
     margin-top: 10px;
 }
 .txt-field-adress input{
-    width: 441px;
+    width: 430px;
     display: inline-flex;
     flex-direction: row;
     margin-bottom: 10px;
