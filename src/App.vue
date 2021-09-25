@@ -237,6 +237,7 @@ body {
 }
 
 .content {
+  height: 100vh;
   width: 100vw;
   grid-area: content;
   background-color: rgb(255, 255, 255);
@@ -257,8 +258,9 @@ body {
   grid-template-areas:
   "header"
   "content";
-  background-color: rgb(167, 89, 89);
+  /* background-color: rgb(167, 89, 89); */
   color: rgb(68, 68, 68);
+  height: 100vh;
 }
 #Logo{
   position: absolute;
