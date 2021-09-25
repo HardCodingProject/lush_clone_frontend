@@ -444,4 +444,10 @@ body {
   display: table;
   clear: both;
 }
+
+::selection{
+  background: black;
+  color: #fff;
+  text-shadow: none;
+}
 </style>

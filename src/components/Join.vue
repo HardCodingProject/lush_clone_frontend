@@ -238,21 +238,8 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Overpass:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
-
-/* .parent{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-/* .selectone{
-    color : rgb(117, 117, 117);
-    width: 120px;
-    height: 30px;
-    margin-left: 10px;
-    background-color: white;
-    border: 1px solid rgb(197, 197, 197);
-} */
 .titlecontainer{
     padding: 20px;
     margin: 0 auto;
@@ -386,6 +373,10 @@ input{
     border: 1px solid rgb(197, 197, 197);
     height: 35px;
     margin-bottom: 25px;
+    padding-left: 10px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 14px;
+    color: rgb(104, 104, 104);
 }
 .email{
     width: 100%;
