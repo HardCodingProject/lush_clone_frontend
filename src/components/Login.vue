@@ -17,7 +17,7 @@
                                             <span class="icon">
                                                 <img :src="icon_id">
                                             </span>
-                                            <input type="text" class="infotext" id="loginId" placeholder="아이디">
+                                            <input type="text" class="infotext" id="loginId" v-model="login_id" placeholder="아이디">
                                         </div>
                                     </div>
                                     <div>
@@ -25,7 +25,7 @@
                                             <span class="icon">
                                                 <img :src="icon_password">
                                             </span>
-                                            <input type="password" class="infotext" id="loginPw" placeholder="비밀번호">
+                                            <input type="password" class="infotext" id="loginPw" v-model="login_pw" placeholder="비밀번호">
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +33,7 @@
                                     <input type="checkbox" class="checkbox" id="saveId" checked>
                                     <label for="saveId" class="on">아이디 저장</label>
                                 </div>
-                                <button type="submit" class="loginbtn point2 login"><em>로그인</em></button>
+                                <button type="submit" class="loginbtn point2 login" @click="handleLogin"><em>로그인</em></button>
                                 <div class="login_menus">
                                     <button type="button" class="loginbtn" id="btnJoin"><em>회원가입</em></button>
                                     <button type="button" class="loginbtn" id="btnFindId"><em>아이디 찾기</em></button>
@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Footer from '@/components/Footer.vue';
 import icon_id from '@/assets/icon_id.png';
 import icon_password from '@/assets/icon_password.png';
@@ -65,12 +66,38 @@ import logo_naver from '@/assets/logo_naver.gif';
             return{
                 icon_id : icon_id,
                 icon_password : icon_password,
-                logo_naver : logo_naver
+                logo_naver : logo_naver,
+                login_id : '',
+                login_pw : '',
             }
         },
         components:{
             Footer : Footer,
         },
+        methods : {
+            async handleLogin() {
+                const header = { "Content-Type" : "application/x-www-form-urlencoded" };
+                const body = { id : this.login_id, password : this.login_pw };
+                const url = '/member/login';
+                const response = await axios.post(url, body, header);
+                console.log(response);
+                if(response.data.ret === 1){
+                    sessionStorage.setItem("TOKEN", response.data.jwtToken.token);
+                    alert('로그인되었습니다.');
+
+                    var url1 = sessionStorage.getItem("URL");
+                    url1 = JSON.parse(url1);
+                    console.log(typeof(url1));
+
+                    if(url1 !== null){
+                        this.$router.push({path:url1.path, query : url1.query})
+                    }
+                    else{
+                        this.$router.push({path:'/'})
+                    }
+                }
+            }
+        }
     }
 </script>
 

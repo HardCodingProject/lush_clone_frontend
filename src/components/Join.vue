@@ -88,21 +88,21 @@
                                         <img :src="select_arrow_down">
                                     </div>
                                     <div name class="options-container" v-if="isOpen">
-                                        <input type="radio" id="1" v-model="selected" value="직접입력" >
+                                        <input type="radio" id="1" v-model="selected" value="" >
                                         <label for="1">직접입력</label>
-                                        <input type="radio" id="2" v-model="selected" value="naver.com" >
+                                        <input type="radio" id="2" v-model="selected" value="@naver.com" >
                                         <label for="2">naver.com</label>
-                                        <input type="radio" id="3" v-model="selected" value="hanmail.net" >
+                                        <input type="radio" id="3" v-model="selected" value="@hanmail.net" >
                                         <label for="3">hanmail.net</label>
-                                        <input type="radio" id="4" v-model="selected" value="daum.net" >
+                                        <input type="radio" id="4" v-model="selected" value="@daum.net" >
                                         <label for="4">daum.net</label>
-                                        <input type="radio" id="5" v-model="selected" value="nate.com" >
+                                        <input type="radio" id="5" v-model="selected" value="@nate.com" >
                                         <label for="5">nate.com</label>
-                                        <input type="radio" id="6" v-model="selected" value="hotmail.com" >
+                                        <input type="radio" id="6" v-model="selected" value="@hotmail.com" >
                                         <label for="6">hotmail.com</label>
-                                        <input type="radio" id="7" v-model="selected" value="gmail.com" >
+                                        <input type="radio" id="7" v-model="selected" value="@gmail.com" >
                                         <label for="7">gmail.com</label>
-                                        <input type="radio" id="8" v-model="selected" value="icloud.com" >
+                                        <input type="radio" id="8" v-model="selected" value="@icloud.com" >
                                         <label for="8">icloud.com</label>
                                     </div>
                                 </div>
