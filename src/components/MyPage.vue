@@ -98,10 +98,11 @@ import Footer from './Footer.vue'
     display : grid;
     grid-template-columns : 15% 1fr;
     grid-template-rows: 100%; 
+    width: max-content;
     height : 100%;
     grid-template-areas :
         "side main";
-    margin: 0 420px 0 420px;
+    margin: 0 auto;
     padding: 0;
 }
 .side{

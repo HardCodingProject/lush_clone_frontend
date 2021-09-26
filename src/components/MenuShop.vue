@@ -95,8 +95,8 @@
                 </div>
             </div>
         </div>
-        <div class="menu2">
-            <div class="menu2-header">
+        <div class="menu3">
+            <div class="menu3-header">
                 <h2>최근 주문 정보</h2>
                 <p>최근 30일 내에 주문하신 내역입니다.</p>
             </div>
@@ -119,12 +119,12 @@
                 </table>
             </div>
         </div>
-        <div class="menu2">
-            <div class="menu2-header">
+        <div class="menu4">
+            <div class="menu4-header">
                 <h2>최근 본 상품</h2>
                 <p>정지희님께서 본 최근 상품입니다.</p>
             </div>
-            <div class="menu3-body">
+            <div class="menu4-body">
                 <table class="goods-board1"> 
                     <tbody>
                         <tr>
@@ -157,8 +157,9 @@ import icon3 from '@/assets/qna.png';
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
 
 .menu1{
+    width: 905px;
     border: 1px solid #e9e9e9;
-    padding: 20px 20px 20px 10px;
+    /* padding: 20px 20px 20px 10px; */
 }
 .member-img{
     display: table-cell;
@@ -197,7 +198,9 @@ img{
     height: 25px;
     background-position: 0 0;
 }
+
 .menu2{
+    width : max-content;
     margin-top: 40px;
 }
 .menu2-header{
@@ -222,6 +225,58 @@ img{
     border: 1px solid #e3e3e3;
     padding: 10px 10px 10px 0;
     display: inline-block;
+}
+
+.menu3{
+    margin-top: 40px;
+}
+.menu3-header{
+    margin-bottom: 10px;
+}
+.menu3-header h2{
+    display: inline-block;
+    vertical-align: middle;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 17px;
+    color: #111;
+}
+.menu3-header p{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 11px;
+    color: #787878;
+    font-family: 'Nanum Gothic', sans-serif;
+    margin: 2px 0 0 10px;
+}
+.menu3-body{
+    padding: 10px 10px 10px 0;
+    display: inline-block;
+}
+.menu4{
+    margin-top: 40px;
+}
+.menu4-header{
+    margin-bottom: 10px;
+}
+.menu4-header h2{
+    display: inline-block;
+    vertical-align: middle;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 17px;
+    color: #111;
+}
+.menu4-header p{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 11px;
+    color: #787878;
+    font-family: 'Nanum Gothic', sans-serif;
+    margin: 2px 0 0 10px;
+}
+.menu4-body{
+    padding: 10px 10px 10px 0;
+    display: inline-block;
+    width: 100%;
 }
 .clear{
     float: left;
