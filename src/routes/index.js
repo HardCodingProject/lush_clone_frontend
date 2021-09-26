@@ -1,6 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
 
-
 import Home from '@/components/Home.vue';
 import Join from '@/components/Join.vue';
 import MyPage from '@/components/MyPage.vue';

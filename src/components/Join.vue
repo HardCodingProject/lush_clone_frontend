@@ -33,7 +33,7 @@
                             <span class="required"></span>아이디</th>
                         <td>
                             <div class="txt-field">
-                                <input type="text" class="text">
+                                <input type="text" class="text" v-model="userid">
                             </div>
                         </td>
                     </tr>
@@ -42,7 +42,7 @@
                         <th><span class="required"></span>비밀번호</th>
                         <td>
                             <div class="txt-field">
-                                <input type="password" class="text" autocomplete="off" placeholder aria-placeholder="list">
+                                <input type="password" class="text" v-model="userpw" autocomplete="off" placeholder aria-placeholder="list">
                             </div>
                         </td>
                     </tr>
@@ -51,7 +51,7 @@
                         <th><span class="required"></span>비밀번호 확인</th>
                         <td>
                             <div class="txt-field">
-                                <input type="password" class="text check-id" autocomplete="off">
+                                <input type="password" class="text check-id" v-model="userpw2" autocomplete="off">
                             </div>
                         </td>
                     </tr>
@@ -60,7 +60,7 @@
                         <th aria-required="true"><span class="required"></span>이름</th>
                         <td>
                             <div class="txt-field">
-                                <input type="text" class="text" maxlength="30">
+                                <input type="text" class="text" v-model="username" maxlength="30">
                             </div>
                         </td>
                     </tr>
@@ -69,7 +69,7 @@
                         <th class="th_nickname">닉네임</th>
                         <td>
                             <div class="nickname">
-                                <input type="text" class="text" maxlength="20">
+                                <input type="text" class="text" v-model="user_nickname" maxlength="20">
                             </div>
                         </td>
                     </tr>
@@ -79,7 +79,7 @@
                         <td>
                             <div class="email">
                                 <div class="txt-field">
-                                    <input type="text" class="text" id="emailinput" name="email">
+                                    <input type="text" class="text" id="emailinput" name="email" v-model="user_email">
                                 </div>
 
                                 <div class="select-option">
@@ -119,7 +119,7 @@
                         <th><span class="required"></span>휴대폰 번호</th>
                         <td>
                             <div class="txt-field">
-                                <input type="text" id="cellPhone" name="cellPhone" class="text" maxlength="12" placeholder=" - 없이 입력하세요.">
+                                <input type="text" id="cellPhone" name="cellPhone" v-model="user_phone" class="text" maxlength="12" placeholder=" - 없이 입력하세요.">
                                 <div class="form-element2">
                                     <input type="checkbox" class="checkbox" id="smsFl" name="smsFl" value="">
                                     <label for="smsFl" class="checkboxlabel">정보/이벤트 SMS 수신에 동의합니다.</label>
@@ -153,7 +153,7 @@
                 </tbody>
             </table>
             <div class="divider2"></div>
-            <button class="JoinBtn" type="button">
+            <button class="JoinBtn" type="button" @click="handleJoin">
                 <em>회원가입</em>
             </button>
 
@@ -162,9 +162,9 @@
         <Footer></Footer>
     </div>
 </template>
-
+ 
 <script>
-
+import axios from 'axios';
 import Footer from '@/components/Footer.vue';
 import select_arrow_down from '@/assets/select_arrow_down.png';
     export default {
@@ -176,6 +176,14 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 postcode :'',
                 roadAddress :'',
                 detailAddress : '',
+                userid : '',
+                userpw : '',
+                userpw2 : '',
+                username : '',
+                user_nickname : '',
+                user_email :'',
+                user_phone : '',
+                user_addr : '',
             }
         },
         mounted() {
@@ -235,6 +243,26 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     popupTitle: 'LUSH 우편번호 검색' //팝업창 타이틀 설정 (영문,한글,숫자 모두 가능)
                 });
             },
+            async handleJoin() {
+                const header = { "Content-Type" : "application/x-www-form-urlencoded" };
+                const body = { 
+                    id : this.userid,
+                    password : this.userpw,
+                    name : this.username,
+                    email : [this.user_email + "" + this.selected],
+                    phone : this.user_phone,
+                    address : [this.postcode + "" + this.roadAddress + "" + this.detailAddress],
+                }
+                console.log(body);
+                const url = `/member/join`;
+                const response = await axios.post(url, body, {header});
+                console.log(response);
+
+                if(response.data.ret === 1){
+                    alert(response.data.data);
+                    this.$router.push({path :'/'});
+                }
+            }
 
         }
     }
