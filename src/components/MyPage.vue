@@ -98,7 +98,7 @@ import Footer from './Footer.vue'
     display : grid;
     grid-template-columns : 15% 1fr;
     grid-template-rows: 100%; 
-    width: max-content;
+    width: 1100px;
     height : 100%;
     grid-template-areas :
         "side main";

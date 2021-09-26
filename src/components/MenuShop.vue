@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mypagewrap">
         <div class="menu1">
             <div class="member-img">
                 <img src="https://lush.co.kr/data/icon/group_image/ico_member_upload1.png" alt="">
@@ -155,9 +155,11 @@ import icon3 from '@/assets/qna.png';
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
-
+.mypagewrap{
+    width: 100%;
+}
 .menu1{
-    width: 905px;
+    width: 903px;
     border: 1px solid #e9e9e9;
     /* padding: 20px 20px 20px 10px; */
 }
@@ -200,7 +202,7 @@ img{
 }
 
 .menu2{
-    width : max-content;
+    width : 905px;
     margin-top: 40px;
 }
 .menu2-header{
@@ -228,6 +230,7 @@ img{
 }
 
 .menu3{
+    width : 905px;
     margin-top: 40px;
 }
 .menu3-header{
@@ -253,6 +256,7 @@ img{
     display: inline-block;
 }
 .menu4{
+    width : 905px;
     margin-top: 40px;
 }
 .menu4-header{
