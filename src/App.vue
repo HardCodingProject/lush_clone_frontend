@@ -146,7 +146,9 @@
               </div>
             </div>
           </div>
-          <a href="#">매장 안내</a>
+          <a href="#" class="add">매장 안내</a>
+          <a href="#" class="add">스파</a>
+          <a href="#">이벤트</a>
         </div>
 
 
@@ -451,5 +453,8 @@ body {
   background: black;
   color: #fff;
   text-shadow: none;
+}
+.add{
+  margin-right: 30px;
 }
 </style>
