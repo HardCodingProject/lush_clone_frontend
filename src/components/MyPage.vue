@@ -159,12 +159,39 @@
                     <h2>최근 주문 정보</h2>
                     <p>최근 30일 내에 주문하신 내역입니다.</p>
                 </div>
-                <div class="menu2-body">
-                    
+                <div class="menu3-body">
+                    <table class="goods-board"> 
+                        <thead>
+                            <tr>
+                                <th>날짜/주문번호</th>
+                                <th>상품명/옵션</th>
+                                <th>상품금액/수량</th>
+                                <th>주문상태</th>
+                                <th>확인/리뷰</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="no-data">조회내역이 없습니다.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="menu4">
-
+            <div class="menu2">
+                <div class="menu2-header">
+                    <h2>최근 본 상품</h2>
+                    <p>정지희님께서 본 최근 상품입니다.</p>
+                </div>
+                <div class="menu3-body">
+                    <table class="goods-board1"> 
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="no-data">상품이 존재하지 않습니다.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -218,7 +245,6 @@ import Footer from './Footer.vue'
 .main{
     grid-area : main;
     grid-template-rows: repeat(4, 1fr);
-    border: 1px solid black;
     padding: 60px 0 800px 0;
 }
 .item1{
@@ -382,5 +408,45 @@ img{
     color: #7d7d7d;
     font-size: 11px;
     padding-top: 5px;
+}
+.menu3-body{
+    display: block;
+}
+.goods-board, .goods-board1{
+    width: 100%;
+    border-top: 1px solid #000;
+    border-collapse: collapse;
+    vertical-align: middle;
+}
+thead{
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+th{
+    padding: 5px 0;
+    border-bottom: 1px solid #e7e7e7;
+    font-size: 12px;
+    color: #8f8f8f;
+}
+tbody{
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.goods-board td{
+    height: 75px;
+    padding: 10px 0;
+    text-align: center;
+    color: #797979;
+    border-bottom: 1px solid #e7e7e7;
+    font-size: 14px;
+}
+.goods-board1 td{
+    height: 75px;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #333333;
 }
 </style>
