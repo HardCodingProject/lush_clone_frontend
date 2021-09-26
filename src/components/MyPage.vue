@@ -81,10 +81,87 @@
                 </div>
             </div>
             <div class="menu2">
-
+                <div class="menu2-header">
+                    <h2>진행 중인 주문</h2>
+                    <p>최근 30일 내에 진행중인 주문정보입니다.</p>
+                </div>
+                <div class="menu2-body">
+                    <ol class="clear"> 
+                        <li>
+                            <div class="num">
+                                <span>0</span>
+                            </div>
+                            <p class="num-text">입금대기</p>
+                            <span class="icon-arr">&nbsp;</span>
+                        </li>
+                        <li>
+                            <div class="num">
+                                <span>0</span>
+                            </div>
+                            <p class="num-text">결제완료</p>
+                            <span class="icon-arr">&nbsp;</span>
+                        </li>
+                        <li>
+                            <div class="num">
+                                <span>0</span>
+                            </div>
+                            <p class="num-text">상품준비중</p>
+                            <span class="icon-arr">&nbsp;</span>
+                        </li>
+                        <li>
+                            <div class="num">
+                                <span>0</span>
+                            </div>
+                            <p class="num-text">배송중</p>
+                            <span class="icon-arr">&nbsp;</span>
+                        </li>
+                        <li>
+                            <div class="num">
+                                <span>0</span>
+                            </div>
+                            <p class="num-text">배송완료</p>
+                            <span class="icon-arr">&nbsp;</span>
+                        </li>
+                        <li>
+                            <div class="num">
+                                <span>0</span>
+                            </div>
+                            <p class="num-text">구매확정</p>
+                        </li>
+                    </ol>
+                    <div class="order-total">
+                        <div class="order1">
+                            <span class="title">취소</span>
+                            <span class="num1">
+                                <span>0</span>
+                                건
+                            </span>
+                        </div>
+                        <div class="order1">
+                            <span class="title">교환</span>
+                            <span class="num1">
+                                <span>0</span>
+                                건
+                            </span>
+                        </div>
+                        <div class="order1"> 
+                            <span class="title">반품</span>
+                            <span class="num1">
+                                <span>0</span>
+                                건
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="menu3">
-
+            <div class="menu2">
+                <div class="menu2-header">
+                    <h2>최근 주문 정보</h2>
+                    <p>최근 30일 내에 주문하신 내역입니다.</p>
+                </div>
+                <div class="menu2-body">
+                    
+                </div>
             </div>
             <div class="menu4">
 
@@ -106,7 +183,7 @@ import Footer from './Footer.vue'
             return{
                 icon1 : icon1,
                 icon2 : icon2,
-                icon3 : icon3
+                icon3 : icon3,
             }
         },
         components:{
@@ -211,5 +288,99 @@ img{
     width: 35px;
     height: 25px;
     background-position: 0 0;
+}
+.menu2{
+    margin-top: 40px;
+}
+.menu2-header{
+    margin-bottom: 10px;
+}
+.menu2-header h2{
+    display: inline-block;
+    vertical-align: middle;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 17px;
+    color: #111;
+}
+.menu2-header p{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 11px;
+    color: #787878;
+    font-family: 'Nanum Gothic', sans-serif;
+    margin: 2px 0 0 10px;
+}
+.menu2-body{
+    border: 1px solid #e3e3e3;
+    padding: 10px 10px 10px 0;
+    display: inline-block;
+}
+.clear{
+    float: left;
+    margin-left: 20px;
+    list-style: none;
+    display: block;
+}
+.clear:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+.clear li{
+    float: left;
+    width: 100px;
+    text-align: center;
+    list-style: none;
+    position: relative;
+}
+.num{
+    margin: 5px 0 0;
+    text-align: center;
+    display: inline-block;
+    background: #f3f3f3;
+    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+.num-text{
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 5px 0 0;
+}
+.icon-arr{
+    position: absolute;
+    display: block;
+    top: 11px;
+    right: 9px;
+    width: 10px;
+    height: 20px;
+    background: url(https://lush.co.kr/data/skin/front/howling/img/etc/icon-arr.png) no-repeat top right;
+}
+.order-total{
+    overflow: hidden;
+    padding: 2px 55px 2px 65px;
+    border-left: 1px solid #e3e3e3;
+    width: 100px;
+    float: right;
+    margin-left: 8.5px;
+}
+.order1{
+    display: block;
+    padding: 4px 0;
+}
+.title{
+    font-weight: bold;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 12px;
+    color: #333;
+}
+.order1 .num1{
+    float: right;
+    color: #7d7d7d;
+    font-size: 11px;
+    padding-top: 5px;
 }
 </style>
