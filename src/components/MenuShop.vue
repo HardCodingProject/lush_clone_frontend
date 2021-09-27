@@ -1,24 +1,28 @@
 <template>
     <div class="mypagewrap">
         <div class="menu1">
-            <div class="member-img">
-                <img src="https://lush.co.kr/data/icon/group_image/ico_member_upload1.png" alt="">
+            <div class="menu1_memberinfo">
+                <div class="member-img">
+                    <img src="https://lush.co.kr/data/icon/group_image/ico_member_upload1.png" alt="">
+                </div>
+                <div class="member-text">
+                    <p>정지희님의</p>
+                    <p>회원등급은 일반회원등급 입니다.</p>
+                </div>
             </div>
-            <div class="member-text">
-                <p>정지희님의</p>
-                <p>회원등급은 일반회원등급 입니다.</p>
-            </div>
-            <div class="cupon">
-                <img :src="icon1" class="icon-ticket">
-                <p>혜택</p>
-            </div>
-            <div class="duczzi">
-                <img :src="icon2" class="icon-smile">
-                <p>덕찌</p>
-            </div>
-            <div class="qna">
-                <img :src="icon3" class="icon-chat">
-                <p>문의</p>
+            <div class="menu1_membericons">
+                <div class="cupon">
+                    <img :src="icon1" class="icon-ticket">
+                    <p>혜택</p>
+                </div>
+                <div class="duczzi">
+                    <img :src="icon2" class="icon-smile">
+                    <p>덕찌</p>
+                </div>
+                <div class="qna">
+                    <img :src="icon3" class="icon-chat">
+                    <p>문의</p>
+                </div>
             </div>
         </div>
         <div class="menu2">
@@ -158,10 +162,21 @@ import icon3 from '@/assets/qna.png';
 .mypagewrap{
     width: 100%;
 }
+
 .menu1{
-    width: 903px;
-    border: 1px solid #e9e9e9;
-    /* padding: 20px 20px 20px 10px; */
+    width: 870px;
+    border: 1px solid #e3e3e3;
+    padding: 20px 20px 20px 10px;
+    display: flex;
+}
+.menu1_memberinfo{
+    /* border: 1px solid black; */
+}
+.menu1_membericons{
+    /* border: 1px solid black; */
+    display: flex;
+    width: 400px;
+
 }
 .member-img{
     display: table-cell;
@@ -181,9 +196,16 @@ img{
     width: 350px;
 }
 .cupon, .duczzi, .qna{
+    /* border: 1px solid black; */
     display: table-cell;
-    width: 146px;
+    width: fit-content;
     height: 77px;
+    margin-right: 70px;
+    margin-left: 30px;
+}
+
+.cupon > p , .duczzi > p , .qna > p{
+    text-align: center;
 }
 .icon-ticket{
     width: 35px;
@@ -224,6 +246,7 @@ img{
     margin: 2px 0 0 10px;
 }
 .menu2-body{
+    width: 890px;
     border: 1px solid #e3e3e3;
     padding: 10px 10px 10px 0;
     display: inline-block;
@@ -232,9 +255,6 @@ img{
 .menu3{
     width : 905px;
     margin-top: 40px;
-}
-.menu3-header{
-    margin-bottom: 10px;
 }
 .menu3-header h2{
     display: inline-block;
@@ -252,15 +272,12 @@ img{
     margin: 2px 0 0 10px;
 }
 .menu3-body{
-    padding: 10px 10px 10px 0;
+    padding: 0px 10px 10px 0;
     display: inline-block;
 }
 .menu4{
     width : 905px;
     margin-top: 40px;
-}
-.menu4-header{
-    margin-bottom: 10px;
 }
 .menu4-header h2{
     display: inline-block;
@@ -278,15 +295,16 @@ img{
     margin: 2px 0 0 10px;
 }
 .menu4-body{
-    padding: 10px 10px 10px 0;
+    padding: 0px 10px 10px 0;
     display: inline-block;
     width: 100%;
 }
 .clear{
     float: left;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     list-style: none;
     display: block;
+    padding-left: 10px;
 }
 .clear:after {
     display: block;
