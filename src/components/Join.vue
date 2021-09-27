@@ -260,7 +260,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 
                 if(response.data.ret === 1){
                     alert(response.data.data);
-                    this.$router.push({path :'/'});
+                    this.$router.push({path :'/join_complete'});
                 }
             }
 
