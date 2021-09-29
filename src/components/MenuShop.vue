@@ -169,9 +169,6 @@ import icon3 from '@/assets/qna.png';
     padding: 20px 20px 20px 10px;
     display: flex;
 }
-.menu1_memberinfo{
-    /* border: 1px solid black; */
-}
 .menu1_membericons{
     /* border: 1px solid black; */
     display: flex;
