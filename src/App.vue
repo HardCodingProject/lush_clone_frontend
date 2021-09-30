@@ -30,7 +30,7 @@
                 </div>
                 <div class="column">
                   <h4>배쓰</h4>
-                  <a href="#">배쓰밤</a>
+                  <a href="/product_bathbomb">배쓰밤</a>
                   <a href="#">배쓰오일</a>
                   <a href="#">비건메이크업</a>
                   <a href="#">펀</a>
