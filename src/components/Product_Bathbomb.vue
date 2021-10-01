@@ -37,6 +37,34 @@
                 <li><span>배쓰 오일(1)</span></li>
                 <li><span>펀(2)</span></li>
             </ul>
+            <div class="display_table">
+                <div class="pr_list">
+                    <ul style="padding-left:20px;">
+                        <li style="width:23% height:450px" v-for="item in items" v-bind:key="item.code">
+                            <div class="pr_box">
+                                <div class="pr_img">
+                                    <img :src="item.image">
+                                </div>
+                                <div class="pr_info">
+                                    <div class="pr_conditions">
+                                        <img :src="item.cimage1">
+                                        <img :src="item.cimage2">
+                                    </div>
+                                    <div class="pr_name_tag">
+                                        <span class="pr_name">{{item.name}}</span>
+                                        <span class="pr_tag">{{item.tags}}</span>
+                                    </div>
+                                    <div class="pr_price">
+                                        <span class="price">
+                                            <strong>{{item.price}}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -53,7 +81,25 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 select_arrow_down : select_arrow_down,
                 isOpen :false,
                 selected : '추천순',
+                items : []
             }
+        },
+        mounted(){
+            //초기 디자인 잡으려고 넣어둔 것 나중에 뺄 예정//
+            const result = [
+                {code :1, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
+                {code :2, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
+                {code :3, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
+                {code :4, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
+                {code :5, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
+                {code :6, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
+                {code :7, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
+                {code :8, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
+                {code :9, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
+                {code :10, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
+                {code :11, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
+            ];
+            this.items = result;
         },
         components:{
             Footer : Footer,
@@ -82,6 +128,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     width: 100%;
     box-sizing: content-box;
     display: block;
+    overflow-y: scroll;
 }
 .bathbomb_banner{
     width: 100%;
@@ -128,20 +175,21 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 .top_header > h2{
     font-family: 'Roboto', sans-serif;
     font-size: 28px;
-    margin-bottom: 10px;
+    margin: 0;
 }
 .sort_select{
     width: 110px;
     position:absolute;
     right : 0.4%;
-    top: 30%;
+    top: 23%;
+    z-index: 1;
 }
 .select-box{
     border: 1px solid rgb(197, 197, 197);
     color : rgb(117, 117, 117);
     overflow: hidden;
     width: 100%;
-    height:37px;
+    height:33px;
 }
 .select-box > img {
     width: 15px;
@@ -159,13 +207,13 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     position: absolute;
     text-align: left;
     font-size: 15px;
-    padding: 10px 0px 8px 8px;
+    padding: 9px 0px 8px 8px;
 }
 .options-container{
     display: block;
     color:black;
     border: 1px solid rgb(197, 197, 197);
-    width: 137px;
+    width: 110px;
     height: fit-content;
     opacity: 1;
     background: white;
@@ -175,7 +223,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 }
 .options-container label {
     display: block;
-    width: 130px;
+    width: 102px;
     color: rgb(37, 36, 36);
     text-align: left;
     font-size: 15px;
@@ -192,7 +240,7 @@ input[type="radio"]{
 .divider{
     margin-top: 10px;
     margin-bottom: 10px;
-    height: 1px;
+    height: 2px;
     background-color: black;
 }
 
@@ -207,6 +255,7 @@ input[type="radio"]{
     display: inline-block;
     width: auto;
     padding: 0;
+    font-family: 'Nanum Gothic', sans-serif;
     text-align: center;
     vertical-align: middle;
     margin:0px 30px 0px 0px;
@@ -216,9 +265,113 @@ input[type="radio"]{
 }
 .product_table .lower_cate li span{
     display: block;
-    padding: 0 10px;
+    padding: 0 1px;
     margin: 0;
     font-size: 14px;
     cursor: pointer;
+    color: #8f8f8f;
+}
+.product_table .lower_cate li span:hover{
+    color: black;
+}
+.display_table{
+    width: 1180px;
+}
+.display_table .pr_list{
+    display: table;
+    width: 100%;
+}
+.display_table .pr_list li{
+    padding: 0 0;
+}
+.display_table .pr_list ul li{
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: top;
+    margin: 0;
+    list-style: none;
+    cursor: pointer;
+}
+.display_table .pr_list ul li .pr_box{
+    display: block;
+    position: relative;
+}
+.display_table .pr_list ul li .pr_img{
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 285px;
+    text-align: center;
+}
+.display_table .pr_list ul li .pr_img > img{
+    overflow: hidden;
+    width: 100%;
+    border: none;
+    vertical-align: top;
+}
+.item-display .pr_img:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.display_table .pr_list ul li .pr_info{
+    position: relative;
+    display: block;
+    padding: 30px 0 0;
+    text-align: center;
+}
+.display_table .pr_list ul li .pr_conditions{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+.display_table .pr_list ul li .pr_conditions > img{
+    padding: 2px;
+    vertical-align: top;
+    border: none;
+}
+.display_table .pr_list ul li .pr_name_tag{
+    display: block;
+    padding: 0;
+    color: #1e1e1e;
+    text-align: center;
+    line-height: 20px;
+}
+.display_table .pr_list ul li .pr_name_tag .pr_name{
+    display: block;
+    padding: 0;
+    color: #333;
+    line-height: 22px;
+    font-size: 16px;
+    max-height: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.display_table .pr_list ul li .pr_name_tag .pr_tag{
+    display: block;
+    padding: 0;
+    color: #8f8f8f;
+    line-height: 20px;
+    font-size: 14px;
+    max-height: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.display_table .pr_list ul li .pr_price{
+    display: block;
+    line-height: 30px;
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+    color: #333;
+    font-size: 16px;
+}
+.display_table .pr_list ul li .pr_price .price strong{
+    font-weight: normal;
+    color: #333;
+    font-size: 16px;
 }
 </style>
