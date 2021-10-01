@@ -83,7 +83,7 @@
                 </div>
                 <div class="column">
                   <h4>퍼퓸</h4>
-                  <a href="#">보디스프레이</a>
+                  <a href="/product_bodyspray">보디스프레이</a>
                   <a href="#">퍼퓸라이브러리</a>
                   <a href="#">코어레인지</a>
                   <a href="#">솔리드퍼퓸</a>

@@ -1,12 +1,12 @@
 <template>
-    <div class="p_bathbomb">
-        <div class="bathbomb_banner">
-            <p class="bannerxt1">배쓰 밤</p>
-            <p class="bannerxt2">찬란히 빛나는 물결에 부드럽게 몸을 맡겨 보세요</p>
+    <div class="p_bodyspray">
+        <div class="bodyspray_banner">
+            <p class="bannerxt1">보디 스프레이</p>
+            <p class="bannerxt2">나를 찾는 16가지 방법이 여기있어요</p>
         </div>
         <div class="product_table">
             <div class="top_header">
-                <h2>배쓰 밤</h2>
+                <h2>보디 스프레이</h2>
                 <div class="sort_select">
                     <div class="select-box" @click="openOption">
                         <span class="selected">{{selected}}</span>
@@ -31,11 +31,14 @@
             </div>
             <div class="divider"></div>
             <ul class="lower_cate">
-                <li><span>전체(95)</span></li>
-                <li><span>배쓰 밤(38)</span></li>
-                <li><span>버블 바(54)</span></li>
-                <li><span>배쓰 오일(1)</span></li>
-                <li><span>펀(2)</span></li>
+                <li><span>전체(149)</span></li>
+                <li><span>보디 스프레이(18)</span></li>
+                <li><span>퍼퓸 라이브러리(56)</span></li>
+                <li><span>코어 레인지(40)</span></li>
+                <li><span>솔리드 퍼퓸(15)</span></li>
+                <li><span>위시카드(18)</span></li>
+                <li><span>퍼퓸낫랩(5)</span></li>
+                <li><span>르네상스 퍼퓸(2)</span></li>
             </ul>
             <div class="display_table">
                 <div class="pr_list">
@@ -87,17 +90,17 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
         mounted(){
             //초기 디자인 잡으려고 넣어둔 것 나중에 뺄 예정//
             const result = [
-                {code :1, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :2, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :3, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :4, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :5, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :6, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :7, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :8, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :9, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :10, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :11, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
+                {code :1, name : '빅', tags : '#보디스프레이 #우아한네롤리', price : '￦' + 60000 , image : require('@/assets/pr_imgb.gif'), cimage1:require('@/assets/icon_fresh.png'), cimage2:''},
+                {code :2, name : '빅', tags : '#보디스프레이 #우아한네롤리', price : '￦' + 60000 , image : require('@/assets/pr_imgb.gif'), cimage1:require('@/assets/icon_fresh.png'), cimage2:''},
+                {code :3, name : '빅', tags : '#보디스프레이 #우아한네롤리', price : '￦' + 60000 , image : require('@/assets/pr_imgb.gif'), cimage1:require('@/assets/icon_fresh.png'), cimage2:''},
+                {code :4, name : '빅', tags : '#보디스프레이 #우아한네롤리', price : '￦' + 60000 , image : require('@/assets/pr_imgb.gif'), cimage1:require('@/assets/icon_fresh.png'), cimage2:''},
+                {code :5, name : '빅', tags : '#보디스프레이 #우아한네롤리', price : '￦' + 60000 , image : require('@/assets/pr_imgb.gif'), cimage1:require('@/assets/icon_fresh.png'), cimage2:''},
+                {code :6, name : '빅', tags : '#보디스프레이 #우아한네롤리', price : '￦' + 60000 , image : require('@/assets/pr_imgb.gif'), cimage1:require('@/assets/icon_fresh.png'), cimage2:''},
+                {code :7, name : '빅', tags : '#보디스프레이 #우아한네롤리', price : '￦' + 60000 , image : require('@/assets/pr_imgb.gif'), cimage1:require('@/assets/icon_fresh.png'), cimage2:''},
+                {code :8, name : '빅', tags : '#보디스프레이 #우아한네롤리', price : '￦' + 60000 , image : require('@/assets/pr_imgb.gif'), cimage1:require('@/assets/icon_fresh.png'), cimage2:''},
+                {code :9, name : '빅', tags : '#보디스프레이 #우아한네롤리', price : '￦' + 60000 , image : require('@/assets/pr_imgb.gif'), cimage1:require('@/assets/icon_fresh.png'), cimage2:''},
+                {code :10, name : '빅', tags : '#보디스프레이 #우아한네롤리', price : '￦' + 60000 , image : require('@/assets/pr_imgb.gif'), cimage1:require('@/assets/icon_fresh.png'), cimage2:''},
+                {code :11, name : '빅', tags : '#보디스프레이 #우아한네롤리', price : '￦' + 60000 , image : require('@/assets/pr_imgb.gif'), cimage1:require('@/assets/icon_fresh.png'), cimage2:''},
             ];
             this.items = result;
         },
@@ -122,7 +125,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100&display=swap');
 
-.p_bathbomb{
+.p_bodyspray{
     padding: 0;
     height: 100%;
     width: 100%;
@@ -130,10 +133,10 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     display: block;
     overflow-y: scroll;
 }
-.bathbomb_banner{
+.bodyspray_banner{
     width: 100%;
     height: 500px;
-    background-image: url(https://www.lush.co.kr/data/editor/goods/200624/bathbombs01_095105.jpg);
+    background-image: url(https://www.lush.co.kr/data/editor/goods/200624/bodyspray01_134551.jpg);
     background-repeat: no-repeat;
     background-position: 50% 0px;
 }
@@ -158,7 +161,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     text-align: center;
     letter-spacing: 0.2em;
     font-family: 'IBM Plex Sans KR', sans-serif;
-    font-size: 30px;
+    font-size: 27px;
 }
 .product_table{
     /* border: 1px solid black; */
@@ -249,6 +252,7 @@ input[type="radio"]{
     background-color: black;
 }
 
+
 /* 상품테이블 */
 .product_table .lower_cate{
     padding: 10px 0;
@@ -312,7 +316,7 @@ input[type="radio"]{
 }
 .display_table .pr_list ul li .pr_img > img{
     overflow: hidden;
-    width: 100%;
+    width: 285px;
     border: none;
     vertical-align: top;
 }
