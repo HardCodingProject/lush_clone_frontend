@@ -6,16 +6,16 @@
         </div>
         <div class="product_table">
             <div class="top_header">
-                <h2>배쓰밤</h2>
+                <h2>배쓰 밤</h2>
                 <div class="sort_select">
                     <div class="select-box" @click="openOption">
                         <span class="selected">{{selected}}</span>
                         <img :src="select_arrow_down">
                     </div>
-                    <div name class="options-container" v-if="isOpen"  @click="choose">
+                    <div name class="options-container" v-if="isOpen"  >
                         <input type="radio" id="1" v-model="selected" value="추천순">
                         <label for="1" >추천순</label>
-                        <input type="radio" id="2" v-model="selected" value="판매인기순" >
+                        <input type="radio" id="2" v-model="selected" @click="choose" value="판매인기순" >
                         <label for="2" >판매인기순</label>
                         <input type="radio" id="3" v-model="selected" value="낮은가격순" >
                         <label for="3">낮은가격순</label>
@@ -29,6 +29,14 @@
                 
                 </div>
             </div>
+            <div class="divider"></div>
+            <ul class="lower_cate">
+                <li><span>전체(95)</span></li>
+                <li><span>배쓰 밤(38)</span></li>
+                <li><span>버블 바(54)</span></li>
+                <li><span>배쓰 오일(1)</span></li>
+                <li><span>펀(2)</span></li>
+            </ul>
         </div>
 
     </div>
@@ -55,11 +63,8 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 this.isOpen = !this.isOpen;
                 console.log(this.isOpen);
             },
-            choose(value){
-                if(value === '판매인기순'){
-                    // this.selected = value;
-                    this.isOpen = false;
-                }
+            choose(click){
+                console.log(click);
                 
             }
         }
@@ -109,24 +114,34 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     font-size: 30px;
 }
 .product_table{
-    border: 1px solid black;
-    width: 100%;
+    /* border: 1px solid black; */
+    width: 1180px;
+    margin: 0 auto;
     height: 300px;
+    position: relative;
 }
 .top_header{
+    width: 100%;
     display: inline-flex;
+    padding: 70px 0px 0px 0px;
+}
+.top_header > h2{
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 .sort_select{
-    width: 130px;
+    width: 110px;
+    position:absolute;
+    right : 0.4%;
+    top: 30%;
 }
 .select-box{
     border: 1px solid rgb(197, 197, 197);
     color : rgb(117, 117, 117);
     overflow: hidden;
-    width: 137px;
-    height:50px;
-    position:relative;
-    display: inline-block;
+    width: 100%;
+    height:37px;
 }
 .select-box > img {
     width: 15px;
@@ -136,8 +151,8 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     position: absolute;
 }
 .selected {
-    width: 110px;
-    height: 100%;
+    width: 90%;
+    height: 10px;
     /* border: 1px solid black; */
     background: rgb(255, 255, 255);
     color : rgb(37, 36, 36);
@@ -172,5 +187,38 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 }
 input[type="radio"]{
     display: none;
+}
+
+.divider{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 1px;
+    background-color: black;
+}
+
+.product_table .lower_cate{
+    padding: 10px 0;
+    border: none;
+    border-top: none;
+    font-size: 0;
+    text-align: left;
+}
+.product_table .lower_cate li{
+    display: inline-block;
+    width: auto;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    margin:0px 30px 0px 0px;
+}
+.product_table .lower_cate li:first-child span{
+    padding-left: 0px;
+}
+.product_table .lower_cate li span{
+    display: block;
+    padding: 0 10px;
+    margin: 0;
+    font-size: 14px;
+    cursor: pointer;
 }
 </style>
