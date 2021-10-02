@@ -7,9 +7,9 @@
             <div class="item2">
                 <h4>쇼핑정보</h4>
                 <ul>
-                    <li><a href="#" v-on:click="changeMenu(1)">주문목록/배송조회</a></li>
-                    <li><a href="#">취소/반품/교환내역</a></li>
-                    <li><a href="#">환불/입금내역</a></li>
+                    <li><a href="#" v-on:click="changeMenu(2)">주문목록/배송조회</a></li>
+                    <li><a href="#" v-on:click="changeMenu(3)">취소/반품/교환내역</a></li>
+                    <li><a href="#" v-on:click="changeMenu(4)">환불/입금내역</a></li>
                     <li><a href="#">찜리스트</a></li>
                 </ul>
             </div>
@@ -39,7 +39,7 @@
             <div class="item6">
                 <h4>고객센터</h4>
                 <ul>
-                    <li><a href="#" v-on:click="changeMenu(2)">공지사항</a></li>
+                    <li><a href="#">공지사항</a></li>
                     <li><a href="#">1:1문의</a></li>
                     <li><a href="#">FAQ</a></li>
                 </ul>
@@ -49,7 +49,7 @@
                 <ul>
                     <li><a href="#">회원정보 변경</a></li>
                     <li><a href="#">회원 탈퇴</a></li>
-                    <li><a href="#">배송자 관리</a></li>
+                    <li><a href="#" v-on:click="changeMenu(5)">배송자 관리</a></li>
                 </ul>
             </div>
             <div class="item8">
@@ -66,21 +66,27 @@
 </template>
 
 <script>
-import MenuShop from './MenuShop.vue';
-import MenuService from './MenuService.vue';
+import MypageBase from './MypageBase.vue';
+import MypageShop1 from './MypageShop1.vue';
+import MypageShop2 from './MypageShop2.vue';
+import MypageShop3 from './MypageShop3.vue';
+import MyAddress from './MyAddress.vue';
 import Footer from './Footer.vue'
 
     export default {
         data(){
             return{
-                currentMenu: 'menushop',
-                menus : [ null,'menushop','menuservice'],
+                currentMenu: 'mypagebase',
+                menus : [ null,'mypagebase','mypageshop1','mypageshop2','mypageshop3','myaddress'],
             }
         },
         components:{
             Footer : Footer,
-            'menushop' : MenuShop,
-            'menuservice' : MenuService
+            'mypagebase' : MypageBase,
+            'mypageshop1' : MypageShop1,
+            'mypageshop2' : MypageShop2,
+            'mypageshop3' : MypageShop3,
+            'myaddress' : MyAddress,
         },
         methods:{
             changeMenu(num){
