@@ -63,7 +63,7 @@
                 <div class="check-cal2">
                     <div class="demo-date-picker">
                         <div class="block">
-                            <el-date-picker v-model="value1" type="date" placeholder="Pick a day" style="width:140px">
+                            <el-date-picker v-model="value2" type="date" placeholder="Pick a day" style="width:140px">
                             </el-date-picker>
                         </div>
                     </div>
@@ -134,7 +134,8 @@ import icon3 from '@/assets/qna.png';
                 icon1 : icon1,
                 icon2 : icon2,
                 icon3 : icon3,
-                value1 : ''
+                value1 : '',
+                value2 : '',
             }
         },
          props: {
@@ -240,7 +241,7 @@ img{
     width: 93%;;
 }
 .date-ckeck h3{
-    margin: 7px 20px 0 0;
+    margin: 15px 20px 0 0;
     font-family: 'Nanum Gothic', sans-serif;
     font-weight: normal;
     color: #333333;
@@ -259,6 +260,7 @@ img{
     border: none;
     outline: none;
     cursor: pointer;
+    margin-top: 10px;
 }
 .btn button:hover{
     text-decoration: underline solid #333;
