@@ -249,9 +249,10 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     id : this.userid,
                     password : this.userpw,
                     name : this.username,
-                    email : [this.user_email + "@" + this.selected],
+                    email : this.user_email + "@" + this.selected,
                     phone : this.user_phone,
-                    address : [this.postcode + "" + this.roadAddress + "" + this.detailAddress],
+                    zip_code : this.postcode,
+                    shipping_address : this.roadAddress + " " + this.detailAddress,
                 }
                 console.log(body);
                 const url = `/member/join`;

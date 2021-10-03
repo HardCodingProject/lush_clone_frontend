@@ -40,19 +40,19 @@
             <div class="display_table">
                 <div class="pr_list">
                     <ul style="padding-left:20px;">
-                        <li style="width:23% height:450px" v-for="item in items" v-bind:key="item.code">
+                        <li style="width:23% height:450px" v-for="item in items" v-bind:key="item._id">
                             <div class="pr_box">
                                 <div class="pr_img">
-                                    <img :src="item.image">
+                                    <img :src="`/product/image/list?code=${item._id}`">
                                 </div>
                                 <div class="pr_info">
-                                    <div class="pr_conditions">
+                                    <!-- <div class="pr_conditions">
                                         <img :src="item.cimage1">
                                         <img :src="item.cimage2">
-                                    </div>
+                                    </div> -->
                                     <div class="pr_name_tag">
                                         <span class="pr_name">{{item.name}}</span>
-                                        <span class="pr_tag">{{item.tags}}</span>
+                                        <span class="pr_tag">{{item.tag}}</span>
                                     </div>
                                     <div class="pr_price">
                                         <span class="price">
@@ -66,13 +66,13 @@
                 </div>
             </div>
         </div>
-
+      <!-- <el-pagination background layout="prev, pager, next" :total="pages" @current-change="handleCurrentPage" id="handlepage"></el-pagination> -->
     </div>
     <Footer></Footer>
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import Footer from './Footer.vue'
 import select_arrow_down from '@/assets/select_arrow_down.png';
     export default {
@@ -81,38 +81,36 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 select_arrow_down : select_arrow_down,
                 isOpen :false,
                 selected : '추천순',
-                items : []
+                items : [],
+                // page : 1,
+                // pages : 20,
+                category_code : this.$route.query.category_code,
+                // code : this.$route.query.items._id
             }
         },
-        mounted(){
-            //초기 디자인 잡으려고 넣어둔 것 나중에 뺄 예정//
-            const result = [
-                {code :1, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :2, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :3, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :4, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :5, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :6, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :7, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :8, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :9, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :10, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-                {code :11, name : '스노우 페어리 라이츠', tags : '#배쓰밤 #돌아온요정', price : '￦' + 20000 , image : require('@/assets/pr_img.jpg'), cimage1:require('@/assets/icon_new.png'), cimage2:require('@/assets/icon_xmas.png')},
-            ];
-            this.items = result;
+        async created(){
+            await this.handleItems();
         },
         components:{
             Footer : Footer,
         },
         methods : {
+            async handleItems(){
+                const url = `/product/list?category_code=${this.category_code}`;
+                const result = await axios.get(url);
+                console.log(result);
+                if(result.data.ret === 1){
+                    this.items = result.data.data;
+                }
+            },
             openOption(){
                 this.isOpen = !this.isOpen;
                 console.log(this.isOpen);
             },
-            choose(click){
-                console.log(click);
-                
-            }
+            // async handleCurrentPage(val){
+            //     this.page = val;
+            //     await this.handleItems();
+            // }
         }
     }
 </script>
@@ -298,6 +296,7 @@ input[type="radio"]{
     margin: 0;
     list-style: none;
     cursor: pointer;
+    width: 285px;
 }
 .display_table .pr_list ul li .pr_box{
     display: block;

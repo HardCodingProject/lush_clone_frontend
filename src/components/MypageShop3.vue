@@ -154,7 +154,7 @@ import icon3 from '@/assets/qna.png';
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
-@import url("//unpkg.com/element-plus/lib/theme-chalk/index.css");
+/* @import url("//unpkg.com/element-plus/lib/theme-chalk/index.css"); */
 .mypagewrap{
     width: 100%;
 }

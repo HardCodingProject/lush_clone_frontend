@@ -30,7 +30,7 @@
                 </div>
                 <div class="column">
                   <h4>배쓰</h4>
-                  <a href="/product_bathbomb">배쓰밤</a>
+                  <a href="#" @click="handleBathbomb(2)">배쓰밤</a>
                   <a href="#">배쓰오일</a>
                   <a href="#">비건메이크업</a>
                   <a href="#">펀</a>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="column">
                   <h4>퍼퓸</h4>
-                  <a href="/product_bodyspray">보디스프레이</a>
+                  <a href="#" @click="handleBodyspray(1)">보디스프레이</a>
                   <a href="#">퍼퓸라이브러리</a>
                   <a href="#">코어레인지</a>
                   <a href="#">솔리드퍼퓸</a>
@@ -191,7 +191,14 @@ export default {
       shop   : shop,
       login  : login,
       search : search,
+      code : ''
     }
+  },
+  methods:{
+    handleBathbomb(val){
+      this.$router.push({path:'/product_bathbomb', query : {category_code:val}});
+    }
+
   }
 }
 </script>

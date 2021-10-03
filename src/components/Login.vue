@@ -33,7 +33,7 @@
                                     <input type="checkbox" class="checkbox" id="saveId" checked>
                                     <label for="saveId" class="on">아이디 저장</label>
                                 </div>
-                                <button type="submit" class="loginbtn point2 login" @click="handleLogin"><em>로그인</em></button>
+                                <button type="button" class="loginbtn point2 login" @click="handleLogin"><em>로그인</em></button>
                                 <div class="login_menus">
                                     <button type="button" class="loginbtn" id="btnJoin"><em>회원가입</em></button>
                                     <button type="button" class="loginbtn" id="btnFindId"><em>아이디 찾기</em></button>
@@ -78,6 +78,7 @@ import logo_naver from '@/assets/logo_naver.gif';
             async handleLogin() {
                 const header = { "Content-Type" : "application/x-www-form-urlencoded" };
                 const body = { id : this.login_id, password : this.login_pw };
+                console.log(body)
                 const url = '/member/login';
                 const response = await axios.post(url, body, header);
                 console.log(response);
