@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="pr_price">
                                         <span class="price">
-                                            <strong>{{item.price}}</strong>
+                                            <strong> ₩{{item.price}}</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -92,12 +92,17 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
         },
         methods : {
             async handleItems(){
-                const url = `/product/list?category_code=${this.category_code}`;
+                const url = `/product/list?categoryCode=${this.category_code}`;
                 const result = await axios.get(url);
                 console.log(result);
                 if(result.data.ret === 1){
                     this.items = result.data.data;
                 }
+
+                const url1 = `/product/type/image`;
+                const result1 = await axios.get(url1);
+                console.log(result1)
+                
             },
             openOption(){
                 this.isOpen = !this.isOpen;
