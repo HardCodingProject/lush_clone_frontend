@@ -66,7 +66,6 @@
                 </div>
             </div>
         </div>
-      <!-- <el-pagination background layout="prev, pager, next" :total="pages" @current-change="handleCurrentPage" id="handlepage"></el-pagination> -->
     </div>
     <Footer></Footer>
 </template>
@@ -82,10 +81,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 isOpen :false,
                 selected : '추천순',
                 items : [],
-                // page : 1,
-                // pages : 20,
                 category_code : this.$route.query.category_code,
-                // code : this.$route.query.items._id
             }
         },
         async created(){
@@ -107,10 +103,6 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 this.isOpen = !this.isOpen;
                 console.log(this.isOpen);
             },
-            // async handleCurrentPage(val){
-            //     this.page = val;
-            //     await this.handleItems();
-            // }
         }
     }
 </script>
