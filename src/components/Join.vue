@@ -33,7 +33,8 @@
                             <span class="required"></span>아이디</th>
                         <td>
                             <div class="txt-field">
-                                <input type="text" class="text" v-model="userid">
+                                <input type="text" class="text_idchk" v-model="id"><br>
+                                <div v-bind:style="checkstyle">{{idcheck}}</div>
                             </div>
                         </td>
                     </tr>
@@ -42,7 +43,8 @@
                         <th><span class="required"></span>비밀번호</th>
                         <td>
                             <div class="txt-field">
-                                <input type="password" class="text" v-model="userpw" autocomplete="off" placeholder aria-placeholder="list">
+                                <input type="password" class="text" v-model="userpw" autocomplete="off" placeholder aria-placeholder="list"><br>
+                                <div v-bind:style="checkstyle">{{pwcheck}}</div>
                             </div>
                         </td>
                     </tr>
@@ -51,7 +53,8 @@
                         <th><span class="required"></span>비밀번호 확인</th>
                         <td>
                             <div class="txt-field">
-                                <input type="password" class="text check-id" v-model="userpw2" autocomplete="off">
+                                <input type="password" class="text check-id" v-model="userpw2" autocomplete="off"><br>
+                                <div v-bind:style="checkstyle">{{pw1check}}</div>
                             </div>
                         </td>
                     </tr>
@@ -60,7 +63,8 @@
                         <th aria-required="true"><span class="required"></span>이름</th>
                         <td>
                             <div class="txt-field">
-                                <input type="text" class="text" v-model="username" maxlength="30">
+                                <input type="text" class="text" v-model="username" maxlength="30"><br>
+                                <div v-bind:style="checkstyle">{{namecheck}}</div>
                             </div>
                         </td>
                     </tr>
@@ -80,6 +84,7 @@
                             <div class="email">
                                 <div class="txt-field">
                                     <input type="text" class="text" id="emailinput" name="email" v-model="user_email">
+                                    <div v-bind:style="checkstyle">{{emailcheck}}</div>
                                 </div>
 
                                 <div class="select-option">
@@ -110,7 +115,7 @@
                                 <div class="form-element">
                                     <input type="checkbox" class="checkbox" id="mailling" value="" aria-invalid="false">
                                     <label for="mailling" class="checkboxlabel">정보/이벤트 메일 수신에 동의합니다.</label>
-                                </div>
+                                </div><br>
                             </div>
                         </td>
                     </tr>
@@ -123,7 +128,8 @@
                                 <div class="form-element2">
                                     <input type="checkbox" class="checkbox" id="smsFl" name="smsFl" value="">
                                     <label for="smsFl" class="checkboxlabel">정보/이벤트 SMS 수신에 동의합니다.</label>
-                                </div>                              
+                                </div><br>
+                                <div v-bind:style="checkstyle">{{phonecheck}}</div>                            
                             </div>
                         </td>
                     </tr>
@@ -132,7 +138,7 @@
                         <th class="th_address">주소</th>
                         <td>
                             <div class="post">
-                                <div class="txt-field">
+                                <div class="txt-field-add">
                                     <input type="text" id="postcode" v-model="postcode" class="mainaddress" readonly value>
                                     <input type="hidden" value>
                                     <button class="postcodesSearchBtn" id="btnPostcode" @click="openDaumPostCode">
@@ -176,7 +182,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 postcode :'',
                 roadAddress :'',
                 detailAddress : '',
-                userid : '',
+                id : '',
                 userpw : '',
                 userpw2 : '',
                 username : '',
@@ -184,7 +190,93 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 user_email :'',
                 user_phone : '',
                 user_addr : '',
+                idcheck : '',
+                pwcheck : '',
+                pw1check : '',
+                namecheck : '',
+                emailcheck : '',
+                phonecheck : '',
+                checkstyle : {
+                    width: '220px',
+                    height: '25px',
+                    marginTop:'3px',
+                    marginBottom: '15px',
+                    paddingLeft: '5px',
+                    fontFamily: 'Nanum Gothic, sans-serif',
+                    fontSize: '13px',
+                }
             }
+        },
+        watch : {
+            async id(val) {
+                const header = { "Content-Type" : "application/x-www-form-urlencoded" };
+                const url = `/member/checkid?id=` + val;
+                const response = await axios.get(url, header);
+                console.log(response);
+                if(val.length >= 1){
+                    if(response.data.ret === 1){
+                        this.idcheck = "이미 사용중인 아이디입니다.";
+                        this.checkstyle.color="Red";
+                        
+                    }
+                    else{
+                        this.idcheck = "사용 가능한 아이디입니다.";
+                        this.checkstyle.color="Green";
+                        
+                    }
+                }
+                else if(val.length === 0){
+                    this.check='';
+                    this.idcheck='아이디는 입력 필수 항목입니다.';
+                    this.checkstyle.color="Red";
+                }
+            },
+            userpw(val){
+                if(val.length === 0){
+                    this.pwcheck='암호는 입력 필수 항목입니다.';
+                    this.checkstyle.color="Red";
+                }
+                else{
+                    this.pwcheck='';
+                }
+            },
+            userpw2(val){
+                if(val.length === 0){
+                    this.pw1check='암호를 정확히 한번 더 입력해주세요.';
+                    this.checkstyle.color="Red";
+                }
+                else{
+                    this.pw1check='';
+                }
+            },
+            username(val){
+                if(val.length === 0){
+                    this.namecheck='이름은 입력 필수 항목입니다.';
+                    this.checkstyle.color="Red";
+                }
+                else{
+                    this.namecheck='';
+                }
+            },
+            user_email(val){
+                if(val.length === 0){
+                    this.emailcheck='이메일은 입력 필수 항목입니다.';
+                    this.checkstyle.color="Red";
+                }
+                else{
+                    this.emailcheck='';
+                }                
+            },
+            user_phone(val){
+                if(val.length === 0){
+                    this.phonecheck='연락처는 입력 필수 항목입니다.';
+                    this.checkstyle.color="Red";
+                }
+                else{
+                    this.phonecheck='';
+                } 
+            },
+
         },
         mounted() {
             let daumPostCode = document.createElement('script')
@@ -246,7 +338,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
             async handleJoin() {
                 const header = { "Content-Type" : "application/x-www-form-urlencoded" };
                 const body = { 
-                    id : this.userid,
+                    id : this.id,
                     password : this.userpw,
                     name : this.username,
                     email : this.user_email + "@" + this.selected,
@@ -398,18 +490,34 @@ th{
     text-decoration: none;
     transform: translateY(-15%);
 }
+.txt-field{
+    height: 70px;
+}
+.txt-field-add{
+    height: 50px;
+}
 .th_address{
     padding-left: 13px;
     transform: translateY(-35%);
 }
 .nickname input{
-    margin-bottom: 25px;
+    margin-bottom: 30px;
+}
+.text_idchk{
+    width: 400px;
+    border: 1px solid rgb(197, 197, 197);
+    height: 35px;
+    margin-bottom: 0px;
+    padding-left: 10px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 14px;
+    color: rgb(104, 104, 104);
 }
 input{
     width: 400px;
     border: 1px solid rgb(197, 197, 197);
     height: 35px;
-    margin-bottom: 25px;
+    margin-bottom: 0px;
     padding-left: 10px;
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 14px;
@@ -417,13 +525,13 @@ input{
 }
 .email{
     width: 100%;
-    height: 36px;
+    height: 40px;
     display: inline-flex;
     margin-bottom: 25px;
 }
 #emailinput{
     width: 250px;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
 }
 .th_nickname{
     padding-left: 13px;
@@ -570,6 +678,7 @@ input[type="checkbox"]{
     width : 300px;
     height: 70px;
     margin-top: 35px;
+    cursor: pointer;
 }
 .JoinBtn em {
     margin-top: 23px;
