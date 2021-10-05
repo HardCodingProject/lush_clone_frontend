@@ -46,10 +46,11 @@
                                     <img :src="`/product/image/list?code=${item._id}`">
                                 </div>
                                 <div class="pr_info">
-                                    <!-- <div class="pr_conditions">
-                                        <img :src="item.cimage1">
-                                        <img :src="item.cimage2">
-                                    </div> -->
+                                    <div class="pr_conditions">
+                                        <img :src="`/product/type/image?product_code=${item._id}&priority=1`">
+                                        <img :src="`/product/type/image?product_code=${item._id}&priority=2`">
+                                        <img :src="`/product/type/image?product_code=${item._id}&priority=3`">
+                                    </div>
                                     <div class="pr_name_tag">
                                         <span class="pr_name">{{item.name}}</span>
                                         <span class="pr_tag">{{item.tag}}</span>
