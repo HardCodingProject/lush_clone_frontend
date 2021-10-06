@@ -40,16 +40,16 @@
             <div class="display_table">
                 <div class="pr_list">
                     <ul style="padding-left:20px;">
-                        <li style="width:23% height:450px" v-for="item in items" v-bind:key="item._id">
+                        <li style="width:23% height:450px" v-for="item in items" v-bind:key="item">
                             <div class="pr_box">
                                 <div class="pr_img">
                                     <img :src="`/product/image/list?code=${item._id}`">
                                 </div>
                                 <div class="pr_info">
-                                    <div class="pr_conditions">
-                                        <img :src="`/product/type/image?product_code=${item._id}&priority=1`">
-                                        <img :src="`/product/type/image?product_code=${item._id}&priority=2`">
-                                        <img :src="`/product/type/image?product_code=${item._id}&priority=3`">
+                                    <div class="pr_conditions" v-for="idx in idx" v-bind:key="idx">
+                                        <img :src="`/product/type/image?product_code=${item._id}&priority=${idx.length}`">
+                                        <!-- <img :src="`/product/type/image?product_code=${item._id}&priority=${idx[1]}`">
+                                        <img :src="`/product/type/image?product_code=${item._id}&priority=${idx[2]}`"> -->
                                     </div>
                                     <div class="pr_name_tag">
                                         <span class="pr_name">{{item.name}}</span>
@@ -82,6 +82,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 isOpen :false,
                 selected : '추천순',
                 items : [],
+                idx : [1,2,3],
                 category_code : this.$route.query.category_code,
             }
         },
@@ -100,9 +101,9 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     this.items = result.data.data;
                 }
 
-                const url1 = `/product/type/image`;
-                const result1 = await axios.get(url1);
-                console.log(result1)
+                // const url1 = `/product/type/image?product_code=${this.product_code}&priority=${this.idx}`;
+                // const result1 = await axios.get(url1);
+                // console.log(result1)
                 
             },
             openOption(){
