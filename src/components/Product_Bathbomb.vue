@@ -26,7 +26,6 @@
                         <input type="radio" id="6" v-model="selected" value="신제품순" >
                         <label for="6">신제품순</label>
                     </div>
-                
                 </div>
             </div>
             <div class="divider"></div>
@@ -46,10 +45,11 @@
                                     <img :src="`/product/image/list?code=${item._id}`">
                                 </div>
                                 <div class="pr_info">
-                                    <div class="pr_conditions" v-for="idx in idx" v-bind:key="idx">
-                                        <img :src="`/product/type/image?product_code=${item._id}&priority=${idx.length}`">
-                                        <!-- <img :src="`/product/type/image?product_code=${item._id}&priority=${idx[1]}`">
-                                        <img :src="`/product/type/image?product_code=${item._id}&priority=${idx[2]}`"> -->
+                                    <div class="pr_conditions">
+                                        <img :src="`/product/type/image?product_code=${item._id}&priority=${idx}`" v-for="idx in 3" v-bind:key="idx">
+                                        <!-- <div v-for="index in count" :key="index" @change=changepriority(item._id)>
+                                            <img :src="`/product/type/image?product_code=${item._id}&priority=${index}`">
+                                        </div> -->
                                     </div>
                                     <div class="pr_name_tag">
                                         <span class="pr_name">{{item.name}}</span>
@@ -66,9 +66,10 @@
                     </ul>
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     </div>
-    <Footer></Footer>
+
 </template>
 
 <script>
@@ -82,8 +83,9 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 isOpen :false,
                 selected : '추천순',
                 items : [],
-                idx : [1,2,3],
+                idx : [{no:1},{no:2},{no:3},],
                 category_code : this.$route.query.category_code,
+                id : '',
             }
         },
         async created(){
@@ -100,11 +102,6 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 if(result.data.ret === 1){
                     this.items = result.data.data;
                 }
-
-                // const url1 = `/product/type/image?product_code=${this.product_code}&priority=${this.idx}`;
-                // const result1 = await axios.get(url1);
-                // console.log(result1)
-                
             },
             openOption(){
                 this.isOpen = !this.isOpen;
@@ -159,20 +156,23 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 }
 .product_table{
     /* border: 1px solid black; */
-    width: 1180px;
+    /* width: 1180px; */
     margin: 0 auto;
     height: 300px;
     position: relative;
 }
 .top_header{
-    width: 100%;
+    width: 1180px;
     display: inline-flex;
     padding: 70px 0px 0px 0px;
+    margin: 0 auto;
 }
 .top_header > h2{
     font-family: 'Roboto', sans-serif;
     font-size: 28px;
     margin: 0;
+    position: relative;
+    left: 15%;
 }
 
 
@@ -180,7 +180,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 .sort_select{
     width: 110px;
     position:absolute;
-    right : 0.4%;
+    right : 12%;
     top: 23%;
     z-index: 1;
 }
@@ -240,6 +240,8 @@ input[type="radio"]{
 
 /* 구분선 */
 .divider{
+    width: 1180px;
+    margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 10px;
     height: 1.5px;
@@ -248,6 +250,8 @@ input[type="radio"]{
 
 /* 상품테이블 */
 .product_table .lower_cate{
+    width: 1180px;
+    margin: 0 auto;
     padding: 10px 0;
     border: none;
     border-top: none;
@@ -279,6 +283,7 @@ input[type="radio"]{
 }
 .display_table{
     width: 1180px;
+    margin: 0 auto;
 }
 .display_table .pr_list{
     display: table;

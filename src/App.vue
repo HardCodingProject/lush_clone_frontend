@@ -174,7 +174,6 @@
     <div class="content">
       <router-view></router-view>
     </div>
-    
   </div>
 </template>
 
@@ -198,7 +197,6 @@ export default {
     handleBathbomb(val){
       this.$router.push({path:'/product_bathbomb', query : {category_code:val}});
     }
-
   }
 }
 </script>
