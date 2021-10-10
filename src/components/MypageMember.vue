@@ -34,7 +34,35 @@
                         <th><span class="required"></span>비밀번호</th>
                         <td>
                             <div class="txt-field">
-                                <input type="password" class="text" v-model="userpw" autocomplete="off" placeholder aria-placeholder="list">
+                                <button class="pass-btn" @click="OpenPw">비밀번호 변경</button>
+                                <button class="pass-btn" @click="OpenHp">비밀번호 도움말</button>
+                            </div>
+                            <div class="OpenHelp" v-if="OpenHelp===true">
+                                <strong>비밀번호 도움말</strong>
+                                <div>
+                                    <p class="help1">영문대소문자는 구분이 되며, 한가지 문자로만 입력은 위험합니다.</p>
+                                    <p class="help2">
+                                        <b>사용가능 특수문자:</b>
+                                        <span>!@$%^&*()=,.+?~;[]{}</span>
+                                    </p>
+                                    <p class="help3">
+                                        ID/주민번호/생일/전화번호 등의 개인정보와 통상 사용 순서대로의 3자 이상 연속 사용은 피해주세요. <br>
+                                        비밀번호는 주기적으로 바꾸어 사용하시는 것이 안전합니다.
+                                    </p>
+                                </div>
+                                <button class="close" @click="OpenHp"></button>
+                            </div>
+                            <div id="PassDiv" v-if="OpenPasswd===true">
+                                <label class="label">현재 비밀번호</label>
+                                <input class="inputpass" type="text" v-model="orgPass" ref="orgPass">
+                                <div id="PassDivCheck">
+                                    <label class="label">새 비밀번호</label>
+                                    <input class="inputpass" type="text" v-model="newPass" ref="newPass">
+                                </div>
+                                <div id="PassDivCheck">
+                                    <label class="label">새 비밀번호 확인</label>
+                                    <input class="inputpass" type="text" v-model="newPassCheck" ref="newPassCheck">
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -135,33 +163,37 @@
 
                 </tbody>
             </table>
-            <div class="divider2"></div>
-            <button class="JoinBtn" type="button" @click="handleJoin">
-                <em>회원가입</em>
-            </button>
-
+            <div class="Btn">
+                <button class="CancleBtn" type="button" @click="handleJoin">
+                    <em>취소</em>
+                </button>
+                <button class="UpdateBtn" type="button" @click="handleJoin">
+                    <em>정보수정</em>
+                </button>
+            </div>
             
         </div>
-        <Footer></Footer>
     </div>
 </template>
  
 <script>
-import axios from 'axios';
-import Footer from '@/components/Footer.vue';
+// import axios from 'axios';
 import select_arrow_down from '@/assets/select_arrow_down.png';
     export default {
         data(){
             return{
                 isOpen :false,
+                OpenPasswd : false,
+                OpenHelp : false,
                 selected : '',
                 select_arrow_down : select_arrow_down,
                 postcode :'',
                 roadAddress :'',
                 detailAddress : '',
                 userid : '',
-                userpw : '',
-                userpw2 : '',
+                orgPass : '',
+                newPass : '',
+                newPassCheck : '',
                 username : '',
                 user_nickname : '',
                 user_email :'',
@@ -173,9 +205,6 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
             let daumPostCode = document.createElement('script')
             daumPostCode.setAttribute('src', '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js')
             document.head.appendChild(daumPostCode);
-        },
-        components:{
-            Footer : Footer,
         },
         methods : {
             openOption(){
@@ -226,27 +255,12 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     popupTitle: 'LUSH 우편번호 검색' //팝업창 타이틀 설정 (영문,한글,숫자 모두 가능)
                 });
             },
-            async handleJoin() {
-                const header = { "Content-Type" : "application/x-www-form-urlencoded" };
-                const body = { 
-                    id : this.userid,
-                    password : this.userpw,
-                    name : this.username,
-                    email : [this.user_email + "" + this.selected],
-                    phone : this.user_phone,
-                    address : [this.postcode + "" + this.roadAddress + "" + this.detailAddress],
-                }
-                console.log(body);
-                const url = `/member/join`;
-                const response = await axios.post(url, body, {header});
-                console.log(response);
-
-                if(response.data.ret === 1){
-                    alert(response.data.data);
-                    this.$router.push({path :'/join_complete'});
-                }
+            OpenPw(){
+                this.OpenPasswd = !this.OpenPasswd;
+            },
+            OpenHp(){
+                this.OpenHelp = !this.OpenHelp;
             }
-
         }
     }
 </script>
@@ -344,6 +358,7 @@ table{
     /* width: 900px; */
     padding: 20px;
     font-weight: 200px;
+    border-bottom: 1px solid #e7e7e7;
 }
 .th_area { 
     width: 200px;
@@ -525,24 +540,128 @@ input[type="checkbox"]{
     font-style: normal;
     margin-bottom: 5px;
 }
-.JoinBtn{
+.Btn{
+    padding: 40px 0 0;
+    text-align: center;
+    margin: 0;
+    display: block;
+}
+.CancleBtn{
+    display: flex;
+    justify-content: center;
+    background: white;
+    border: 1px solid black;
+    color: black;
+    margin: 0 auto;
+    width : 130px;
+    height: 42px;
+    margin-top: 35px;
+    display: inline-block;
+    margin-right: 5px;
+}
+.CancleBtn em {
+    padding-top: 10px;
+    font-style: normal;
+    font-size: 15px;
+}
+.UpdateBtn{
     display: flex;
     justify-content: center;
     background: black;
     border: 1px solid black;
     color: white;
     margin: 0 auto;
-    width : 300px;
-    height: 70px;
+    width : 130px;
+    height: 42px;
     margin-top: 35px;
+    display: inline-block;
 }
-.JoinBtn em {
-    margin-top: 23px;
+.UpdateBtn em {
+    padding-top: 10px;
     font-style: normal;
     font-size: 15px;
 }
 
-
-
-
+.pass-btn{
+    height: 28px;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    line-height: 26px;
+    margin-right: 10px;
+    background: #f3f3f3;
+    font-size: 12px;
+}
+#PassDiv{
+    padding-top: 10px;
+    margin: 0 !important;  
+}
+.label{
+    float: left;
+    width: 124px;
+    line-height: 36px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.inputpass{
+    border: 1px solid rgb(204, 204, 204);
+    position: relative;
+    width: 200px;
+    height: 38px;
+    padding: 0 10px;
+    vertical-align: middle;
+}
+.inputpass:focus{
+    outline: none;
+}
+.OpenHelp{
+    right: 460px;
+    position: absolute;
+    z-index: 10;
+    width: 400px;
+    height: auto;
+    background: #fff;
+    border: 1px solid #555;
+}
+.OpenHelp strong{
+    display: block;
+    height: 27px;
+    padding: 13px 0 0 17px;
+    background: #f4f4f4;
+    color: #222;
+    font-size: 14px;
+}
+.OpenHelp div{
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 15px;
+    height: auto;
+}
+.help1{
+    border-bottom: 1px solid #e8e8e8;
+    padding: 10px 0;
+    font-size: 12.5px;
+    margin: 0;
+}
+.help2{
+    border-bottom: 1px solid #e8e8e8;
+    padding: 10px 0;
+    font-size: 12.5px;
+    margin: 0;
+}
+.help3{
+    padding: 10px 0;
+    margin: 0;
+    font-size: 13px;
+}
+.close{
+    display: block;
+    top: 11px;
+    right: 10px;
+    border: none;
+    position:absolute;
+    background: url(https://lush.co.kr/data/skin/front/howling/img/btn/layer-close.png) no-repeat left top;
+    cursor: pointer;
+    padding: 15px;
+}
 </style>

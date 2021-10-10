@@ -48,8 +48,8 @@
                 <h4>회원정보</h4>
                 <ul>
                     <li><a href="#" v-on:click="changeMenu(5)">회원정보 변경</a></li>
-                    <li><a href="#">회원 탈퇴</a></li>
-                    <li><a href="#" v-on:click="changeMenu(6)">배송자 관리</a></li>
+                    <li><a href="#" v-on:click="changeMenu(6)">회원 탈퇴</a></li>
+                    <li><a href="#" v-on:click="changeMenu(7)">배송자 관리</a></li>
                 </ul>
             </div>
             <div class="item8">
@@ -72,13 +72,15 @@ import MypageShop2 from './MypageShop2.vue';
 import MypageShop3 from './MypageShop3.vue';
 import MyAddress from './MyAddress.vue';
 import MypageMember from './MypageMember.vue';
+import MypageMember1 from './MypageMember1.vue';
+
 import Footer from './Footer.vue'
 
     export default {
         data(){
             return{
                 currentMenu: 'mypagebase',
-                menus : [ null,'mypagebase','mypageshop1','mypageshop2','mypageshop3','mypagemember','myaddress'],
+                menus : [ null,'mypagebase','mypageshop1','mypageshop2','mypageshop3','mypagemember','mypagemember1','myaddress'],
             }
         },
         components:{
@@ -89,6 +91,7 @@ import Footer from './Footer.vue'
             'mypageshop3' : MypageShop3,
             'myaddress' : MyAddress,
             'mypagemember' : MypageMember,
+            'mypagemember1' : MypageMember1,
         },
         methods:{
             changeMenu(num){
