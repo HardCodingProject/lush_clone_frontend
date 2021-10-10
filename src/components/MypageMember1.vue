@@ -22,71 +22,17 @@
             <div class="toleave">
                 <span id="infotitle">02. 회원탈퇴 하기</span>
             </div>
-            <table class="leave-body">
-                <colgroup>
-                    <col class="check">
-                </colgroup>
-                <tbody>
-                    <th class="ta-1">탈퇴사유</th>
-                    <td>
-                        <div class="check-list">
-                            <div class="row">
-                                
-                            </div>
-                        </div>
-                    </td>
-                </tbody>
-            </table>
             <table class>
                 <colgroup>
                     <col class="th_area">
                     <col class="td_area">
                 </colgroup>
                 <tbody>
-                    <!-- 아이디 -->
                     <tr>
-                        <th>
-                            <span class="required"></span>아이디</th>
+                        <th aria-required="true"><span class="required"></span>비밀번호</th>
                         <td>
                             <div class="txt-field">
-                                <input type="text" class="userid" placeholder="userid" v-model="userid">
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- 비밀번호 -->
-                    <tr>
-                        <th><span class="required"></span>비밀번호</th>
-                        <td>
-                            <div class="txt-field">
-                                <button class="pass-btn" @click="OpenPw">비밀번호 변경</button>
-                                <button class="pass-btn" @click="OpenHp">비밀번호 도움말</button>
-                            </div>
-                            <div class="OpenHelp" v-if="OpenHelp===true">
-                                <strong>비밀번호 도움말</strong>
-                                <div>
-                                    <p class="help1">영문대소문자는 구분이 되며, 한가지 문자로만 입력은 위험합니다.</p>
-                                    <p class="help2">
-                                        <b>사용가능 특수문자:</b>
-                                        <span>!@$%^&*()=,.+?~;[]{}</span>
-                                    </p>
-                                    <p class="help3">
-                                        ID/주민번호/생일/전화번호 등의 개인정보와 통상 사용 순서대로의 3자 이상 연속 사용은 피해주세요. <br>
-                                        비밀번호는 주기적으로 바꾸어 사용하시는 것이 안전합니다.
-                                    </p>
-                                </div>
-                                <button class="close" @click="OpenHp"></button>
-                            </div>
-                            <div id="PassDiv" v-if="OpenPasswd===true">
-                                <label class="label">현재 비밀번호</label>
-                                <input class="inputpass" type="text" v-model="orgPass" ref="orgPass">
-                                <div id="PassDivCheck">
-                                    <label class="label">새 비밀번호</label>
-                                    <input class="inputpass" type="text" v-model="newPass" ref="newPass">
-                                </div>
-                                <div id="PassDivCheck">
-                                    <label class="label">새 비밀번호 확인</label>
-                                    <input class="inputpass" type="text" v-model="newPassCheck" ref="newPassCheck">
-                                </div>
+                                <input type="text" class="text" v-model="username" maxlength="30">
                             </div>
                         </td>
                     </tr>
@@ -94,13 +40,12 @@
             </table>
             <div class="Btn">
                 <button class="CancleBtn" type="button" @click="handleJoin">
-                    <em>취소</em>
+                    <em>이전으로</em>
                 </button>
                 <button class="UpdateBtn" type="button" @click="handleJoin">
-                    <em>정보수정</em>
+                    <em>탈퇴</em>
                 </button>
             </div>
-            
         </div>
     </div>
 </template>
