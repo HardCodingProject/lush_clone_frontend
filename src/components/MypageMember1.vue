@@ -221,13 +221,18 @@ th{
     text-decoration: none;
     transform: translateY(-15%);
 }
+.Btn{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
 .CancleBtn{
     display: flex;
     justify-content: center;
     background: white;
     border: 1px solid black;
     color: black;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     width : 130px;
     height: 42px;
     margin-top: 35px;
@@ -245,7 +250,7 @@ th{
     background: black;
     border: 1px solid black;
     color: white;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     width : 130px;
     height: 42px;
     margin-top: 35px;

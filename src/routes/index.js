@@ -8,7 +8,7 @@ import Login from '@/components/Login.vue';
 import Join_Complete from '@/components/Join_Complete.vue';
 import Product_Bathbomb from '@/components/Product_Bathbomb.vue';
 import Product_Bodyspray from '@/components/Product_Bodyspray.vue';
-import Product_Detail_Bathbomb from '@/components/Product_Detail_Bathbomb.vue';
+import PD_Bathbomb from '@/components/PD_Bathbomb.vue';
 
 
 const routes = [
@@ -20,7 +20,7 @@ const routes = [
     {path : '/join_complete' , name :'Join_Complete', component : Join_Complete},
     {path : '/product_bathbomb' , name :'Product_Bathbomb', component : Product_Bathbomb},
     {path : '/product_bodyspray' , name :'Product_Bodyspray', component : Product_Bodyspray},
-    {path : '/product_detail_bathbomb' , name :'Product_Detail_Bathbomb', component : Product_Detail_Bathbomb},
+    {path : '/pd_bathbomb' , name :'PD_Bathbomb', component : PD_Bathbomb},
 ];
 
 const router = createRouter({
