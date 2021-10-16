@@ -55,6 +55,7 @@
                             <div id="PassDiv" v-if="OpenPasswd===true">
                                 <label class="label">현재 비밀번호</label>
                                 <input class="inputpass" type="text" v-model="orgPass" ref="orgPass">
+                                <button class="pass-btn1" @click="CheckPw">비밀번호 확인</button>
                                 <div id="PassDivCheck">
                                     <label class="label">새 비밀번호</label>
                                     <input class="inputpass" type="text" v-model="newPass" ref="newPass">
@@ -164,10 +165,10 @@
                 </tbody>
             </table>
             <div class="Btn">
-                <button class="CancleBtn" type="button" @click="handleJoin">
+                <button class="CancleBtn" type="button">
                     <em>취소</em>
                 </button>
-                <button class="UpdateBtn" type="button" @click="handleJoin">
+                <button class="UpdateBtn" type="button" @click="hanldeUpdate">
                     <em>정보수정</em>
                 </button>
             </div>
@@ -177,7 +178,7 @@
 </template>
  
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import select_arrow_down from '@/assets/select_arrow_down.png';
     export default {
         data(){
@@ -199,6 +200,8 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 user_email :'',
                 user_phone : '',
                 user_addr : '',
+                checkpw : '',
+                token : sessionStorage.getItem("TOKEN")
             }
         },
         mounted() {
@@ -207,6 +210,62 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
             document.head.appendChild(daumPostCode);
         },
         methods : {
+            async CheckPw(){
+                const header = { "Content-Type" : "application/x-www-form-urlencoded" };
+                const body = { idx : this.token, newPassword : this.orgPass };
+                console.log(body)
+                const url = '/member/checkpw';
+                const response = await axios.post(url, body, header);
+                console.log(response);
+                if(response.data.ret === 1){
+                    this.orgPass = response.data.data;
+                }
+                else{
+                    alert("비밀번호 확인 실패");
+                }
+            },
+            async hanldeUpdate(){
+                if(this.orgPass === 1){
+                    if(this.username.length === 0){
+                        return alert('이름을 입력하세요.');
+                    }
+                    else if(this.newPass.length !== 0){
+                        if(this.newPassCheck !== this.newPass){
+                            return alert('변경할 암호를 확인하세요.');
+                        }
+                    }
+                    else if(this.newPassCheck !== this.newPass){
+                        return alert('변경할 암호를 확인하세요.');
+                    }
+                    else if(this.user_email.length === 0){
+                        return alert('이메일을 입력하세요.');
+                    }
+                    else if(this.user_phone.length === 0){
+                        return alert('전화번호를 입력하세요.');
+                    }
+
+                    const header = { "Content-Type" : "application/x-www-form-urlencoded" }
+                    const body    = { 
+                        idx : this.token,
+                        password : this.newPass,
+                        name : this.username,
+                        email : this.user_email + "@" + this.selected,
+                        phone : this.user_phone,
+                        zip_code : this.postcode,
+                        shipping_address : this.roadAddress + " " + this.detailAddress,
+                    }
+                    const url  = `/member/update`;
+                    const response = await axios.put(url, body, header);
+                    console.log(response);
+                    if(response.data.ret === 1){
+                        alert(response.data.data);
+                        this.$router.push({path:'/'});
+                    }
+                    else{
+                        alert(response.data.data);
+                    }
+                }
+            },
             openOption(){
                 this.isOpen = !this.isOpen;
             },
@@ -260,7 +319,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
             },
             OpenHp(){
                 this.OpenHelp = !this.OpenHelp;
-            }
+            },
         }
     }
 </script>
@@ -591,6 +650,19 @@ input[type="checkbox"]{
     margin-right: 10px;
     background: #f3f3f3;
     font-size: 12px;
+}
+.pass-btn1{
+    height: 28px;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    line-height: 26px;
+    margin-right: 10px;
+    background: #f3f3f3;
+    font-size: 12px;
+    margin-left: 10px;
+    position: absolute;
+    top: 480px;
 }
 #PassDiv{
     padding-top: 10px;
