@@ -32,17 +32,17 @@
                         <th aria-required="true"><span class="required"></span>비밀번호</th>
                         <td>
                             <div class="txt-field">
-                                <input type="text" class="text" v-model="username" maxlength="30">
+                                <input type="text" class="text" v-model="Password" maxlength="30">
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div class="Btn">
-                <button class="CancleBtn" type="button" @click="handleJoin">
+                <button class="CancleBtn" type="button">
                     <em>이전으로</em>
                 </button>
-                <button class="UpdateBtn" type="button" @click="handleJoin">
+                <button class="UpdateBtn" type="button" @click="handleLeave">
                     <em>탈퇴</em>
                 </button>
             </div>
@@ -51,34 +51,59 @@
 </template>
  
 <script>
-// import axios from 'axios';
-import select_arrow_down from '@/assets/select_arrow_down.png';
+import axios from 'axios';
+//import select_arrow_down from '@/assets/select_arrow_down.png';
     export default {
         data(){
             return{
                 isOpen :false,
                 OpenPasswd : false,
                 OpenHelp : false,
-                selected : '',
-                select_arrow_down : select_arrow_down,
-                postcode :'',
-                roadAddress :'',
-                detailAddress : '',
-                userid : '',
-                orgPass : '',
-                newPass : '',
-                newPassCheck : '',
-                username : '',
-                user_nickname : '',
-                user_email :'',
-                user_phone : '',
-                user_addr : '',
+                Password : '',
+                Check : '',
+                toekn : sessionStorage.getItem("TOKEN")
             }
         },
         mounted() {
             
         },
         methods : {
+            async handleLeave(){
+                const headers = { 
+                    "Content-Type" : "application/x-www-form-urlencoded",
+                    "token"        : this.token
+                };
+                const body = {Password : this.Password };
+                console.log(body);
+                const url = '/member/checkpw';
+                const response = await axios.post(url, body, {headers});
+                console.log(response);
+                if(response.data.ret === 1){
+                    this.Check = response.data.data;
+                }
+                else{
+                    alert("비밀번호 확인 실패");
+                }
+
+                if(this.Check == 1){
+                    const ret = confirm('탈퇴 할까요?'); // Y or N
+                    if(ret){
+                        if(this.token !== null){
+                            const url = `/member/delete`;
+                            const headers ={ 
+                                "Content-Type" : "application/json",
+                                "token" : this.token
+                            };
+                            const response = await axios.delete(url, {headers});
+                            console.log(response);
+                            if(response.data.ret === 1){
+                                alert(response.data.data);
+                                this.$router.push({path:'/'});
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 </script>

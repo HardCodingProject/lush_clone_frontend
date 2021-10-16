@@ -193,6 +193,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 detailAddress : '',
                 userid : '',
                 orgPass : '',
+                Check : '',
                 newPass : '',
                 newPassCheck : '',
                 username : '',
@@ -200,7 +201,6 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 user_email :'',
                 user_phone : '',
                 user_addr : '',
-                checkpw : '',
                 token : sessionStorage.getItem("TOKEN")
             }
         },
@@ -211,21 +211,24 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
         },
         methods : {
             async CheckPw(){
-                const header = { "Content-Type" : "application/x-www-form-urlencoded" };
-                const body = { idx : this.token, newPassword : this.orgPass };
-                console.log(body)
+                const headers = { 
+                    "Content-Type" : "application/x-www-form-urlencoded",
+                    "token"        : this.token
+                };
+                const body = {Password : this.orgPass };
+                console.log(body);
                 const url = '/member/checkpw';
-                const response = await axios.post(url, body, header);
+                const response = await axios.post(url, body, {headers});
                 console.log(response);
                 if(response.data.ret === 1){
-                    this.orgPass = response.data.data;
+                    this.Check = response.data.data;
                 }
-                else{
-                    alert("비밀번호 확인 실패");
-                }
+                //else{
+                    //alert("비밀번호 확인 실패");
+                //}
             },
             async hanldeUpdate(){
-                if(this.orgPass === 1){
+                if(this.Check === 1){
                     if(this.username.length === 0){
                         return alert('이름을 입력하세요.');
                     }
@@ -244,9 +247,11 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                         return alert('전화번호를 입력하세요.');
                     }
 
-                    const header = { "Content-Type" : "application/x-www-form-urlencoded" }
+                    const headers = { 
+                        "Content-Type" : "application/x-www-form-urlencoded",
+                        "token"        : this.token 
+                    }
                     const body    = { 
-                        idx : this.token,
                         password : this.newPass,
                         name : this.username,
                         email : this.user_email + "@" + this.selected,
@@ -255,7 +260,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                         shipping_address : this.roadAddress + " " + this.detailAddress,
                     }
                     const url  = `/member/update`;
-                    const response = await axios.put(url, body, header);
+                    const response = await axios.put(url, body, {headers});
                     console.log(response);
                     if(response.data.ret === 1){
                         alert(response.data.data);
