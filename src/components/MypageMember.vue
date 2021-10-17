@@ -215,7 +215,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     "Content-Type" : "application/x-www-form-urlencoded",
                     "token"        : this.token
                 };
-                const body = {Password : this.orgPass };
+                const body = {password : this.orgPass};
                 console.log(body);
                 const url = '/member/checkpw';
                 const response = await axios.post(url, body, {headers});
