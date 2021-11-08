@@ -42,7 +42,9 @@
                         <li style="width:23% height:450px" v-for="item in items" v-bind:key="item">
                             <div class="pr_box">
                                 <div class="pr_img">
-                                    <img :src="`/product/image/list?code=${item._id}`">
+                                    <router-link :to="`/pd_bathbomb?code=${item._id}`">
+                                        <img :src="`/product/image/list?code=${item._id}`">
+                                    </router-link>
                                 </div>
                                 <div class="pr_info">
                                     <div class="pr_conditions">
@@ -313,9 +315,10 @@ input[type="radio"]{
     height: 285px;
     text-align: center;
 }
-.display_table .pr_list ul li .pr_img > img{
+.display_table .pr_list ul li .pr_img img{
     overflow: hidden;
-    width: 100%;
+    width: 285px;
+    height: 285px;
     border: none;
     vertical-align: top;
 }
