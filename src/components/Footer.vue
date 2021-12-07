@@ -105,7 +105,7 @@
                                             <a href="#">미리보기</a>
                                         </dt>
                                     </dl>
-                                   
+                                
                                 </form>
                             </div>
                             <div class="copyright">
@@ -114,7 +114,7 @@
                                 </address>
                                 사업자 등록 번호 : 201-81-77964
                                 <a>사업자정보확인</a>
-                                 | 통신판매업 신고번호 : 2012-서울서초-0647 | 개인정보보호책임자 : 우승용
+                                | 통신판매업 신고번호 : 2012-서울서초-0647 | 개인정보보호책임자 : 우승용
                                 <div class="copy">COPYRIGHT LUSHKOREA CO. LTD. ALL RIGHTS RESERVED.</div>
                             </div>
                         </div>

@@ -56,24 +56,24 @@
 <script>
 import 'element-plus/dist/index.css'
 import Footer from '@/components/Footer.vue';
-import main_banner_1 from '@/assets/main_banner_1.jpg';
-// import main_banner_2 from '@/assets/main_banner_2.jpg';
-import main_banner_3 from '@/assets/main_banner_3.jpg';
-import main_banner_4 from '@/assets/main_banner_4.jpg';
-import main_banner_5 from '@/assets/main_banner_5.jpg';
-// import main_banner_6 from '@/assets/main_banner_6.jpg';
-import main_banner_7 from '@/assets/main_banner_7.jpg';
 import main_banner_8 from '@/assets/main_banner_8.jpg';
+import DCbanner_1 from '@/assets/DCbanner_1.gif';
+import DCbanner_2 from '@/assets/DCbanner_2.jpg';
+import DCbanner_3 from '@/assets/DCbanner_3.jpg';
+import DCbanner_4 from '@/assets/DCbanner_4.jpg';
+
 import banner2_img1 from '@/assets/banner2_img1.png';
 import banner2_img2 from '@/assets/banner2_img2.png';
 import banner2_img3 from '@/assets/banner2_img3.png';
 import banner2_img4 from '@/assets/banner2_img4.png';
-import review_img1 from '@/assets/review_img1.jpg';
+
+import DCsubbanner_1 from '@/assets/DCsubbanner_1.jpg';
 import review_img2 from '@/assets/review_img2.jpg';
-import review_img3 from '@/assets/review_img3.jpg';
-import review_img4 from '@/assets/review_img4.jpg';
-import review_img5 from '@/assets/review_img5.jpg';
-import review_img6 from '@/assets/review_img6.jpg';
+import review_img1 from '@/assets/review_img1.jpg';
+import DCsubbanner_2 from '@/assets/DCsubbanner_2.jpg';
+import DCsubbanner_3 from '@/assets/DCsubbanner_3.jpg';
+import DCsubbanner_4 from '@/assets/DCsubbanner_4.jpg';
+
 import banner3_img1 from '@/assets/banner3_img1.jpg';
 import banner3_img2 from '@/assets/banner3_img2.gif';
 import banner3_img3 from '@/assets/banner3_img3.jpg';
@@ -83,28 +83,17 @@ import banner4_img from '@/assets/banner4_img.gif';
     export default {
         data(){
             return{
-                    // main_banner_1 : main_banner_1,
-                    // main_banner_2 : main_banner_2,
-                    // main_banner_3 : main_banner_3,
-                    // main_banner_4 : main_banner_4,
-                    // main_banner_5 : main_banner_5,
-                    // main_banner_6 : main_banner_6,
-                    // main_banner_7 : main_banner_7,
-                    // main_banner_8 : main_banner_8,
                     banner3_img1 : banner3_img1,
                     banner3_img2 : banner3_img2,
                     banner3_img3 : banner3_img3,
                     banner3_img4 : banner3_img4,
                     banner4_img : banner4_img,
                 banners : [
-                    main_banner_7,
+                    DCbanner_1,
+                    DCbanner_2,
+                    DCbanner_3,
+                    DCbanner_4,
                     main_banner_8,
-                    main_banner_1,
-                    // main_banner_2,
-                    main_banner_3,
-                    main_banner_4,
-                    main_banner_5,
-                    // main_banner_6
                 ],
                 banner2 : [
                     banner2_img1,
@@ -113,12 +102,12 @@ import banner4_img from '@/assets/banner4_img.gif';
                     banner2_img4,
                 ],
                 review_slider : [
+                    DCsubbanner_1,
                     review_img1,
                     review_img2,
-                    review_img3,
-                    review_img4,
-                    review_img5,
-                    review_img6
+                    DCsubbanner_2,
+                    DCsubbanner_3,
+                    DCsubbanner_4
                 ]
             }   
         },
