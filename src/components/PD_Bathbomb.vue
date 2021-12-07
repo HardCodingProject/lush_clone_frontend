@@ -74,7 +74,7 @@
                     </el-breadcrumb>
                 </div>
             </div>
-            <div class="goods_info_table"  @mouseover="closeOption" >
+            <div class="goods_info_table" @mouseover="closeOption" >
                 <div class="goods_img">
                     <img :src="`/product/image/list?code=${itemDetail._id}`">
                     <div class="thumbnail_box">
@@ -157,6 +157,43 @@
                         <span @click.prevent="goThere('second')">상품후기</span>
                         <span @click.prevent="goThere('third')">배송/교환 및 반품안내</span>
                     </div>
+                    <div class="product_detail">
+                        <div class="product_ingredient">
+                            <h1>제품 성분</h1>
+                            <span>* 원재료의 특성에 한함</span>
+                            <div class="ingredient1">
+                                <p>대표성분</p>
+                                <p>{{detailIngredient.main_ingredient}}</p>
+                            </div>
+                            <div class="ingredient2">
+                                <p>전 성분 표기</p>
+                                <p>{{detailIngredient.all_ingredient}}</p>
+                            </div>
+                            <div class="slogan">
+                                <div style="width : 70px;">
+                                    <img :src="suitable_vegan">
+                                </div>
+                                <p>동물성 원료를 포함하지 않은 제품으로 <br> 비건에게 적합함</p>
+                            </div>
+                            <div class="slogan2">
+                                <div style="width : 70px; display : flex; justify-content: center;">
+                                    <img :src="sp">
+                                </div>
+                                <p>화학 합성 보존제 없이도 신선함을 유지하는 제품</p>
+                            </div>
+                        </div>
+                        <div class="product_ingredient_img">
+                            <ul>
+                                <li class="img_card" v-for="idx in priorityLength" v-bind:key="idx">
+                                    <div class="info_box">
+                                        <img :src="`/product/detail/image?product_detail_no=${itemCode}&priority=${idx}`">
+                                        <p>{{detailIngredient_desc[idx].name}}</p>
+                                        <span>{{detailIngredient_desc[idx].desc}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div ref="second" class="second_box">
                     <div class="pd_navbar">
@@ -186,11 +223,15 @@ import select_arrow_left from '@/assets/select_arrow_left.png';
 import select_arrow_right from '@/assets/select_arrow_right.png';
 import minus from '@/assets/minus.png';
 import plus from '@/assets/plus.png';
+import sp from '@/assets/sp.png';
+import suitable_vegan from '@/assets/suitable_vegan.png';
 
     export default {
         data(){
             return{
                 itemDetail : [],
+                detailIngredient : [],
+                detailIngredient_desc : [],
                 priceForm : 0,
                 itemCode : this.$route.query.code,
                 select_arrow_down,
@@ -198,6 +239,8 @@ import plus from '@/assets/plus.png';
                 select_arrow_right,
                 plus,
                 minus,
+                sp,
+                suitable_vegan,
                 isOpen : false,
                 isOpen2 : false,
                 isOpen3 : false,
@@ -207,6 +250,8 @@ import plus from '@/assets/plus.png';
                 counting : 1,
                 totalCounting : 0,
                 totalCountingF : 0,
+                priorityLength : 0,
+
 
                 select_box_style : {
                     border: "1px solid rgb(197, 197, 197)",
@@ -247,6 +292,32 @@ import plus from '@/assets/plus.png';
                     this.totalCountingF = this.priceForm.toLocaleString();
                     console.log(this.itemDetail);
                 }
+
+                const url1 = `/product/detail?code=${this.itemCode}`;
+                const result1 = await axios.get(url1);
+                console.log(result1);
+                if(result1.data.ret === 1){
+                    this.detailIngredient = result1.data.data;
+                }
+
+                const url2 = `/product/detail/image/count?code=${this.itemCode}`;
+                const result2 = await axios.get(url2);
+                console.log(result2);
+                if(result2.data.ret === 1){
+                    this.priorityLength = result2.data.data;
+                }
+
+                for(var i=1; i<=this.priorityLength; i++){
+                    const url3 = `/product/detail/image/desc?product_detail_no=${this.itemCode}&priority=${i}`;
+                    const result3 = await axios.get(url3);
+                    console.log(result3);
+                    if(result3.data.ret === 1){
+                        this.detailIngredient_desc[i] = result3.data.data;
+                        console.log(this.detailIngredient_desc);
+                    }
+                    
+                }
+
             },
             openOption(){
                 this.isOpen = !this.isOpen;
@@ -391,14 +462,20 @@ input[type="radio"]{
 }
 .goods_info_table .goods_img{ 
     /* border: 1px solid black; */
-    width: 40%;
+    width: 35%;
     height: 380px;
     display :flex;
+    margin-right : 20px;
     flex-direction: column;
 }
-.goods_info_table .thumbnail_box{
+.goods_info_table .goods_img > img{ 
     /* border: 1px solid black; */
-    width: 409px;
+    width: 100%;
+    height: 100%;
+}
+.goods_img .thumbnail_box{
+    /* border: 1px solid black; */
+    width: 100%;
     height : 50px;
     display: inline-flex;
     align-items: center;
@@ -408,11 +485,13 @@ input[type="radio"]{
     width : 10px;
     height : 14px;
     cursor: pointer;
+    margin : 0px 10px;
 }
 .thumbnail_box .right_arrow{
     width : 10px;
     height : 14px;
     cursor: pointer;
+    margin : 0px 10px;
 }
 .thumbnail_section{
     width : 380px;
@@ -677,6 +756,12 @@ input[type="radio"]{
     justify-content: center;
     cursor : pointer;
 }
+.first_box{
+    /* border : 1px solid red; */
+    height : fit-content;
+    display : flex;
+    flex-direction: column;
+}
 .first_box .pd_navbar span:first-child{
     border: 0.5px solid #333;
     width: 33%;
@@ -688,6 +773,135 @@ input[type="radio"]{
     justify-content: center;
     cursor : pointer;
 }
+.first_box .product_detail {
+    border-top: 0.5px solid #333;
+    border-bottom: 0.5px solid #333;
+    width : 100%;
+    padding-bottom: 3%;
+    height : calc(100% - 50px);
+    display : inline-flex;
+    align-items: center;
+}
+.first_box .product_detail .product_ingredient {
+    /* border : 1px solid red; */
+    width : 45%;
+    height : calc(100% - 50px);
+    padding : 5% 2% 5% 5%;
+    display : flex;
+    flex-direction: column;
+}
+.first_box .product_detail .product_ingredient span {
+    font-size: 16px;
+    color: #808080;
+}
+.ingredient1, .ingredient2{
+    font-size: 16px;
+    color: #808080;
+    margin-top : 50px;
+}
+.ingredient1 > p,
+.ingredient2 > p {
+    font-size: 16px;
+    color: #808080;
+    margin : 3px 0px;
+}
+.slogan {
+    /* border : 1px solid black; */
+    width : 100%;
+    display : inline-flex;
+    height : fit-content;
+    margin-top : 50px;
+    align-items: center;
+}
+.slogan img {
+    /* border : 1px solid black; */
+    width : 100%;
+    height : 35px;
+}
+.slogan p {
+    /* border : 1px solid black; */
+    font-size : 16px;
+    margin-left: 10px;
+    height : fit-content;
+    color: #808080;
+}
+.slogan2 {
+    /* border : 1px solid black; */
+    width : 100%;
+    margin-top : 5px;
+    display : inline-flex;
+    height : fit-content;
+    align-items: center;
+}
+.slogan2 img {
+    /* border : 1px solid black; */
+    width : 30px;
+    height : 30px;
+}
+.slogan2 p {
+    /* border : 1px solid black; */
+    font-size : 16px;
+    margin-left: 10px;
+    height : fit-content;
+    color: #808080;
+}
+.first_box .product_detail .product_ingredient_img {
+    /* border : 1px solid blue; */
+    width : 70%;
+    height : 100%;
+    display: table;
+    padding : 3% 0%;
+    /* flex-direction: column; */
+}
+.product_ingredient_img li{
+    padding: 0 0;
+}
+.product_ingredient_img ul{
+    display: flex;
+    /* flex-direction: row; */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.product_ingredient_img ul li{
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: top;
+    margin: 0;
+    list-style: none;
+    cursor: pointer;
+    width: 285px;
+}
+.img_card{
+    /* border : 1px solid black; */
+    width : 20%;
+    height : fit-content;
+}
+.info_box {
+    align-items: center;
+    /* border : 1px solid black; */
+    display : flex;
+    margin : 10px 0px;
+    flex-direction: column;
+}
+.info_box img{
+    width : 70%;
+    height : 30%;
+}
+.info_box p{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.info_box span{
+    font-size: 15px;
+}
+
+
+.second_box { 
+    border : 1px solid red;
+    height : 800px;
+}
 .second_box .pd_navbar span:nth-child(2) {
     border: 0.5px solid #333;
     width: 33%;
@@ -698,6 +912,11 @@ input[type="radio"]{
     align-items: center;
     justify-content: center;
     cursor : pointer;
+}
+
+.third_box{
+    border : 1px solid red;
+    height : 800px;
 }
 .third_box .pd_navbar span:nth-child(3) {
     border: 0.5px solid #333;
@@ -713,9 +932,5 @@ input[type="radio"]{
 .pd_contents{
     width : 100%;
     height : fit-content;
-}
-.pd_contents div {
-    border : 1px solid red;
-    height : 800px;
 }
 </style>

@@ -48,10 +48,9 @@
                                 </div>
                                 <div class="pr_info">
                                     <div class="pr_conditions">
-                                        <img :src="`/product/type/image?product_code=${item._id}&priority=${idx}`" v-for="idx in 3" v-bind:key="idx">
-                                        <!-- <div v-for="index in count" :key="index" @change=changepriority(item._id)>
-                                            <img :src="`/product/type/image?product_code=${item._id}&priority=${index}`">
-                                        </div> -->
+                                        <div v-for="pr in priorityLength" v-bind:key="pr">
+                                            <img :src="`/product/type/image?product_code=${item._id}&priority=${pr}`" >
+                                        </div>
                                     </div>
                                     <div class="pr_name_tag">
                                         <span class="pr_name">{{item.name}}</span>
@@ -85,7 +84,9 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 isOpen :false,
                 selected : '추천순',
                 items : [],
-                idx : [{no:1},{no:2},{no:3},],
+                idx : 0,
+                itemcode : [],
+                priorityLength : [],
                 category_code : this.$route.query.category_code,
                 id : '',
             }
@@ -104,6 +105,18 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 if(result.data.ret === 1){
                     this.items = result.data.data;
                 }
+
+                for(var i=0; i<this.items.length; i++){
+                    this.itemcode[i] = this.items[i]._id;
+                    const url1 = `/product/type/image/count?product_code=${this.itemcode[i]}`;
+                    const result1 = await axios.get(url1);
+                    console.log(result1);
+                    if(result1.data.ret === 1){
+                        this.priorityLength[i] = result1.data.data;
+                    }
+                }
+
+                console.log(this.priorityLength);
             },
             openOption(){
                 this.isOpen = !this.isOpen;
