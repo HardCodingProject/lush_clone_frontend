@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="pr_info">
                                     <div class="pr_conditions">
-                                        <div v-for="pr in priorityLength" v-bind:key="pr">
+                                        <div v-for="pr in priorityLength[idx]" v-bind:key="pr">
                                             <img :src="`/product/type/image?product_code=${item._id}&priority=${pr}`" >
                                         </div>
                                     </div>
@@ -75,7 +75,7 @@
 
 <script>
 import axios from 'axios';
-import Footer from './Footer.vue'
+import Footer from './Footer.vue';
 import select_arrow_down from '@/assets/select_arrow_down.png';
     export default {
         data(){

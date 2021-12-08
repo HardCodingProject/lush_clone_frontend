@@ -201,6 +201,75 @@
                         <span @click.prevent="goThere('second')">상품후기</span>
                         <span @click.prevent="goThere('third')">배송/교환 및 반품안내</span>
                     </div>
+                    <div class="review_container">
+                        <div class="review_title_box">
+                            <div class="review_title_section">
+                                <h1>Product Reviews</h1>
+                                <star-rating :rating="4" :read-only="true" :increment="0.5" active-color="#000000" :star-size="15" :show-rating="false"></star-rating>
+                                <p>161</p>
+                            </div>
+                            <p id="sub_title">나만의 꿀팁이나 제품을 사용하는 생생한 모습을 보여주세요!</p>
+                        </div>
+                        <div class="review_writing_container">
+                            <div class="review_rating_section">
+                                <dl class="rating_select">
+                                    <dt>평가</dt>
+                                    <dd>
+                                        <ul>
+                                            <li>
+                                                <input type="radio" id="rating5" value="5" name='rating'>
+                                                <label for="rating5">
+                                                    <star-rating :rating="5" :read-only="true" :increment="1" active-color="#333" inactive-color="#fff" :border-width="2"  :star-size="10" :show-rating="false"></star-rating>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="rating4" value="4" name='rating'>
+                                                <label for="rating4">
+                                                    <star-rating :rating="4" :read-only="true" :increment="1" active-color="#333" inactive-color="#fff" :border-width="2"  :star-size="10" :show-rating="false"></star-rating>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="rating3" value="3" name='rating'>
+                                                <label for="rating3">
+                                                    <star-rating :rating="3" :read-only="true" :increment="1" active-color="#333" inactive-color="#fff" :border-width="2"  :star-size="10" :show-rating="false"></star-rating>
+                                                </label>
+                                            </li>   
+                                            <li>
+                                                <input type="radio" id="rating2" value="2" name='rating'>
+                                                <label for="rating2">
+                                                    <star-rating :rating="2" :read-only="true" :increment="1" active-color="#333" inactive-color="#fff" :border-width="2"  :star-size="10" :show-rating="false"></star-rating>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="rating1" value="1" name='rating'>
+                                                <label for="rating1">
+                                                    <star-rating :rating="1" :read-only="true" :increment="1" active-color="#333" inactive-color="#fff" :border-width="2"  :star-size="10" :show-rating="false"></star-rating>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="review_writing_section">
+                                <textarea rows="10"></textarea>
+                            </div>
+                            <div class="policy_agreee">
+                                <div class="policy_agree_title">
+                                    <p>비회원 개인정보 수집동의</p>
+                                    <span id="showall">전체보기</span>
+                                </div>
+                                <p id="policy">
+                                    - 수집항목: 이름, 휴대전화번호, 작성 비밀번호
+                                    - 수집/이용목적: 게시글 접수 및 결과 회신
+                                    - 이용기간: 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다.
+                                    단, 관계법령의 규정에 의하여 보전할 필요가 있는 경우 일정기간 동안 개인정보를 보관할 수 있습니다.
+                                    위와 같이 수집하는 개인정보에 대해, 동의하지 않거나 거부할 수 있습니다. 다만, 동의하지 않거나 거부할 경우 회원에게 제공되는 서비스가 제한될 수 있습니다.
+                                    그 밖의 사항은 (주)러쉬코리아 개인정보처리방침을 준수합니다 
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div ref="third" class="third_box">
                     <div class="pd_navbar">
@@ -217,6 +286,7 @@
 
 <script>
 import Footer from './Footer.vue';
+import StarRating from 'vue-star-rating';
 import axios from 'axios';
 import select_arrow_down from '@/assets/select_arrow_down.png';
 import select_arrow_left from '@/assets/select_arrow_left.png';
@@ -277,6 +347,7 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
         },
         components:{
             Footer : Footer,
+            StarRating : StarRating,
         },
         async created(){
             await this.handleContent();
@@ -447,7 +518,7 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
     background: #3e3d3c;
     color : white
 }
-input[type="radio"]{
+.paths input[type="radio"]{
     display: none;
 }
 
@@ -899,7 +970,7 @@ input[type="radio"]{
 
 
 .second_box { 
-    border : 1px solid red;
+    /* border : 1px solid red; */
     height : 800px;
 }
 .second_box .pd_navbar span:nth-child(2) {
@@ -913,6 +984,135 @@ input[type="radio"]{
     justify-content: center;
     cursor : pointer;
 }
+.second_box .review_container {
+    /* border : 1px solid blue; */
+    width : 100%;
+    height : calc(100%-50px);
+    display : flex;
+    padding-top : 5%;
+    flex-direction: column;
+}
+.review_title_box { 
+    width : 100%;
+    display : flex;
+    flex-direction: column;
+}
+.review_title_section{
+    /* border : 1px solid black; */
+    display : inline-flex;
+    width  : 100%;
+    height : 50px;
+    align-items: flex-end;
+}
+.review_title_section h1{
+    height : fit-content;
+    margin : 0 10px 0px 0px;
+}
+.review_title_section p{
+    height : fit-content;
+    font-size : 15px;
+    margin : 0px 0px 3px 10px;
+}
+#sub_title{
+    font-size: 16px;
+}
+.review_writing_container{
+    border: 0.5px solid rgb(219, 219, 219);
+    width : 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+.review_rating_section{
+    width : 100%;
+}
+.review_rating_section .rating_select{
+    border-top: 0.5px solid rgb(219, 219, 219);
+    border-bottom: 0.5px solid rgb(219, 219, 219);
+    width : 98%;
+    height: 70px;
+    margin : 0;
+    padding-left : 20px;
+    display: flex;
+    align-items: center;
+}
+.rating_select dl{
+    display : inline-flex;
+}
+.rating_select dt{
+    /* border : 1px solid red; */
+    display : inline-flex;
+    font-size : 13.5px;
+}
+.rating_select dd{
+    font-size : 13.5px;
+    /* border : 1px solid red; */
+}
+.rating_select dd ul{
+    /* border : 1px solid red; */
+    display : inline-flex;
+    padding : 0;
+}
+.rating_select dd ul li{
+    list-style: none;
+    display: inline-flex;
+    margin-right: 20px;
+    align-items: baseline;
+}
+.rating_select dd ul li label{
+    margin-left : 5px;
+}
+.review_writing_section{
+    border-bottom: 0.5px solid rgb(219, 219, 219);
+    width : 100%;
+}
+.review_writing_section textarea{
+    border: none;
+    text-align: left;
+    width : 93.5%;
+    padding : 2%;
+    font-size : 14px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+.review_writing_section textarea:focus{
+    outline: none;
+}
+.policy_agreee{
+    position : relative;
+    border-bottom: 0.5px solid rgb(219, 219, 219);
+    width : 96.5%;
+    padding : 20px;
+    display : flex;
+    flex-direction: column;
+}
+.policy_agreee .policy_agree_title{
+    display : inline-flex;
+    width : 100%;
+    height: fit-content;
+    align-items: baseline;
+
+}
+.policy_agree_title p{
+    font-size: 15px;
+    height : fit-content;
+    margin : 0;
+    font-weight: bold;
+}
+.policy_agree_title #showall{
+    font-size: 13px;
+    margin-left: 7px;
+    height : fit-content;
+    text-decoration-line: underline;
+}
+#policy{
+    border : 0.3px solid rgb(219, 219, 219);
+    font-size: 14px;
+}
+
+
+
+
+
 
 .third_box{
     border : 1px solid red;
