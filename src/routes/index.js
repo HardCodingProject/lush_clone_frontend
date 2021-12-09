@@ -10,6 +10,7 @@ import Product_Bathbomb from '@/components/Product_Bathbomb.vue';
 import Product_Bodyspray from '@/components/Product_Bodyspray.vue';
 import PD_Bathbomb from '@/components/PD_Bathbomb.vue';
 import Shopping_Cart from '@/components/Shopping_Cart.vue';
+import Order_Page from '@/components/Order_Page.vue';
 
 
 const routes = [
@@ -23,6 +24,7 @@ const routes = [
     {path : '/product_bodyspray' , name :'Product_Bodyspray', component : Product_Bodyspray},
     {path : '/pd_bathbomb' , name :'PD_Bathbomb', component : PD_Bathbomb},
     {path : '/shopping_cart' , name :'Shopping_Cart', component : Shopping_Cart},
+    {path : '/order_page' , name :'Order_Page', component : Order_Page},
 ];
 
 const router = createRouter({
