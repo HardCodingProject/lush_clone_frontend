@@ -251,12 +251,12 @@
                                 </dl>
                             </div>
                             <div class="review_writing_section">
-                                <textarea rows="10"></textarea>
+                                <textarea rows="15"></textarea>
                             </div>
                             <div class="policy_agreee">
                                 <div class="policy_agree_title">
                                     <p>비회원 개인정보 수집동의</p>
-                                    <span id="showall">전체보기</span>
+                                    <span id="showall" @click="goPolicy">전체보기</span>
                                 </div>
                                 <p id="policy">
                                     - 수집항목: 이름, 휴대전화번호, 작성 비밀번호
@@ -266,7 +266,29 @@
                                     위와 같이 수집하는 개인정보에 대해, 동의하지 않거나 거부할 수 있습니다. 다만, 동의하지 않거나 거부할 경우 회원에게 제공되는 서비스가 제한될 수 있습니다.
                                     그 밖의 사항은 (주)러쉬코리아 개인정보처리방침을 준수합니다 
                                 </p>
-
+                                <div class="member_section">
+                                    <div class="whos_writing">
+                                        <div class="whos_userid">
+                                            <label>작성자</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="whos_userpw">
+                                            <label>비밀번호</label>
+                                            <input type="password">
+                                        </div>
+                                    </div>
+                                    <div class="whos_agree">
+                                        <el-checkbox label="위 내용에 동의합니다." name="type"></el-checkbox>
+                                    </div>
+                                </div>
+                                <div class="finish_section">
+                                    <div class="insert_img_section">
+                                        <img :src="ico_camera" id="cameraImg">
+                                        <label for="insertImg"></label>
+                                        <input type="file" style="display : none;" id="insertImg"/>
+                                    </div>
+                                    <button>후기작성</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -276,6 +298,10 @@
                         <span @click.prevent="goThere('first')">상품상세정보</span>
                         <span @click.prevent="goThere('second')">상품후기</span>
                         <span @click.prevent="goThere('third')">배송/교환 및 반품안내</span>
+                    </div>
+                    <div class="policy_container">
+                        <img :src="policy1">
+                        <img :src="policy2">
                     </div>
                 </div>
             </div>
@@ -295,6 +321,9 @@ import minus from '@/assets/minus.png';
 import plus from '@/assets/plus.png';
 import sp from '@/assets/sp.png';
 import suitable_vegan from '@/assets/suitable_vegan.png';
+import ico_camera from '@/assets/ico_camera.png';
+import policy1 from '@/assets/policy1.png';
+import policy2 from '@/assets/policy2.png';
 
     export default {
         data(){
@@ -311,6 +340,9 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
                 minus,
                 sp,
                 suitable_vegan,
+                ico_camera,
+                policy1,
+                policy2,
                 isOpen : false,
                 isOpen2 : false,
                 isOpen3 : false,
@@ -428,8 +460,10 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
                 var location = element.offsetTop;
                 console.log(location);
                 element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+            },
+            goPolicy(){
+                window.open("https://www.lush.co.kr/service/private.php");
             }
-            
         }
     }
 </script>
@@ -810,6 +844,12 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
     margin-left: 40px;
 }
 
+
+/* 상세내용 섹션 */
+.pd_contents{
+    width : 100%;
+    height : fit-content;
+}
 .pd_navbar{
     /* border: 1px solid black; */
     width: 100%;
@@ -827,6 +867,8 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
     justify-content: center;
     cursor : pointer;
 }
+
+/* 첫번째 - 제품 성분 섹션 */
 .first_box{
     /* border : 1px solid red; */
     height : fit-content;
@@ -835,6 +877,7 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
 }
 .first_box .pd_navbar span:first-child{
     border: 0.5px solid #333;
+    border-bottom : none;
     width: 33%;
     height : 50px;
     display : flex;
@@ -846,7 +889,6 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
 }
 .first_box .product_detail {
     border-top: 0.5px solid #333;
-    border-bottom: 0.5px solid #333;
     width : 100%;
     padding-bottom: 3%;
     height : calc(100% - 50px);
@@ -968,13 +1010,15 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
     font-size: 15px;
 }
 
-
+/* 두번째 - 리뷰 섹션 */
 .second_box { 
     /* border : 1px solid red; */
-    height : 800px;
+    height : fit-content;
+    margin-bottom: 3em;
 }
 .second_box .pd_navbar span:nth-child(2) {
     border: 0.5px solid #333;
+    border-bottom : none;
     width: 33%;
     height : 50px;
     display : flex;
@@ -985,11 +1029,11 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
     cursor : pointer;
 }
 .second_box .review_container {
-    /* border : 1px solid blue; */
+    border-top: 0.5px solid #333;
     width : 100%;
     height : calc(100%-50px);
     display : flex;
-    padding-top : 5%;
+    padding-top : 3%;
     flex-direction: column;
 }
 .review_title_box { 
@@ -1019,7 +1063,7 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
 .review_writing_container{
     border: 0.5px solid rgb(219, 219, 219);
     width : 100%;
-    height: 500px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
 }
@@ -1079,15 +1123,14 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
 }
 .policy_agreee{
     position : relative;
-    border-bottom: 0.5px solid rgb(219, 219, 219);
-    width : 96.5%;
-    padding : 20px;
+    width : 100%;
     display : flex;
     flex-direction: column;
 }
 .policy_agreee .policy_agree_title{
     display : inline-flex;
     width : 100%;
+    padding : 20px;
     height: fit-content;
     align-items: baseline;
 
@@ -1103,23 +1146,99 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
     margin-left: 7px;
     height : fit-content;
     text-decoration-line: underline;
+    cursor : pointer;
 }
 #policy{
+    width : 97%;
     border : 0.3px solid rgb(219, 219, 219);
+    font-size: 14px;
+    margin : 0px auto;
+    line-height: 1.3em;
+}
+.member_section{
+    /* border : 1px solid black; */
+    padding : 20px;
+    height : 35px;
+    display : inline-flex;
+    justify-content: space-between;
+}
+.whos_writing, .whos_agree {
+    /* border : 1px solid red; */
+    width : fit-content;
+    height : 100%;
+    display : inline-flex;
+}
+.whos_userid, .whos_userpw{
+    /* border : 1px solid blue; */
+    width : fit-content;
+    height : 100%;
+    align-items: center;
+    display : inline-flex;
+}
+.whos_userpw{
+    margin-left: 20px;
+}
+.whos_writing label {
+    width : 60px;
     font-size: 14px;
 }
 
+.whos_writing input {
+    width : 130px;
+    height : 70%;
+    font-size : 14px;
+    padding-left: 5px;
+    letter-spacing: 0.05em;
+    border : 1px solid rgba(175, 175, 175, 0.733);
+    border-radius: 0;
+}
+.whos_writing input:focus {
+    outline: none;
+}
+.finish_section{
+    border-top: 0.5px solid rgb(219, 219, 219);
+    width : 100%;
+    height : 60px;
+    display : inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.insert_img_section{
+    width : 35px;
+    height : 30px;
+    position: relative;
+    margin-left : 15px;
+}
+.insert_img_section img{
+    width : 100%;
+    height : 100%;
+}
+.insert_img_section label{
+    /* border : 1px solid black; */
+    position: absolute;
+    width : 100%;
+    height : 100%;
+    left : 0;
+    cursor : pointer;
+}
+.finish_section button {
+    border : 0.5px solid #333;
+    background-color : white;
+    width : 150px;
+    padding : 10px;
+    height : 100%;
+    font-size : 15px;
+    cursor : pointer;
+}
 
-
-
-
-
+/* 세번째 - 환불, 교환 정책 섹션 */
 .third_box{
-    border : 1px solid red;
-    height : 800px;
+    /* border : 1px solid red; */
+    height : fit-content;
 }
 .third_box .pd_navbar span:nth-child(3) {
     border: 0.5px solid #333;
+    border-bottom: none;
     width: 33%;
     height : 50px;
     display : flex;
@@ -1129,8 +1248,14 @@ import suitable_vegan from '@/assets/suitable_vegan.png';
     justify-content: center;
     cursor : pointer;
 }
-.pd_contents{
+.policy_container{
+    border-top: 0.5px solid #333;
     width : 100%;
-    height : fit-content;
+    height : calc(100%-50px);
+    display : flex;
+    flex-direction: column;
+}
+.policy_container img {
+    width : 100%;
 }
 </style>
