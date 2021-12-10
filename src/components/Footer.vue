@@ -391,7 +391,7 @@ a:-webkit-any(){
 .wrapR{
     display: inline-block;
     float : right;
-    width: 815px;
+    width: 830px;
 }
 .footer_menu{
     margin: 0;
