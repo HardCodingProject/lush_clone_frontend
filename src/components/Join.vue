@@ -111,7 +111,7 @@
                                         <label for="8">icloud.com</label>
                                     </div>
                                 </div>
-                                                                                                              
+
                                 <div class="form-element">
                                     <input type="checkbox" class="checkbox" id="mailling" value="" aria-invalid="false">
                                     <label for="mailling" class="checkboxlabel">정보/이벤트 메일 수신에 동의합니다.</label>
@@ -168,7 +168,7 @@
         <Footer></Footer>
     </div>
 </template>
- 
+
 <script>
 import axios from 'axios';
 import Footer from '@/components/Footer.vue';
