@@ -176,7 +176,7 @@
         </div>
     </div>
 </template>
- 
+
 <script>
 import axios from 'axios';
 import select_arrow_down from '@/assets/select_arrow_down.png';

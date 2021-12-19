@@ -249,7 +249,7 @@ body {
 }
 
 .content {
-  /* height: 100vh; */
+  height: 100vh;
   width: 100vw;
   grid-area: content;
   background-color: rgb(255, 255, 255);

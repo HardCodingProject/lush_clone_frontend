@@ -399,7 +399,7 @@ import policy2 from '@/assets/policy2.png';
                 console.log(response);
                 if(response.data.ret === 1){
                     alert(response.data.data);
-                    this.$router.push({path:'/order_page'})
+                    this.$router.push({path:'/shopping_cart'});
                 }
                 else{
                     alert(response.data.data);

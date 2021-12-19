@@ -62,7 +62,7 @@
                 <span id="deleteBtn">삭제하기</span>
                 <div class="orderBtn_container">
                     <button id="keepShopping">쇼핑 계속하기</button>
-                    <button id="goCheckout">주문하기</button>
+                    <button id="goCheckout"  @click="goOrder">주문하기</button>
                 </div>          
             </div>
             <div class="cart_spa_section">
@@ -130,24 +130,30 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import Footer from './Footer.vue';
     export default {
         data(){
             return{
-
+                token : sessionStorage.getItem("TOKEN"),
             }
         },
         components:{
             Footer : Footer,
         },
         async created(){
-
+            await this.handleList();
         },
         methods : {
             async handleList(){
-                // const url = `/order/cart`;
-                // const result = {}
+                const url = `/order/cart`;
+                const headers = { "token": this.token};
+                const result = await axios.get(url, {headers});
+                console.log(result);
+                // 데이터 잘 넘어오니까 물품정보 불러와서 css 다듬기만 하면됨.
+            },
+            goOrder(){
+                this.$router.push({path:'/order_page'});
             }
         }
     }
