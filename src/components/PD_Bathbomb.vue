@@ -388,11 +388,12 @@ import policy2 from '@/assets/policy2.png';
         methods : {
             async handleaddcart() {
                 const headers = { 
-                    "Content-Type" : "application/x-www-form-urlencoded",
+                    "Content-Type" : "application/json",
                     "token"        : this.token
                 };
                 console.log(headers);
                 const body = { product_code : this.itemCode, product_count : this.counting };
+                console.log(body);
                 const url = `/order/addcart`;
                 const response = await axios.put(url, body, {headers});
                 console.log(response);
@@ -412,7 +413,7 @@ import policy2 from '@/assets/policy2.png';
                     this.itemDetail = result.data.data;
                     this.priceForm = result.data.data.price.toLocaleString();
                     this.totalCountingF = this.priceForm.toLocaleString();
-                    console.log(this.itemDetail);
+                    // console.log(this.itemDetail);
                 }
 
                 const url1 = `/product/detail?code=${this.itemCode}`;
@@ -432,7 +433,7 @@ import policy2 from '@/assets/policy2.png';
                 for(var i=1; i<=this.priorityLength; i++){
                     const url3 = `/product/detail/image/desc?product_detail_no=${this.itemCode}&priority=${i}`;
                     const result3 = await axios.get(url3);
-                    console.log(result3);
+                    // console.log(result3);
                     if(result3.data.ret === 1){
                         this.detailIngredient_desc[i] = result3.data.data;
                         console.log(this.detailIngredient_desc);

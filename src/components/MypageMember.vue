@@ -212,7 +212,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
         methods : {
             async CheckPw(){
                 const headers = { 
-                    "Content-Type" : "application/x-www-form-urlencoded",
+                    "Content-Type" : "application/json",
                     "token"        : this.token
                 };
                 const body = {password : this.orgPass};
