@@ -130,6 +130,7 @@
 </template>
 
 <script>
+// import axios from 'axios';
 import Footer from './Footer.vue';
     export default {
         data(){
@@ -140,6 +141,15 @@ import Footer from './Footer.vue';
         components:{
             Footer : Footer,
         },
+        async created(){
+
+        },
+        methods : {
+            async handleList(){
+                // const url = `/order/cart`;
+                // const result = {}
+            }
+        }
     }
 </script>
 

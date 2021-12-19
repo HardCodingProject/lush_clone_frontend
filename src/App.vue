@@ -155,7 +155,7 @@
 
         <div class="imgbox">
           <img :src = 'search' id="img1">
-          <img :src = 'shop' id="img2">
+          <img :src = 'shop' id="img2" @click="goCart">
           <div class="dropdown2">
             <img :src = 'login' id="img3">
             <div class="dropdown-content2">
@@ -196,6 +196,9 @@ export default {
   methods:{
     handleBathbomb(val){
       this.$router.push({path:'/product_bathbomb', query : {category_code:val}});
+    },
+    goCart(){
+      this.$router.push({path:'/shopping_cart'});
     }
   }
 }
@@ -236,6 +239,7 @@ body {
   width:25px;
   height: 25px;
   margin-right: 40px;
+  cursor: pointer;
 }
 #img3{
   width: 25px;
