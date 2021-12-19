@@ -223,22 +223,19 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 if(response.data.ret === 1){
                     this.Check = response.data.data;
                 }
-                //else{
-                    //alert("비밀번호 확인 실패");
-                //}
+                else{
+                    alert("비밀번호 확인 실패");
+                }
             },
             async hanldeUpdate(){
                 if(this.Check === 1){
                     if(this.username.length === 0){
                         return alert('이름을 입력하세요.');
                     }
-                    else if(this.newPass.length !== 0){
+                    else if(this.newPass.length !== 0){ // 비밀번호도 변경할 시
                         if(this.newPassCheck !== this.newPass){
                             return alert('변경할 암호를 확인하세요.');
                         }
-                    }
-                    else if(this.newPassCheck !== this.newPass){
-                        return alert('변경할 암호를 확인하세요.');
                     }
                     else if(this.user_email.length === 0){
                         return alert('이메일을 입력하세요.');
@@ -246,13 +243,12 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     else if(this.user_phone.length === 0){
                         return alert('전화번호를 입력하세요.');
                     }
-
                     const headers = { 
-                        "Content-Type" : "application/x-www-form-urlencoded",
+                        "Content-Type" : "application/json",
                         "token"        : this.token 
                     }
                     const body    = { 
-                        password : this.newPass,
+                        new_password : this.newPass,
                         name : this.username,
                         email : this.user_email + "@" + this.selected,
                         phone : this.user_phone,
