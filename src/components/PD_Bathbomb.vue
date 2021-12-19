@@ -145,7 +145,7 @@
                         </ul>
                     </div>
                     <div class="order_btn_container">
-                        <button type="button" id="cartbtn">장바구니</button>
+                        <button type="button" id="cartbtn" @click="handleaddcart">장바구니</button>
                         <button type="button" id="orderbtn">주문하기</button>
                     </div>
                 </div>
@@ -353,6 +353,7 @@ import policy2 from '@/assets/policy2.png';
                 totalCounting : 0,
                 totalCountingF : 0,
                 priorityLength : 0,
+                token : sessionStorage.getItem("TOKEN"),
 
 
                 select_box_style : {
@@ -385,6 +386,24 @@ import policy2 from '@/assets/policy2.png';
             await this.handleContent();
         },
         methods : {
+            async handleaddcart() {
+                const headers = { 
+                    "Content-Type" : "application/x-www-form-urlencoded",
+                    "token"        : this.token
+                };
+                console.log(headers);
+                const body = { product_code : this.itemCode, product_count : this.counting };
+                const url = `/order/addcart`;
+                const response = await axios.put(url, body, {headers});
+                console.log(response);
+                if(response.data.ret === 1){
+                    alert(response.data.data);
+                    this.$router.push({path:'/order_page'})
+                }
+                else{
+                    alert(response.data.data);
+                }
+            },
             async handleContent(){
                 const url = `/product?code=${this.itemCode}`;
                 const result = await axios.get(url);
