@@ -266,6 +266,9 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                         alert(response.data.data);
                     }
                 }
+                else{
+                    alert("비밀번호 확인을 한 후 정보수정을 해주세요.");
+                }
             },
             openOption(){
                 this.isOpen = !this.isOpen;
