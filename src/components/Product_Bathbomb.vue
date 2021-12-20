@@ -110,7 +110,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     this.itemcode[i] = this.items[i]._id;
                     const url1 = `/product/type/image/count?product_code=${this.itemcode[i]}`;
                     const result1 = await axios.get(url1);
-                    console.log(result1);
+                    // console.log(result1);
                     if(result1.data.ret === 1){
                         this.priorityLength[i] = result1.data.data;
                     }

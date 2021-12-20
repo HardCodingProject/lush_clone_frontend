@@ -6,35 +6,11 @@
         </div>
         <div class="product_table">
             <div class="top_header">
-                <h2>배쓰 밤</h2>
-                <div class="sort_select">
-                    <div class="select-box" @click="openOption">
-                        <span class="selected">{{selected}}</span>
-                        <img :src="select_arrow_down">
-                    </div>
-                    <div name class="options-container" v-if="isOpen"  >
-                        <input type="radio" id="1" v-model="selected" value="추천순">
-                        <label for="1" >추천순</label>
-                        <input type="radio" id="2" v-model="selected" @click="choose" value="판매인기순" >
-                        <label for="2" >판매인기순</label>
-                        <input type="radio" id="3" v-model="selected" value="낮은가격순" >
-                        <label for="3">낮은가격순</label>
-                        <input type="radio" id="4" v-model="selected" value="높은가격순" >
-                        <label for="4">높은가격순</label>
-                        <input type="radio" id="5" v-model="selected" value="리뷰많은순" >
-                        <label for="5">리뷰많은순</label>
-                        <input type="radio" id="6" v-model="selected" value="신제품순" >
-                        <label for="6">신제품순</label>
-                    </div>
-                </div>
+                <h2>총 {{total}} 개의 상품이 있습니다.</h2>
             </div>
             <div class="divider"></div>
             <ul class="lower_cate">
-                <li><span>전체(95)</span></li>
-                <li><span>배쓰 밤(38)</span></li>
-                <li><span>버블 바(54)</span></li>
-                <li><span>배쓰 오일(1)</span></li>
-                <li><span>펀(2)</span></li>
+                <li><span>전체({{total}})</span></li>
             </ul>
             <div class="display_table">
                 <div class="pr_list">
@@ -48,9 +24,9 @@
                                 </div>
                                 <div class="pr_info">
                                     <div class="pr_conditions">
-                                        <div v-for="pr in priorityLength[idx]" v-bind:key="pr">
+                                        <!-- <div v-for="pr in priorityLength[idx]" v-bind:key="pr">
                                             <img :src="`/product/type/image?product_code=${item._id}&priority=${pr}`" >
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="pr_name_tag">
                                         <span class="pr_name">{{item.name}}</span>
@@ -58,7 +34,7 @@
                                     </div>
                                     <div class="pr_price">
                                         <span class="price">
-                                            <strong> ₩{{item.price}}</strong>
+                                            <strong>{{item.price}}원</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -67,8 +43,8 @@
                     </ul>
                 </div>
             </div>
-            <Footer></Footer>
         </div>
+        <Footer></Footer>
     </div>
 </template>
 
@@ -83,39 +59,29 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 isOpen :false,
                 selected : '추천순',
                 items : [],
+                search_page : this.$route.query.page,
+                product_name_key : this.$route.query.keyword,
                 idx : 0,
                 itemcode : [],
-                priorityLength : [],
-                category_code : this.$route.query.category_code,
+                total : 0,
                 id : '',
             }
         },
         async created(){
-            await this.handleItems();
+            await this.getSearchResult();
         },
         components:{
             Footer : Footer,
         },
         methods : {
-            async handleItems(){
-                const url = `/product/list?categoryCode=${this.category_code}`;
+            async getSearchResult(){
+                const url = `/product/search/list?page=${this.search_page}&keyword=${this.product_name_key}`;
                 const result = await axios.get(url);
                 console.log(result);
                 if(result.data.ret === 1){
                     this.items = result.data.data;
                 }
-
-                for(var i=0; i<this.items.length; i++){
-                    this.itemcode[i] = this.items[i]._id;
-                    const url1 = `/product/type/image/count?product_code=${this.itemcode[i]}`;
-                    const result1 = await axios.get(url1);
-                    console.log(result1);
-                    if(result1.data.ret === 1){
-                        this.priorityLength[i] = result1.data.data;
-                    }
-                }
-
-                console.log(this.priorityLength);
+                this.total = this.items.length;
             },
             openOption(){
                 this.isOpen = !this.isOpen;
@@ -170,23 +136,21 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 }
 .product_table{
     /* border: 1px solid black; */
-    /* width: 1180px; */
+    width: 1180px;
     margin: 0 auto;
-    height: 300px;
+    height: 100%;
     position: relative;
 }
 .top_header{
     width: 1180px;
     display: inline-flex;
-    padding: 70px 0px 0px 0px;
+    padding: 70px 0px 0px 5px;
     margin: 0 auto;
 }
 .top_header > h2{
     font-family: 'Roboto', sans-serif;
     font-size: 28px;
     margin: 0;
-    position: relative;
-    left: 15%;
 }
 
 

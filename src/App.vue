@@ -154,14 +154,15 @@
 
 
         <div class="imgbox">
-          <img :src = 'search' id="img1">
+          <img :src = 'search' id="img1" @click="openSearchNav">
           <img :src = 'shop' id="img2" @click="goCart">
           <div class="dropdown2">
             <img :src = 'login' id="img3">
             <div class="dropdown-content2">
               <div class="column2">
-                <a href="/login">로그인</a>
-                <a href="/join">회원가입</a>
+                <a href="/login" v-if="!logged">로그인</a>
+                <a href="/join" v-if="!logged">회원가입</a>
+                <a href="/mypage" v-if="logged">마이페이지</a>
                 <a href="#">스카우트</a>
                 <a href="#">고객센터</a>
               </div>
@@ -172,7 +173,17 @@
     </div>
 
     <div class="content">
-      <router-view></router-view>
+      <router-view @changeLogged="changeLogged"></router-view>
+    </div>
+  </div>
+
+  <div class="search_overlay" v-bind:style="searchNavStyle">
+    <img :src="close" @click="closeSearchNav" id="closebtn">
+    <div class="overlay_content">
+      <div class="search_bar">
+        <input type="text" class="search_txt" v-model="productName">
+        <img :src="Search2" @click="handleSearch">
+      </div>
     </div>
   </div>
 </template>
@@ -181,6 +192,8 @@
 import shop from '@/assets/shop.png';
 import login from '@/assets/login.png';
 import search from '@/assets/search.png';
+import Search2 from '@/assets/Search2.png';
+import close from '@/assets/close.png';
 
 export default {
   data(){
@@ -190,15 +203,61 @@ export default {
       shop   : shop,
       login  : login,
       search : search,
-      code : ''
+      close : close,
+      page : 1,
+      logged : false,
+      Search2 : Search2,
+      code : '',
+      productName : '',
+      token : sessionStorage.getItem("TOKEN"),
+
+      searchNavStyle :{
+        height: '0%',
+        width: '100%',
+        position: 'fixed',
+        zIndex: '100',
+        top: "0",
+        left: '0',
+        display : 'flex',
+        jusityContent : 'center',
+        // backgroundColor: 'rgb(0,0,0)',
+        backgroundColor: 'rgb(0, 0, 0, 0.88)',
+        overflowY: 'hidden',
+        transition: '0.5s',
+      },
+    }
+  },
+  created(){
+    if(this.token !== null){
+      this.logged = true;
+    }
+    else if (this.token === null){
+      this.logged = false;
     }
   },
   methods:{
+    changeLogged(logged){
+      this.logged = logged;
+    },
     handleBathbomb(val){
       this.$router.push({path:'/product_bathbomb', query : {category_code:val}});
     },
     goCart(){
       this.$router.push({path:'/shopping_cart'});
+    },
+    openSearchNav() {
+      this.searchNavStyle.height = "100%";
+    },
+    closeSearchNav() {
+      this.searchNavStyle.height = "0%";
+    },
+    async handleSearch(){
+      await this.closeSearchNav();
+      await this.$router.push({
+          path:'/search_result', 
+          query:{ page : this.page, keyword: this.productName }
+      });
+      this.productName = '';
     }
   }
 }
@@ -231,6 +290,7 @@ body {
 #img1{
   width: 22px;
   height: 22px;
+  cursor : pointer;
   padding-top: 40px;
   padding-left: 100px;
   margin-right: 40px;
@@ -466,5 +526,62 @@ body {
 }
 .add{
   margin-right: 30px;
+}
+
+
+/* 검색창 구현 */
+/* .search_overlay{
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow-y: hidden;
+  transition: 0.5s;
+} */
+.search_overlay img:hover{
+  cursor: pointer;
+}
+.overlay_content{
+  position: relative;
+  top: 30%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+.search_bar{
+  width: 50%;
+  padding-bottom: 5px;
+  display: inline-flex;
+  border-bottom: 3px solid #fafafa;
+}
+.search_bar input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 2rem;
+  font-weight: bold;
+  width: 95%;
+  color: #f9f9f9;
+  padding-left: 5px;
+  font-family: 'Hahmlet', serif;
+}
+.search_bar img {
+  width: 5%;
+  height: 5%;
+  margin-bottom: 5px;
+}
+#closebtn{
+  width : 35px;
+  position : absolute;
+  top: 5%;
+  right : 5%;
+  cursor : pointer;
+}
+.search_bar input:focus {
+  outline: none;
 }
 </style>
