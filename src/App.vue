@@ -30,7 +30,7 @@
                 </div>
                 <div class="column">
                   <h4>배쓰</h4>
-                  <a href="#" @click="handleBathbomb(2)">배쓰밤</a>
+                  <router-link :to="{ name: 'Product_Bathbomb', query: {category_code : 2} }">배쓰밤</router-link>
                   <a href="#">배쓰오일</a>
                   <a href="#">비건메이크업</a>
                   <a href="#">펀</a>
@@ -238,9 +238,6 @@ export default {
   methods:{
     changeLogged(logged){
       this.logged = logged;
-    },
-    handleBathbomb(val){
-      this.$router.push({path:'/product_bathbomb', query : {category_code:val}});
     },
     goCart(){
       this.$router.push({path:'/shopping_cart'});

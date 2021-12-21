@@ -86,6 +86,8 @@ import logo_naver from '@/assets/logo_naver.gif';
                     sessionStorage.setItem("TOKEN", response.data.jwtToken.token);
                     alert('로그인되었습니다.');
 
+                    this.$emit('changeLogged', true);
+
                     var url1 = sessionStorage.getItem("URL");
                     url1 = JSON.parse(url1);
                     console.log(typeof(url1));

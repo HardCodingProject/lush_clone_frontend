@@ -387,19 +387,29 @@ import policy2 from '@/assets/policy2.png';
         },
         methods : {
             async handleaddcart() {
+                await this.handleContent();
+
                 const headers = { 
                     "Content-Type" : "application/json",
                     "token"        : this.token
                 };
                 console.log(headers);
-                const body = { product_code : this.itemCode, product_count : this.counting };
+                const body = { 
+                    product_code : this.itemCode,
+                    product_name : this.itemDetail.name,
+                    product_price : this.itemDetail.price,
+                    product_count : this.counting 
+                };
                 console.log(body);
                 const url = `/order/addcart`;
                 const response = await axios.put(url, body, {headers});
                 console.log(response);
                 if(response.data.ret === 1){
                     alert(response.data.data);
-                    this.$router.push({path:'/shopping_cart'});
+                    if(confirm('장바구니로 이동하시겠습니까?')){
+                        this.$router.push({path:'/shopping_cart'});
+                    }
+                    else await this.handleContent();
                 }
                 else{
                     alert(response.data.data);

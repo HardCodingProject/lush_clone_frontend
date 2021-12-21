@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="pr_info">
                                     <div class="pr_conditions">
-                                        <div v-for="pr in priorityLength[idx]" v-bind:key="pr">
+                                        <div v-for="pr in 3" v-bind:key="pr">
                                             <img :src="`/product/type/image?product_code=${item._id}&priority=${pr}`" >
                                         </div>
                                     </div>
@@ -67,8 +67,8 @@
                     </ul>
                 </div>
             </div>
-            <Footer></Footer>
         </div>
+        <Footer></Footer>
     </div>
 
 </template>
@@ -87,6 +87,9 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 idx : 0,
                 itemcode : [],
                 priorityLength : [],
+                priorityNum : [],
+                priorityList : [],
+                priority : 0,
                 category_code : this.$route.query.category_code,
                 id : '',
             }
@@ -113,10 +116,21 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     // console.log(result1);
                     if(result1.data.ret === 1){
                         this.priorityLength[i] = result1.data.data;
+
+                        for(var j=0; j<this.priorityLength[j]; j++){
+                            for(var t=1; t<=this.priorityLength[j]; t++){
+                                this.priorityList[j] = t;
+                            }
+                            this.priorityNum[j] = this.priorityList;
+                        }
                     }
+
                 }
 
+                console.log(this.priorityList);
+                console.log(this.priorityNum);
                 console.log(this.priorityLength);
+                
             },
             openOption(){
                 this.isOpen = !this.isOpen;
@@ -171,9 +185,9 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 }
 .product_table{
     /* border: 1px solid black; */
-    /* width: 1180px; */
+    width: 1180px;
     margin: 0 auto;
-    height: 300px;
+    height: fit-content;
     position: relative;
 }
 .top_header{
@@ -187,7 +201,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     font-size: 28px;
     margin: 0;
     position: relative;
-    left: 15%;
+    /* left: 15%; */
 }
 
 
@@ -195,8 +209,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 .sort_select{
     width: 110px;
     position:absolute;
-    right : 12%;
-    top: 23%;
+    right : 1%;
     z-index: 1;
 }
 .select-box{
