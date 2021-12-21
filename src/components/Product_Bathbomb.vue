@@ -48,8 +48,8 @@
                                 </div>
                                 <div class="pr_info">
                                     <div class="pr_conditions">
-                                        <div v-for="pr in 3" v-bind:key="pr">
-                                            <img :src="`/product/type/image?product_code=${item._id}&priority=${pr}`" >
+                                        <div v-for="pr in priorityList[item._id - 1]" v-bind:key="pr" style="margin:0px 3px;">
+                                            <img :src="`/product/type/image?product_code=${item._id}&priority=${pr.priority}`" >
                                         </div>
                                     </div>
                                     <div class="pr_name_tag">
@@ -86,8 +86,6 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 items : [],
                 idx : 0,
                 itemcode : [],
-                priorityLength : [],
-                priorityNum : [],
                 priorityList : [],
                 priority : 0,
                 category_code : this.$route.query.category_code,
@@ -109,27 +107,17 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     this.items = result.data.data;
                 }
 
+
                 for(var i=0; i<this.items.length; i++){
                     this.itemcode[i] = this.items[i]._id;
                     const url1 = `/product/type/image/count?product_code=${this.itemcode[i]}`;
                     const result1 = await axios.get(url1);
                     // console.log(result1);
                     if(result1.data.ret === 1){
-                        this.priorityLength[i] = result1.data.data;
-
-                        for(var j=0; j<this.priorityLength[j]; j++){
-                            for(var t=1; t<=this.priorityLength[j]; t++){
-                                this.priorityList[j] = t;
-                            }
-                            this.priorityNum[j] = this.priorityList;
-                        }
+                        this.priorityList[i] = result1.data.data;
                     }
-
                 }
-
                 console.log(this.priorityList);
-                console.log(this.priorityNum);
-                console.log(this.priorityLength);
                 
             },
             openOption(){
@@ -364,7 +352,8 @@ input[type="radio"]{
     top: 0;
     left: 0;
     width: 100%;
-    text-align: center;
+    display: inline-flex;
+    justify-content: center;
 }
 .display_table .pr_list ul li .pr_conditions > img{
     padding: 2px;

@@ -24,9 +24,9 @@
                                 </div>
                                 <div class="pr_info">
                                     <div class="pr_conditions">
-                                        <!-- <div v-for="pr in priorityLength[idx]" v-bind:key="pr">
-                                            <img :src="`/product/type/image?product_code=${item._id}&priority=${pr}`" >
-                                        </div> -->
+                                        <div v-for="pr in priorityList[total/total]" v-bind:key="pr" style="margin:0px 3px;">
+                                            <img :src="`/product/type/image?product_code=${item._id}&priority=${pr.priority}`" >
+                                        </div>
                                     </div>
                                     <div class="pr_name_tag">
                                         <span class="pr_name">{{item.name}}</span>
@@ -63,6 +63,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 product_name_key : this.$route.query.keyword,
                 idx : 0,
                 itemcode : [],
+                priorityList : [],
                 total : 0,
                 id : '',
             }
@@ -82,6 +83,17 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     this.items = result.data.data;
                 }
                 this.total = this.items.length;
+
+                for(var i=0; i<this.items.length; i++){
+                    this.itemcode[i] = this.items[i]._id;
+                    const url1 = `/product/type/image/count?product_code=${this.itemcode[i]}`;
+                    const result1 = await axios.get(url1);
+                    // console.log(result1);
+                    if(result1.data.ret === 1){
+                        this.priorityList[i] = result1.data.data;
+                    }
+                }
+                console.log(this.priorityList);
             },
             openOption(){
                 this.isOpen = !this.isOpen;
@@ -138,7 +150,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     /* border: 1px solid black; */
     width: 1180px;
     margin: 0 auto;
-    height: 100%;
+    height: fit-content;
     position: relative;
 }
 .top_header{
@@ -314,7 +326,8 @@ input[type="radio"]{
     top: 0;
     left: 0;
     width: 100%;
-    text-align: center;
+    display: inline-flex;
+    justify-content: center;
 }
 .display_table .pr_list ul li .pr_conditions > img{
     padding: 2px;
