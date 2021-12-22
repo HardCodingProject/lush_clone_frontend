@@ -11,53 +11,46 @@
             </div>
             <div class="cart_list_section">
                 <p>제품</p>
-                <el-table ref="multipleTable" style="border-top:1px solid black;" :data="itemList" @selection-change="handleSelectionChange">
-                    <el-table-column type="selection" width="100" align="center" v-model="chks"/>
-                    <el-table-column label="제품정보" width="430" align="center">
-                        <template>
-                            <el-image style="width: 135px; height: 150px;" :fit="cover"></el-image>
-                            <div class="product_detail_info" style="width: 60%; float:right;  text-align:left; padding:5px 10px;">
-                                <span style="font-size:14px; color:#333; font-weight:bold">[  ]</span>
-                                <p style="font-size:13px; color:black; margin:10px 0px 5px 0px; font-weight:bold; overflow : hidden;"></p>
-                                <p style="font-size:14px; color:#E6A23C; margin:0;">쿠폰적용 불가상품</p>
+                <el-table style="border-top:1px solid black;" :data="cartItemList">
+                    <el-table-column label="제품정보" width="450" align="center">
+                        <template #default="scope">
+                            <el-image style="width: 150px;" :src="`/product/image/list?code=${scope.row.product_code}`" :fit="cover"></el-image>
+                            <div class="product_detail_info" style="width: 60%; height:150px; display: flex; flex-direction: column; float:right; justify-content: center; text-align:left; padding:5px 10px;">
+                                <span style="font-size:14px; color:#333; font-weight:bold">{{scope.row.product_name}}</span>
+                                <p style="font-size:13px; color:black; margin:10px 0px 5px 0px; font-weight:bold; overflow : hidden;">{{scope.row.product_category}}</p>
                             </div>
                         </template>
                     </el-table-column>
                     <el-table-column label="수량" width="170" align="center">
-                        <template>
-                            <el-input-number :min="1" :max="10" @change="handleQuantityChange" size="mini"/>
-                            <p type="primary" style="font-size:13px; color:black; margin:10px 0px; cursor:pointer;">변경수량 저장</p>
+                        <template #default="scope">
+                            <div class="count_section">
+                                <img :src="minus" @click="handleMinus(scope.row.product_code, scope.row.product_count)">
+                                <span>{{scope.row.product_count}}</span>
+                                <img :src="plus" @click="handlePlus(scope.row.product_code, scope.row.product_count)">
+                            </div>
                         </template>
                     </el-table-column>
-                    <el-table-column property="finalPrice" label="금액" width="135" align="center">
-                        <template>
-                            <p style="font-size:14px; color:black; margin:0;"> 원</p>
+                    <el-table-column property="finalPrice" label="금액" width="175" align="center">
+                        <template #default="scope">
+                            <p style="width:100%; font-size:14px; color:black; margin:0;">{{scope.row.product_price}} 원</p>
                         </template>
                     </el-table-column>
-                    <el-table-column property="finalPrice" label="복지혜택" width="135" align="center">
+                    <el-table-column property="finalPrice" label="복지혜택" width="175" align="center">
                         <template>
-                            <p style="font-size:14px; color:black; margin:0;"> 원</p>
+                            <p style="font-size:14px; color:black; margin:0;"></p>
                         </template>
                     </el-table-column>
-                    <el-table-column property="shippingCost" label="합계금액"  width="200" align="center">
-                        <template>
-                            <p style="font-size:13px; color:#333; font-weight:bold; margin:5px 0px;">[]</p>
-                        </template>
-                    </el-table-column>
-                    <el-table-column property="shippingCost" label="배소비"  width="50" align="center">
-                        <template>
-                            <p style="font-size:13px; color:#333; font-weight:bold; margin:5px 0px;">[]</p>
-                            <span style="font-size:13px; color:black; letter: spacing 0.06em;">2,500원 (택배)</span>
-                        </template>
+                    <el-table-column label="배송비"  width="210" align="center">
+                        <p style="font-size:13px; color:#333; font-weight:bold; margin:5px 0px;">2,500원(기본)<br> 3만원 이상 구매시 무료배송</p>
                     </el-table-column>
                 </el-table>
                 <div class="list_total_section">
-                    <span>총 0 개의 금액</span>
-                    <p>0 원</p>
+                    <span>총 {{total}} 개의 금액</span>
+                    <p>{{totalPriceF}} 원</p>
                     <span>+ 배송비 </span>
-                    <p>0 원</p>
+                    <p>{{totalShippingPriceF}} 원</p>
                     <span>= 총 주문금액 </span>
-                    <p>0 원</p>
+                    <p>{{totalOrderPriceF}} 원</p>
                 </div>
             </div>
             <div class="gift_section">
@@ -258,14 +251,14 @@
                     </div>
                     <div class="payment_total_section">
                         <span>최종 결제 금액</span>
-                        <p>0 원</p>
+                        <p>totalOrderPriceF</p>
                     </div>
                 </div>
                 <el-checkbox label="(필수)구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다." name="type" id="checkbox_agree"></el-checkbox>
             </div>
             <div class="orderBtn_container">
                 <button id="keepShopping">장바구니 가기</button>
-                <button id="goCheckout">결제하기</button>
+                <button id="goCheckout" @click="goOrder">결제하기</button>
             </div>
         </div>
         <Footer></Footer>
@@ -273,6 +266,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Footer from './Footer.vue';
 import gift from '@/assets/gift.png';
 import select_arrow_down from '@/assets/select_arrow_down.png';
@@ -280,10 +274,20 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     export default {
         data(){
             return{
+                token : sessionStorage.getItem("TOKEN"),
                 gift,
                 selected : '',
                 isOpen : false,
                 select_arrow_down,
+                cartItemList : [],
+                eachProductTotalPrice : 0,
+                totalPrice : 0,
+                totalPriceF : 0,
+                totalShippingPrice : 0,
+                totalShippingPriceF : 0,
+                totalOrderPrice : 0,
+                totalOrderPriceF : 0,
+                eachPrice : [],
 
                 selector_style : {
                     display: "block",
@@ -305,6 +309,9 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
         components:{
             Footer : Footer,
         },
+        async created(){
+            await this.handleList();
+        },
         methods : {
             openOption(){
                 this.selector_style.height = "fit-content";
@@ -314,7 +321,40 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 this.selector_style.height = "0px";
                 this.selector_style.border = "none";
                 this.selector_style.backgroundColor = "white";
-            }
+            },
+            async handleList(){
+                const url = `/order/cart`;
+                const headers = { "token": this.token};
+                const result = await axios.get(url, {headers});
+                console.log(result);
+                if(result.data.ret === 1){
+                    this.cartItemList = result.data.data;
+                    this.total = this.cartItemList.length;
+                }
+                await this.getTotalPrice();
+                this.eachProductTotalPrice = this.eachPrice;
+            },
+            async getTotalPrice(){
+                this.totalPrice = 0;
+                this.totalShippingPrice = 0;
+
+                for(var i=0; i<this.cartItemList.length; i++){
+                    this.eachPrice[i] = this.cartItemList[i].product_count * this.cartItemList[i].product_price;
+                    this.totalPrice += this.eachPrice[i];
+
+                    this.totalPriceF = this.totalPrice.toLocaleString();
+
+                    if(this.totalPrice < 30000){
+                        this.totalShippingPrice += 2500;
+
+                        this.totalShippingPriceF = this.totalShippingPrice.toLocaleString();
+                    }
+                }
+
+                this.totalOrderPrice = this.totalPrice + this.totalShippingPrice;
+
+                this.totalOrderPriceF = this.totalOrderPrice.toLocaleString();
+            },
         }
     }
 </script>

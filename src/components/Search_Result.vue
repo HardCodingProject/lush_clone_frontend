@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="pr_info">
                                     <div class="pr_conditions">
-                                        <div v-for="pr in priorityList[total/total]" v-bind:key="pr" style="margin:0px 3px;">
+                                        <div v-for="pr in priorityList[total/total - 1]" v-bind:key="pr" style="margin:0px 3px;">
                                             <img :src="`/product/type/image?product_code=${item._id}&priority=${pr.priority}`" >
                                         </div>
                                     </div>
