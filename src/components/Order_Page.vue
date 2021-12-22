@@ -186,11 +186,11 @@
                         <tbody>
                             <tr>
                                 <th>합계 금액</th>
-                                <td><p>0 원</p></td>
+                                <td><p>{{totalPriceF}} 원</p></td>
                             </tr>
                             <tr>
                                 <th>배송비</th>
-                                <td><p>0 원</p></td>
+                                <td><p>{{totalShippingPriceF}} 원</p></td>
                             </tr>
                             <tr>
                                 <th>복지혜택</th>
@@ -207,7 +207,7 @@
                             </tr>
                             <tr>
                                 <th>최종 결제 금액</th>
-                                <td><p>0 원</p></td>
+                                <td><p>{{totalOrderPriceF}} 원</p></td>
                             </tr>
                         </tbody>
                     </table>
@@ -258,7 +258,7 @@
             </div>
             <div class="orderBtn_container">
                 <button id="keepShopping">장바구니 가기</button>
-                <button id="goCheckout" @click="goOrder">결제하기</button>
+                <button id="goCheckout" @click="goCheckOut">결제하기</button>
             </div>
         </div>
         <Footer></Footer>
@@ -407,6 +407,21 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     popupTitle: 'LUSH 우편번호 검색' //팝업창 타이틀 설정 (영문,한글,숫자 모두 가능)
                 });
             },
+            // async goCheckOut(){
+            //     await this.handleList();
+
+            //     const headers = { 
+            //         "Content-Type" : "application/json",
+            //         "token"        : this.token
+            //     };
+            //     const body = { 
+            //         product_code : this.itemCode,
+            //         product_name : this.itemDetail.name,
+            //         product_price : this.itemDetail.price,
+            //         product_count : this.counting 
+            //     };
+
+            // }
         }
     }
 </script>
