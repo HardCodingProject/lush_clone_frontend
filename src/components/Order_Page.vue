@@ -140,12 +140,12 @@
                                 <th>받으실 곳</th>
                                 <td style="display : flex; flex-direction : column;">
                                     <div class="shipping_add1">
-                                        <input placeholder="우편번호" readonly id="postcode">
-                                        <button type="button">우편번호 검색</button>
+                                        <input placeholder="우편번호" v-model="postcode" readonly id="postcode">
+                                        <button type="button" @click="openDaumPostCode">우편번호 검색</button>
                                     </div>
                                     <div class="shipping_add2">
-                                        <input placeholder="주소1" readonly id="roadaddress">
-                                        <input placeholder="000-0000-0000">
+                                        <input placeholder="주소1" v-model="roadAddress" readonly id="roadaddress">
+                                        <input v-model="detailAddress">
                                     </div>
                                 </td>
                             </tr>
@@ -251,7 +251,7 @@
                     </div>
                     <div class="payment_total_section">
                         <span>최종 결제 금액</span>
-                        <p>totalOrderPriceF</p>
+                        <p>{{totalOrderPriceF}} 원</p>
                     </div>
                 </div>
                 <el-checkbox label="(필수)구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다." name="type" id="checkbox_agree"></el-checkbox>
@@ -262,6 +262,10 @@
             </div>
         </div>
         <Footer></Footer>
+    </div>
+
+    <div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+        <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" @click="foldDaumPostcode" alt="접기 버튼">
     </div>
 </template>
 
@@ -288,6 +292,9 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 totalOrderPrice : 0,
                 totalOrderPriceF : 0,
                 eachPrice : [],
+                postcode : '',
+                roadAddress : '',
+                detailAddress : '',
 
                 selector_style : {
                     display: "block",
@@ -354,6 +361,51 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 this.totalOrderPrice = this.totalPrice + this.totalShippingPrice;
 
                 this.totalOrderPriceF = this.totalOrderPrice.toLocaleString();
+            },
+            openDaumPostCode(){
+                new window.daum.Postcode({
+                    oncomplete: (data) => {
+                        // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+            
+                        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                        let addr = data.query; // 주소 변수
+                        let postcode = data.zonecode;
+                        let extraRoadAddr = ''
+            
+                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                            extraRoadAddr += data.bname;
+                        }
+                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                        if(data.buildingName !== '' && data.apartment === 'Y'){
+                            extraRoadAddr += ( extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                        if( extraRoadAddr !== ''){
+                            extraRoadAddr = ' (' + extraRoadAddr + ')';
+                        }
+            
+                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                        // document.getElementById('address').value = addr
+                        this.postcode = postcode;
+                        this.roadAddress = addr;
+                        
+                        // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                        if(addr !== ''){
+                            this.detailAddress = extraRoadAddr;
+                        } else {
+                            this.detailAddress = '';
+                        }
+                    },
+                    theme: {
+                        searchBgColor: "#1B1B1C",
+                        queryTextColor: "#FFFFFF"
+                    }
+                }).open()({
+                    popupTitle: 'LUSH 우편번호 검색' //팝업창 타이틀 설정 (영문,한글,숫자 모두 가능)
+                });
             },
         }
     }
