@@ -54,7 +54,7 @@
             </div>
             <div class="item8">
                 <h3>
-                    <a href="#">나의 플러스 리뷰</a>
+                    <a href="#" v-on:click="changeMenu(8)">나의 플러스 리뷰</a>
                 </h3>
             </div>
         </div>
@@ -73,6 +73,7 @@ import MypageShop3 from './MypageShop3.vue';
 import MyAddress from './MyAddress.vue';
 import MypageMember from './MypageMember.vue';
 import MypageMember1 from './MypageMember1.vue';
+import MyReview from './MyReview.vue';
 
 import Footer from './Footer.vue'
 
@@ -80,7 +81,7 @@ import Footer from './Footer.vue'
         data(){
             return{
                 currentMenu: 'mypagebase',
-                menus : [ null,'mypagebase','mypageshop1','mypageshop2','mypageshop3','mypagemember','mypagemember1','myaddress'],
+                menus : [ null,'mypagebase','mypageshop1','mypageshop2','mypageshop3','mypagemember','mypagemember1','myaddress','myreview'],
             }
         },
         components:{
@@ -92,6 +93,7 @@ import Footer from './Footer.vue'
             'myaddress' : MyAddress,
             'mypagemember' : MypageMember,
             'mypagemember1' : MypageMember1,
+            'myreview' : MyReview,
         },
         methods:{
             changeMenu(num){

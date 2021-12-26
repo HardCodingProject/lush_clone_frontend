@@ -217,31 +217,31 @@
                                     <dd>
                                         <ul>
                                             <li>
-                                                <input type="radio" id="rating5" value="5" name='rating'>
+                                                <input type="radio" id="rating5" value="5" name='rating' v-model="picked">
                                                 <label for="rating5">
                                                     <star-rating :rating="5" :read-only="true" :increment="1" active-color="#333" inactive-color="#fff" :border-width="2"  :star-size="10" :show-rating="false"></star-rating>
                                                 </label>
                                             </li>
                                             <li>
-                                                <input type="radio" id="rating4" value="4" name='rating'>
+                                                <input type="radio" id="rating4" value="4" name='rating' v-model="picked">
                                                 <label for="rating4">
                                                     <star-rating :rating="4" :read-only="true" :increment="1" active-color="#333" inactive-color="#fff" :border-width="2"  :star-size="10" :show-rating="false"></star-rating>
                                                 </label>
                                             </li>
                                             <li>
-                                                <input type="radio" id="rating3" value="3" name='rating'>
+                                                <input type="radio" id="rating3" value="3" name='rating' v-model="picked">
                                                 <label for="rating3">
                                                     <star-rating :rating="3" :read-only="true" :increment="1" active-color="#333" inactive-color="#fff" :border-width="2"  :star-size="10" :show-rating="false"></star-rating>
                                                 </label>
                                             </li>   
                                             <li>
-                                                <input type="radio" id="rating2" value="2" name='rating'>
+                                                <input type="radio" id="rating2" value="2" name='rating' v-model="picked">
                                                 <label for="rating2">
                                                     <star-rating :rating="2" :read-only="true" :increment="1" active-color="#333" inactive-color="#fff" :border-width="2"  :star-size="10" :show-rating="false"></star-rating>
                                                 </label>
                                             </li>
                                             <li>
-                                                <input type="radio" id="rating1" value="1" name='rating'>
+                                                <input type="radio" id="rating1" value="1" name='rating' v-model="picked">
                                                 <label for="rating1">
                                                     <star-rating :rating="1" :read-only="true" :increment="1" active-color="#333" inactive-color="#fff" :border-width="2"  :star-size="10" :show-rating="false"></star-rating>
                                                 </label>
@@ -251,7 +251,7 @@
                                 </dl>
                             </div>
                             <div class="review_writing_section">
-                                <textarea rows="15"></textarea>
+                                <textarea rows="15" v-model="message"></textarea>
                             </div>
                             <div class="policy_agreee">
                                 <div class="policy_agree_title">
@@ -270,11 +270,11 @@
                                     <div class="whos_writing">
                                         <div class="whos_userid">
                                             <label>작성자</label>
-                                            <input type="text">
+                                            <input type="text" v-model="membername">
                                         </div>
                                         <div class="whos_userpw">
                                             <label>비밀번호</label>
-                                            <input type="password">
+                                            <input type="password"  v-model="memberpw">
                                         </div>
                                     </div>
                                     <div class="whos_agree">
@@ -285,9 +285,9 @@
                                     <div class="insert_img_section">
                                         <img :src="ico_camera" id="cameraImg">
                                         <label for="insertImg"></label>
-                                        <input type="file" style="display : none;" id="insertImg"/>
+                                        <input type="file" style="display : none;" id="insertImg" @change="handleImage"/>
                                     </div>
-                                    <button>후기작성</button>
+                                    <button @click="writeReview">후기작성</button>
                                 </div>
                             </div>
                         </div>
@@ -354,7 +354,11 @@ import policy2 from '@/assets/policy2.png';
                 totalCountingF : 0,
                 priorityLength : 0,
                 token : sessionStorage.getItem("TOKEN"),
-
+                picked : '',
+                message : '',
+                membername : '',
+                memberpw : '',
+                image : '',
 
                 select_box_style : {
                     border: "1px solid rgb(197, 197, 197)",
@@ -386,6 +390,36 @@ import policy2 from '@/assets/policy2.png';
             await this.handleContent();
         },
         methods : {
+            async writeReview(){
+                const url = `/product/review/register`;
+                const headers = { 
+                    "Content-Type" : "multipart/form-data",
+                    "token"        : this.token
+                };
+                const formData = new FormData();
+                formData.append("product_code", this.itemCode);
+                formData.append("review_content", this.message);
+                formData.append("review_rating", this.picked);
+                formData.append("image", this.image);
+                console.log(this.token);
+
+                const response = await axios.post(url, formData, {headers});
+                console.log(response);
+                if(response.data.ret === 1){
+                    alert(response.data.data);
+                    this.$router.push({path:'/'})
+                }
+                else{
+                    alert(response.data.data);
+                }
+            },
+            handleImage(e){
+                // e로 전송되는 파일정보를 image변수에 넣어줌.
+                console.log(e);
+                if(e.target.files.length > 0) {
+                    this.image = e.target.files[0];
+                }
+            },
             async handleaddcart() {
                 await this.handleContent();
 
