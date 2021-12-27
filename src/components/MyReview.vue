@@ -103,8 +103,9 @@ import StarRating from 'vue-star-rating';
 }
 .content-inner{
     margin: 50px 0 0;
-    background: black;
-    display: block;
+    /* background: black; */
+    display: flex;
+    flex-direction: column;
 }
 .header{
     display: block;
@@ -128,7 +129,6 @@ import StarRating from 'vue-star-rating';
     border: 1px solid #e8e8e8;
     border-bottom: solid 1px #dbdbdb;
     display: inline-block;
-    width: 100%;
 }
 .review_img{
     width: 105px;
