@@ -38,35 +38,63 @@
     <el-dialog v-model="showModalUpdate" title="상품후기 수정하기">
         <div class="select-option">
             <div class="select-box" @click="openOption">
-                <span class="selected">{{selected}}</span>
+                <span class="selected">
+                    <star-rating :rating="selected" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
+                </span>
                 <img :src="select_arrow_down">
             </div>
             <div name class="options-container" v-if="isOpen">
                 <input type="radio" id="5" v-model="selected" value="5" >
                 <label for="5">
-                    <star-rating :rating="5" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
-                    아주만족
+                    <div class="select-rating">
+                        <star-rating :rating="5" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
+                        <p>아주만족</p>
+                    </div>
                 </label>
                 <input type="radio" id="4" v-model="selected" value="4" >
                 <label for="4">
-                    <star-rating :rating="4" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
+                    <div class="select-rating">
+                        <star-rating :rating="4" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
+                        <p>만족</p>
+                    </div>
                 </label>
-                <label class="feel">만족</label>
                 <input type="radio" id="3" v-model="selected" value="3" >
                 <label for="3">
-                    <star-rating :rating="3" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
+                    <div class="select-rating">
+                        <star-rating :rating="3" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
+                        <p>보통</p>
+                    </div>
                 </label>
-                <label class="feel">보통</label>
                 <input type="radio" id="2" v-model="selected" value="2" >
                 <label for="2">
-                    <star-rating :rating="2" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
+                    <div class="select-rating">
+                        <star-rating :rating="2" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
+                        <p>미흡</p>
+                    </div>
                 </label>
-                <label class="feel">미흡</label>
                 <input type="radio" id="1" v-model="selected" value="1" >
                 <label for="1">
-                    <star-rating :rating="1" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
+                    <div class="select-rating">
+                        <star-rating :rating="1" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
+                        <p>불만족</p>
+                    </div>
                 </label>
-                <label class="feel">불만족</label>
+            </div>
+            <div class="write-form">
+                <div class="goods-info">
+                    힝
+                </div>
+                <div class="textarea">
+                    <textarea name="content" class="reviewText">smell good</textarea>
+                </div>
+            </div>
+            <div class="finish_section">
+                <div class="insert_img_section">
+                    <img :src="ico_camera" id="cameraImg">
+                    <label for="insertImg"></label>
+                    <input type="file" style="display : none;" id="insertImg" @change="handleImage"/>
+                </div>
+                <button @click="writeReview">후기작성</button>
             </div>
         </div>
     </el-dialog>
@@ -76,6 +104,7 @@
 import axios from 'axios';
 import StarRating from 'vue-star-rating';
 import select_arrow_down from '@/assets/select_arrow_down.png';
+import ico_camera from '@/assets/ico_camera.png';
     export default {
         data(){
             return{
@@ -87,6 +116,8 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 selected : '', 
                 isOpen :false,
                 select_arrow_down : select_arrow_down,
+                ico_camera,
+                image : '',
             }
         },
         components:{
@@ -98,6 +129,13 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
         methods : {
             openOption(){
                 this.isOpen = !this.isOpen;
+            },
+            handleImage(e){
+                // e로 전송되는 파일정보를 image변수에 넣어줌.
+                console.log(e);
+                if(e.target.files.length > 0) {
+                    this.image = e.target.files[0];
+                }
             },
             async handleReview(){
                 const url = `/product/review`;
@@ -306,10 +344,81 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 .options-container label:hover{
     background: rgb(228, 228, 228);
 }
-.feel{
-    right: 2%;
+.select-rating{
+    display : inline-flex;
+    width  : 100%;
+    align-items: flex-end;
+}
+.select-rating p{
+    height : fit-content;
+    font-size : 15px;
+    margin : 0px 0px 3px 100px;
 }
 input[type="radio"]{
     display: none;
+}
+.write-form{
+    width: 100%;
+    border: #dbdbdb 1px solid;
+    display: block;
+}
+.goods-info{
+    margin: 0px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    background-color: #f8f8f8;
+    border-bottom: #e8e8e8 solid 1px;
+}
+.textarea{
+    padding: 20px;
+    height: 160px;
+}
+.reviewText{
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 5px;
+    color: #333;
+    outline: none;
+    font-size: 12px;
+}
+.finish_section{
+    border: #dbdbdb 1px solid;
+    padding: 0 0 0 10px;
+    width : 98%;
+    height : 60px;
+    display : inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.insert_img_section{
+    width : 35px;
+    height : 30px;
+    position: relative;
+    margin-left : 15px;
+}
+.insert_img_section img{
+    width : 100%;
+    height : 100%;
+}
+.insert_img_section label{
+    /* border : 1px solid black; */
+    position: absolute;
+    width : 100%;
+    height : 100%;
+    left : 0;
+    cursor : pointer;
+}
+.finish_section button {
+    background-color: #666666;
+    font-weight: bold;
+    font-size: 15px;
+    color: #ffffff;
+    width : 140px;
+    padding : 10px;
+    height : 100%;
+    font-size : 15px;
+    cursor : pointer;
 }
 </style>
