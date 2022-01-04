@@ -75,20 +75,20 @@
                         <tbody>
                             <tr>
                                 <th>주문하시는 분</th>
-                                <td><input placeholder="나나나"></td>
+                                <td><input v-model="memberinfo.name"></td>
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td><span>[48229] 부산광역시 수영구 수영로540번길 55(광안동삼정그린코아아파트)</span></td>
+                                <td><span>{{memberinfo.shipping_address}}</span></td>
                             </tr>
                             <tr>
                                 <th>휴대폰 번호</th>
-                                <td><input placeholder="000-0000-0000"></td>
+                                <td><input v-model="memberinfo.phone"></td>
                             </tr>
                             <tr>
                                 <th>이메일</th>
                                 <td style="align-items: stretch;">
-                                    <input placeholder="me@gmail.com" id="email_section">
+                                    <input v-model="email1" id="email_section">
                                     <div class="select-option">
                                         <div class="select-box">
                                             <span class="selected">{{selected}}</span>
@@ -134,7 +134,7 @@
                             </tr>
                             <tr>
                                 <th>받으실 분</th>
-                                <td><input placeholder="나나나"></td>
+                                <td><input v-model="memberinfo.name"></td>
                             </tr>
                             <tr>
                                 <th>받으실 곳</th>
@@ -155,7 +155,7 @@
                             </tr>
                             <tr>
                                 <th>휴대폰번호</th>
-                                <td><input placeholder="- 제외 입력"></td>
+                                <td><input v-model="memberinfo.phone"></td>
                             </tr>
                             <tr>
                                 <th>배송메세지</th>
@@ -295,6 +295,10 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 postcode : '',
                 roadAddress : '',
                 detailAddress : '',
+                memberinfo : '',
+                shipping_address : '',
+                memberEmail : '',
+                email1 : '',
 
                 selector_style : {
                     display: "block",
@@ -318,6 +322,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
         },
         async created(){
             await this.handleList();
+
         },
         methods : {
             openOption(){
@@ -328,6 +333,27 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 this.selector_style.height = "0px";
                 this.selector_style.border = "none";
                 this.selector_style.backgroundColor = "white";
+            },
+            async getMemberInfo(){
+                const url =  `/member/detail`;
+                const headers = { "token": this.token};
+                const result = await axios.get(url, {headers});
+                console.log(result);
+                if(result.data.ret === 1){
+                    this.memberinfo = result.data.data;
+                    this.postcode = result.data.data.zip_code;
+                    this.shipping_address = result.data.data.shipping_address;
+                    // console.log(this.shipping_address);
+                    var idx = parseInt(this.shipping_address.indexOf("("));
+                    this.roadAddress = this.shipping_address.substring(0, idx);
+                    this.detailAddress = this.shipping_address.substring(idx);
+
+                    this.memberEmail = result.data.data.email;
+                    this.memberEmail = this.memberEmail.split("@");
+                    // console.log(this.memberEmail);
+                    this.email1 = this.memberEmail[0];
+                    this.selected = this.memberEmail[1];   
+                }
             },
             async handleList(){
                 const url = `/order/cart`;
@@ -340,6 +366,8 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 }
                 await this.getTotalPrice();
                 this.eachProductTotalPrice = this.eachPrice;
+
+                await this.getMemberInfo();
             },
             async getTotalPrice(){
                 this.totalPrice = 0;
@@ -407,21 +435,12 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     popupTitle: 'LUSH 우편번호 검색' //팝업창 타이틀 설정 (영문,한글,숫자 모두 가능)
                 });
             },
-            // async goCheckOut(){
-            //     await this.handleList();
-
-            //     const headers = { 
-            //         "Content-Type" : "application/json",
-            //         "token"        : this.token
-            //     };
-            //     const body = { 
-            //         product_code : this.itemCode,
-            //         product_name : this.itemDetail.name,
-            //         product_price : this.itemDetail.price,
-            //         product_count : this.counting 
-            //     };
-
-            // }
+            async goCheckOut(){
+                const url = `/order/confirm`;
+                const headers = { "token" : this.token };
+                const result = await axios.put(url, {headers});
+                console.log(result);
+            }
         }
     }
 </script>
