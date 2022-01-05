@@ -17,6 +17,24 @@
 - 제품군 중 "배쓰밤" 구현
 - 제품군 중 "바디스프레이"는 구현 완료 (상품 테이블)   
 - 로그인 후 회원가입 대신 마이페이지가 표시되도록 상태 변경
+- "배쓰밤" 상세페이지 page navigation 기능   
+  -> template 부분 
+  ```vue
+  <div class="pd_navbar">
+      <span @click.prevent="goThere('first')">상품상세정보</span>
+      <span @click.prevent="goThere('second')">상품후기</span>
+      <span @click.prevent="goThere('third')">배송/교환 및 반품안내</span>
+  </div>
+  ```
+  
+  -> script 부분
+  ```vue.js
+  goThere(val){
+      var element = this.$refs[val];
+      var location = element.offsetTop;
+      element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  }
+  ```
 
 ## :eyes: Comparison / 비교
 
