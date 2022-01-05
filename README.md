@@ -19,10 +19,14 @@
 | 상품 상세설명 | 후기 및 사용방법 | 제품성분 |
 | 검색 | 검색창 및 검색어 추천 | 검색어 추천 제외 |
 | 구현 제품군 |  | 배쓰밤 |
+| 마이페이지 이동경로 | 고객센터 및 마이페이지 | 로그인시 생기는 마이페이지 생성 |
 
 ## Project setup / 준비
 ```
 npm install
+npm install element-plus --save
+npm install @element-plus/icons
+npm install vue-star-rating@next
 ```
 
 ### Compiles and hot-reloads for development
