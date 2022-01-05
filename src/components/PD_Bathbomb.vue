@@ -266,18 +266,18 @@
                         </div>
                     </div>
                     <div class="reviewDiv"></div>
-                    <div>
+                    <div v-for="review in reviewList" v-bind:key="review">
                         <div class="reviewArea">
                             <div id="reviewTitle">
                                 <div id="titleSection">
                                     <star-rating :rating="5" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
-                                    <p>dhdpdhdp</p>
+                                    <p>{{review.member_id}}</p>
                                 </div>
-                                <p>oooooooooooo</p>
+                                <p>{{review.regdate}}</p>
                             </div>
                             <div id="reviewContent">
-                                <img :src="`REST/api/review_image?no=1`">
-                                <p>eeeeeeeeeee</p>
+                                <img :src="`/product/review/image?product_review_no=${review._id}`">
+                                <p>{{review.content}}</p>
                             </div>
                         </div>
                         <el-pagination layout="prev, pager, next" :page-count="pages" @current-change="handlePageChange" class="pagination"></el-pagination>
@@ -321,6 +321,7 @@ import policy2 from '@/assets/policy2.png';
                 itemDetail : [],
                 detailIngredient : [],
                 detailIngredient_desc : [],
+                reviewList : [],
                 priceForm : 0,
                 itemCode : this.$route.query.code,
                 select_arrow_down,
@@ -480,6 +481,30 @@ import policy2 from '@/assets/policy2.png';
                         console.log(this.detailIngredient_desc);
                     }
                     
+                }
+
+                //게시물 전체 개수 조회
+                const url4 = `/product/review/count?no=${this.itemCode}`;
+                const response = await axios.get(url4);
+                console.log(response);
+                if(response.data.ret === 1 ){
+                    this.pages = Number(response.data.data);
+                }
+
+                const url5 = `/product/review/list?page=${this.page}`;
+                const headers = { 
+                    "Content-Type" : "application/json",
+                    "token"        : this.token
+                };
+                const response2 = await axios.get(url5, {headers});
+                console.log(response2);
+                if(response2.data.ret === 1){
+                    this.reviewList = response2.data.data;
+                    console.log(this.reviewList);
+                    
+                }
+                else{
+                    alert(response2.data.data);
                 }
 
             },

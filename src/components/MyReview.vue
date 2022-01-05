@@ -4,31 +4,31 @@
             <div class="header">
                 <h2>나의플러스리뷰</h2>
             </div>
-            <div class="menu2-body">
+            <div class="menu2-body" v-for="review in reviewList" v-bind:key="review">
                 <div class="review_img">
-                    <img :src="`/product/review/image?no=${reviewList._id}`">
+                    <img :src="`/product/review/image?product_review_no=${review._id}`">
                 </div>
                 <div class="review_content">
                     <div class="review_header">
                         <div class="name_info">
                             <div class="name">
-                                {{productList.name}}
+                                {{review.name}}
                             </div>
                             <div class="rating">
-                                <star-rating :rating="reviewList.rating" :read-only="true" :increment="0.5" active-color="#333" :star-size="15" :show-rating="false"></star-rating>
+                                <star-rating :rating="review.rating" :read-only="true" :increment="0.5" active-color="#333" :star-size="15" :show-rating="false"></star-rating>
                             </div>
                         </div>
                         <div class="date_info">
                             <div class="date">
-                                <p>{{reviewList.regdate}}</p>
+                                <p>{{review.regdate}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="goods_info">
-                        <p>{{reviewList.content}}</p>
+                        <p>{{review.content}}</p>
                     </div>
                     <div class="button_info">
-                        <button @click="handelupdate">수정</button>
+                        <button @click="OpenUpdate(review._id)">수정</button>
                         <button>삭제</button>
                     </div>
                 </div>
@@ -81,11 +81,9 @@
                 </label>
             </div>
             <div class="write-form">
-                <div class="goods-info">
-                    힝
-                </div>
+                <div class="goods-info"></div>
                 <div class="textarea">
-                    <textarea name="content" class="reviewText">smell good</textarea>
+                    <textarea name="content" class="reviewText" v-model="content"></textarea>
                 </div>
             </div>
             <div class="finish_section">
@@ -109,8 +107,6 @@ import ico_camera from '@/assets/ico_camera.png';
         data(){
             return{
                 reviewList : [],
-                itemcode : [],
-                productList : [],
                 token : sessionStorage.getItem("TOKEN"),
                 showModalUpdate : false,
                 selected : '', 
@@ -118,6 +114,8 @@ import ico_camera from '@/assets/ico_camera.png';
                 select_arrow_down : select_arrow_down,
                 ico_camera,
                 image : '',
+                reviewCode : '',
+                content : ''
             }
         },
         components:{
@@ -149,23 +147,37 @@ import ico_camera from '@/assets/ico_camera.png';
                     this.reviewList = response.data.data;
                     console.log(this.reviewList);
                     
-                    // for(var i=0; i<this.reviewList.length; i++){
-                        // this.itemcode[i] = this.reviewList[i].product_code;
-                        const url1 = `/product?code=${this.reviewList.product_code}`;
-                        const result = await axios.get(url1);
-                        // console.log(result1);
-                        if(result.data.ret === 1){
-                            this.productList = result.data.data;
-                        }
-                    // }
-                    console.log(this.productList);
                 }
                 else{
                     alert(response.data.data);
                 }
             },
-            handelupdate(){
+            async writeReview(){
+                const url = `/product/review/update`;
+                const headers = { 
+                    "Content-Type" : "multipart/form-data",
+                    "token"        : this.token
+                };
+                const formData = new FormData();
+                formData.append("review_no", this.reviewCode);
+                formData.append("review_content", this.content);
+                formData.append("review_rating", this.selected);
+                formData.append("image", this.image);
+                console.log(this.token);
+
+                const response = await axios.put(url, formData, {headers});
+                console.log(response);
+                if(response.data.ret === 1){
+                    alert(response.data.data);
+                    this.$router.push({path:'/'})
+                }
+                else{
+                    alert(response.data.data);
+                }
+            },
+            OpenUpdate(val){
                 this.showModalUpdate = true;
+                this.reviewCode = val;
             }
         }
     }
@@ -180,7 +192,6 @@ import ico_camera from '@/assets/ico_camera.png';
 }
 .content-inner{
     margin: 50px 0 0;
-    background: black;
     display: block;
 }
 .header{
@@ -202,7 +213,6 @@ import ico_camera from '@/assets/ico_camera.png';
 .menu2-body{
     overflow: inherit;
     padding: 20px;
-    border: 1px solid #e8e8e8;
     border-bottom: solid 1px #dbdbdb;
     display: inline-block;
     width: 100%;
@@ -214,13 +224,15 @@ import ico_camera from '@/assets/ico_camera.png';
     float: left;
     clear: both;
     display: block;
-    background: white;
+}
+.review_img img{
+    width: 105px;
+    height: 102px;
 }
 .review_content{
     float: left;
     width: 629px;
     height: 185px;
-    background: white;
 }
 .review_header{
     display: inline-block;
@@ -231,7 +243,6 @@ import ico_camera from '@/assets/ico_camera.png';
     float: left;
     width: 85%;
     display: block;
-    background: red;
     height: 50px;
 }
 .name{
@@ -251,7 +262,6 @@ import ico_camera from '@/assets/ico_camera.png';
     float: right;
     width: 15%;
     display: block;
-    background: green;
     height: 50px;
 }
 .date{
@@ -267,7 +277,6 @@ import ico_camera from '@/assets/ico_camera.png';
     width: 100%;
     margin-top: 40px;
     margin-bottom: 15px;
-    background: yellow;
 }
 .goods_info p{
     font-size: 14px;
@@ -385,7 +394,7 @@ input[type="radio"]{
 .finish_section{
     border: #dbdbdb 1px solid;
     padding: 0 0 0 10px;
-    width : 98%;
+    width : 99%;
     height : 60px;
     display : inline-flex;
     justify-content: space-between;
