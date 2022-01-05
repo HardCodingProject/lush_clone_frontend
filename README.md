@@ -11,6 +11,13 @@
 - ![element-plus](https://img.shields.io/badge/-element--plus-409EFF?style=flat-square) : 라이브러리
 - ![axios](https://img.shields.io/badge/-axios-167C80?style=flat-square) : 백엔드 연동
 
+## Features / 특징
+
+- Vue-Router를 이용한 component 전환
+- 제품군 중 "배쓰밤" 구현
+- 제품군 중 "바디스프레이"는 구현 완료 (상품 테이블)   
+- 로그인 후 회원가입 대신 마이페이지가 표시되도록 상태 변경
+
 ## :eyes: Comparison / 비교
 
 | 비교 항목 | 기존 LUSH | Clone LUSH |
