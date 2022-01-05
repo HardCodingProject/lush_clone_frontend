@@ -491,7 +491,7 @@ import policy2 from '@/assets/policy2.png';
                     this.pages = Number(response.data.data);
                 }
 
-                const url5 = `/product/review/list?page=${this.page}`;
+                const url5 = `/product/review/list?page=${this.page}&no=${this.itemCode}`;
                 const headers = { 
                     "Content-Type" : "application/json",
                     "token"        : this.token
