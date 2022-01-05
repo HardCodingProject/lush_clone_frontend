@@ -33,9 +33,9 @@
         <div class="main_banner_3">
             <div class="grid-container">
                 <img :src="banner3_img1" class="img1">
-                <img :src="banner3_img2" class="img2">
-                <img :src="banner3_img3" class="img3">
-                <img :src="banner3_img4" class="img4">
+                <img :src="banner3_img2UD" class="img2">
+                <img :src="banner3_img3UD" class="img3">
+                <img :src="banner3_img4UD" class="img4">
             </div>
 
         </div>
@@ -56,10 +56,11 @@
 <script>
 import 'element-plus/dist/index.css'
 import Footer from '@/components/Footer.vue';
-import main_banner_8 from '@/assets/main_banner_8.jpg';
-import DCbanner_1 from '@/assets/DCbanner_1.gif';
-import DCbanner_2 from '@/assets/DCbanner_2.jpg';
-import DCbanner_3 from '@/assets/DCbanner_3.jpg';
+import DCbanner_5 from '@/assets/DCbanner_5.jpg';
+import DCbanner_6 from '@/assets/DCbanner_6.jpg';
+import DCbanner_7 from '@/assets/DCbanner_7.jpg';
+import DCbanner_8 from '@/assets/DCbanner_8.jpg';
+import DCbanner_9 from '@/assets/DCbanner_9.jpg';
 import DCbanner_4 from '@/assets/DCbanner_4.jpg';
 
 import banner2_img1 from '@/assets/banner2_img1.png';
@@ -75,25 +76,26 @@ import DCsubbanner_3 from '@/assets/DCsubbanner_3.jpg';
 import DCsubbanner_4 from '@/assets/DCsubbanner_4.jpg';
 
 import banner3_img1 from '@/assets/banner3_img1.jpg';
-import banner3_img2 from '@/assets/banner3_img2.gif';
-import banner3_img3 from '@/assets/banner3_img3.jpg';
-import banner3_img4 from '@/assets/banner3_img4.jpg';
+import banner3_img2UD from '@/assets/banner3_img2UD.gif';
+import banner3_img3UD from '@/assets/banner3_img3UD.jpg';
+import banner3_img4UD from '@/assets/banner3_img4UD.jpg';
 import banner4_img from '@/assets/banner4_img.gif';
 
     export default {
         data(){
             return{
                     banner3_img1 : banner3_img1,
-                    banner3_img2 : banner3_img2,
-                    banner3_img3 : banner3_img3,
-                    banner3_img4 : banner3_img4,
+                    banner3_img2UD : banner3_img2UD,
+                    banner3_img3UD : banner3_img3UD,
+                    banner3_img4UD : banner3_img4UD,
                     banner4_img : banner4_img,
                 banners : [
-                    DCbanner_1,
-                    DCbanner_2,
-                    DCbanner_3,
+                    DCbanner_5,
+                    DCbanner_6,
+                    DCbanner_7,
+                    DCbanner_9,
+                    DCbanner_8,
                     DCbanner_4,
-                    main_banner_8,
                 ],
                 banner2 : [
                     banner2_img1,
