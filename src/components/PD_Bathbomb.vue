@@ -280,8 +280,8 @@
                                 <p>{{review.content}}</p>
                             </div>
                         </div>
-                        <el-pagination layout="prev, pager, next" :page-count="pages" @current-change="handlePageChange" class="pagination"></el-pagination>
                     </div>
+                    <el-pagination layout="prev, pager, next" :page-count="pages" @current-change="handlePageChange" class="pagination"></el-pagination>
                 </div>
                 <div ref="third" class="third_box">
                     <div class="pd_navbar">
