@@ -254,33 +254,6 @@
                                 <textarea rows="15" v-model="message"></textarea>
                             </div>
                             <div class="policy_agreee">
-                                <div class="policy_agree_title">
-                                    <p>비회원 개인정보 수집동의</p>
-                                    <span id="showall" @click="goPolicy">전체보기</span>
-                                </div>
-                                <p id="policy">
-                                    - 수집항목: 이름, 휴대전화번호, 작성 비밀번호
-                                    - 수집/이용목적: 게시글 접수 및 결과 회신
-                                    - 이용기간: 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다.
-                                    단, 관계법령의 규정에 의하여 보전할 필요가 있는 경우 일정기간 동안 개인정보를 보관할 수 있습니다.
-                                    위와 같이 수집하는 개인정보에 대해, 동의하지 않거나 거부할 수 있습니다. 다만, 동의하지 않거나 거부할 경우 회원에게 제공되는 서비스가 제한될 수 있습니다.
-                                    그 밖의 사항은 (주)러쉬코리아 개인정보처리방침을 준수합니다 
-                                </p>
-                                <div class="member_section">
-                                    <div class="whos_writing">
-                                        <div class="whos_userid">
-                                            <label>작성자</label>
-                                            <input type="text" v-model="membername">
-                                        </div>
-                                        <div class="whos_userpw">
-                                            <label>비밀번호</label>
-                                            <input type="password"  v-model="memberpw">
-                                        </div>
-                                    </div>
-                                    <div class="whos_agree">
-                                        <el-checkbox label="위 내용에 동의합니다." name="type"></el-checkbox>
-                                    </div>
-                                </div>
                                 <div class="finish_section">
                                     <div class="insert_img_section">
                                         <img :src="ico_camera" id="cameraImg">
@@ -291,6 +264,23 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="reviewDiv"></div>
+                    <div>
+                        <div class="reviewArea">
+                            <div id="reviewTitle">
+                                <div id="titleSection">
+                                    <star-rating :rating="5" :read-only="true" :increment="0.5" active-color="#ffcc00" :star-size="15" :show-rating="false"></star-rating>
+                                    <p>dhdpdhdp</p>
+                                </div>
+                                <p>oooooooooooo</p>
+                            </div>
+                            <div id="reviewContent">
+                                <img :src="`REST/api/review_image?no=1`">
+                                <p>eeeeeeeeeee</p>
+                            </div>
+                        </div>
+                        <el-pagination layout="prev, pager, next" :page-count="pages" @current-change="handlePageChange" class="pagination"></el-pagination>
                     </div>
                 </div>
                 <div ref="third" class="third_box">
@@ -359,6 +349,8 @@ import policy2 from '@/assets/policy2.png';
                 membername : '',
                 memberpw : '',
                 image : '',
+                pages : 0,
+                page : 1,
 
                 select_box_style : {
                     border: "1px solid rgb(197, 197, 197)",
@@ -390,6 +382,11 @@ import policy2 from '@/assets/policy2.png';
             await this.handleContent();
         },
         methods : {
+            // 리뷰, 문의 페이지네이션 -> 페이지 변경 감지
+            async handlePageChange(val){
+                this.page = val;
+                await this.handleContent();
+            },
             async writeReview(){
                 const url = `/product/review/register`;
                 const headers = { 
@@ -536,7 +533,11 @@ import policy2 from '@/assets/policy2.png';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100&display=swap');
+.pagination{
+    width : fit-content;
+    margin: 3% auto;
 
+}
 .pd_bathbomb{
     width: 100%;
     /* height: 100vh; */
@@ -1320,6 +1321,59 @@ import policy2 from '@/assets/policy2.png';
     flex-direction: column;
 }
 .policy_container img {
+    width : 100%;
+}
+.reviewDiv{
+    border-bottom: #dbdbdb 2px solid;
+    padding-bottom: 0px;
+    margin-top: 30px;
+}
+.reviewArea{
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid 1px #dbdbdb;
+    padding: 20px;
+}
+.reviewArea:hover{
+    cursor: pointer;
+    opacity: 0.9;
+    background-color: #dbdbdbb9;
+}
+#reviewTitle{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0;
+}
+#reviewTitle #rating{
+    margin-top: 0;
+}
+#reviewTitle #rating, p{
+    width: fit-content;
+}
+#reviewTitle p:last-child{
+    margin: 0px 0px 0px 20px;
+}
+#titleSection{
+    display: inline-flex;
+    align-items: center;
+}
+#titleSection p{
+    margin: 0px 0px 0px 15px;
+}
+.reviewArea #reviewContent{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+.reviewArea #reviewContent img{
+    width: 90px;
+    height: 90px;
+    border-radius: 3px;
+}
+.reviewArea #reviewContent p{
+    margin : 0px 0px 0px 20px;
     width : 100%;
 }
 </style>
