@@ -12,6 +12,7 @@ import PD_Bathbomb from '@/components/PD_Bathbomb.vue';
 import Shopping_Cart from '@/components/Shopping_Cart.vue';
 import Order_Page from '@/components/Order_Page.vue';
 import Search_Result from '@/components/Search_Result.vue';
+import OrderConfirmedPage from '@/components/OrderConfirmedPage.vue';
 
 
 const routes = [
@@ -27,6 +28,7 @@ const routes = [
     {path : '/shopping_cart' , name :'Shopping_Cart', component : Shopping_Cart},
     {path : '/order_page' , name :'Order_Page', component : Order_Page},
     {path : '/search_result' , name :'Search_Result', component : Search_Result},
+    {path : '/order_confirmed_page' , name :'OrderConfirmedPage', component : OrderConfirmedPage},
 ];
 
 const router = createRouter({

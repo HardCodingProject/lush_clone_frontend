@@ -438,8 +438,12 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
             async goCheckOut(){
                 const url = `/order/confirm`;
                 const headers = { "token" : this.token };
-                const result = await axios.put(url, {headers});
-                console.log(result);
+                const body =  {};
+                const result = await axios.put(url, body, {headers});
+                if(result.data.ret === 1){
+                    alert(result.data.data);
+                    this.$router.push({path:'/order_confirmed_page'});
+                }
             }
         }
     }
