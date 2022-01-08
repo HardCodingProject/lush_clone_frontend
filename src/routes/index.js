@@ -36,5 +36,15 @@ const router = createRouter({
     routes,
 });
 
+// router.beforeEach( async(to, from, next ) => {
+//     // URL을 반드시 등록해야 하는 곳 S
+//     if(to.path !== '/login' && to.path !== '/join'){
+//         sessionStorage.setItem("URL", JSON.stringify({path:to.path, query: to.query})
+//         );
+//     }
+//     else {
+//         next() // 원래 이동하고자하는 페이지
+//     }
+// });
 
 export default router;
