@@ -165,6 +165,7 @@
                 <a href="/mypage" v-if="logged">마이페이지</a>
                 <a href="#">스카우트</a>
                 <a href="#">고객센터</a>
+                <a href="#" @click="logout" v-if="logged">로그아웃</a>
               </div>
             </div>
           </div>
@@ -189,6 +190,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import shop from '@/assets/shop.png';
 import login from '@/assets/login.png';
 import search from '@/assets/search.png';
@@ -240,7 +242,11 @@ export default {
       this.logged = logged;
     },
     goCart(){
-      this.$router.push({path:'/shopping_cart'});
+      if(this.token === null){
+        alert("회원만 이용가능한 기능입니다.");
+        this.$router.push({path:'/login'});
+      }
+      else this.$router.push({path:'/shopping_cart'});
     },
     openSearchNav() {
       this.searchNavStyle.height = "100%";
@@ -255,6 +261,23 @@ export default {
           query:{ page : this.page, keyword: this.productName }
       });
       this.productName = '';
+    },
+    async logout(){
+      const ret = confirm('로그아웃 하시겠습니까?');
+      if(ret){
+        const url = `/member/logout`;
+        const headers = {"Content-Type" : "application/json", "token" : this.token};
+        const body = { token : ' ' };
+        const result = await axios.post(url, body, {headers});
+        console.log(result);
+        if(result.data.ret === 1){
+          alert(result.data.data);
+          sessionStorage.removeItem('TOKEN');
+          this.$router.push({path:'/'});
+          this.logged = false;
+        }
+      }
+
     }
   }
 }
