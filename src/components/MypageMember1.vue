@@ -121,7 +121,7 @@ import axios from 'axios';
     padding: 20px;
     margin: 0 auto;
     /* border: 1px solid black; */
-    width: 1100px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-content: center;

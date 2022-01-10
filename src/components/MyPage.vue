@@ -112,7 +112,7 @@ import Footer from './Footer.vue'
     grid-template-columns : 15% 1fr;
     grid-template-rows: 100%; 
     width: 1100px;
-    height : 100%;
+    height : fit-content;
     grid-template-areas :
         "side main";
     margin: 0 auto;
@@ -128,9 +128,11 @@ import Footer from './Footer.vue'
     /* padding: 90px 0 100px 0; */
 }
 .main{
-    grid-area : main;
+    display: flex;
+    grid-area: main;
     grid-template-rows: repeat(4, 1fr);
-    padding: 60px 0 800px 0;
+    padding-top: 60px;
+    flex-direction: column;
 }
 .item1{
     font-size: 16px;

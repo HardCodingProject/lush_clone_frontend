@@ -6,9 +6,9 @@
             </div>
             <div class="infocontainer">
                 <span id="infotitle">개인회원 정보입력</span>
-                <div class="requirednoti">
+                <div class="requirednotiTitle">
                     <span class="required"></span>
-                    <h id="infonoti">표시는 반드시 입력하셔야하는 항목입니다.</h>
+                    <p id="infonoti">표시는 반드시 입력하셔야하는 항목입니다.</p>
                 </div>
             </div>
             <div class="divider"></div>
@@ -23,17 +23,15 @@
                     <tr>
                         <th>
                             <span class="required"></span>아이디</th>
-                        <td>
-                            <div class="txt-field">
-                                <input type="text" class="userid" placeholder="userid" v-model="userid">
-                            </div>
+                        <td style="display: flex; height: 30px;">
+                            <p style="margin: 0; height: 100%; display: flex; align-items: center;">{{memberName}}</p>
                         </td>
                     </tr>
                     <!-- 비밀번호 -->
                     <tr>
                         <th><span class="required"></span>비밀번호</th>
                         <td>
-                            <div class="txt-field">
+                            <div class="txt-field" style="height : 50px;">
                                 <button class="pass-btn" @click="OpenPw">비밀번호 변경</button>
                                 <button class="pass-btn" @click="OpenHp">비밀번호 도움말</button>
                             </div>
@@ -53,9 +51,11 @@
                                 <button class="close" @click="OpenHp"></button>
                             </div>
                             <div id="PassDiv" v-if="OpenPasswd===true">
-                                <label class="label">현재 비밀번호</label>
-                                <input class="inputpass" type="text" v-model="orgPass" ref="orgPass">
-                                <button class="pass-btn1" @click="CheckPw">비밀번호 확인</button>
+                                <div style="display:flex; flex-direction:row;">
+                                    <label class="label">현재 비밀번호</label>
+                                    <input class="inputpass" type="text" v-model="orgPass" ref="orgPass">
+                                    <button class="pass-btn1" @click="CheckPw">비밀번호 확인</button>
+                                </div>
                                 <div id="PassDivCheck">
                                     <label class="label">새 비밀번호</label>
                                     <input class="inputpass" type="text" v-model="newPass" ref="newPass">
@@ -117,8 +117,7 @@
                                         <input type="radio" id="8" v-model="selected" value="@icloud.com" >
                                         <label for="8">icloud.com</label>
                                     </div>
-                                </div>
-                                                                                                              
+                                </div>                                                                                                             
                                 <div class="form-element">
                                     <input type="checkbox" class="checkbox" id="mailling" value="" aria-invalid="false">
                                     <label for="mailling" class="checkboxlabel">정보/이벤트 메일 수신에 동의합니다.</label>
@@ -143,8 +142,8 @@
                     <tr>
                         <th class="th_address">주소</th>
                         <td>
-                            <div class="post">
-                                <div class="txt-field">
+                            <div class="post" style="width: 412px;">
+                                <div class="txt-field" style="width: 100%; display:inline-flex; justify-content:space-between;">
                                     <input type="text" id="postcode" v-model="postcode" class="mainaddress" readonly value>
                                     <input type="hidden" value>
                                     <button class="postcodesSearchBtn" id="btnPostcode" @click="openDaumPostCode">
@@ -201,7 +200,17 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 user_email :'',
                 user_phone : '',
                 user_addr : '',
+                memberName : '',
                 token : sessionStorage.getItem("TOKEN")
+            }
+        },
+        async created(){
+            const url =  `/member/detail`;
+            const headers = { "token": this.token};
+            const result = await axios.get(url, {headers});
+            console.log(result);
+            if(result.data.ret === 1){
+                this.memberName = result.data.data._id;
             }
         },
         mounted() {
@@ -341,15 +350,15 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     padding: 20px;
     margin: 0 auto;
     /* border: 1px solid black; */
-    width: 1100px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-content: center;
     display: block;
 }
 .memberinfo{
-    margin: 0 0 25px 0;
-    padding: 0 0 8px 0;
+    margin: 0 0 20px 0;
+    /* padding: 0 0 8px 0; */
     border-bottom: 1px solid #0b0b0b;
     position: relative;
     display: block;
@@ -361,9 +370,10 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     font-size: 21px;
 }
 .infocontainer{
-    position: relative;
-    width: fit-content;
-    display: inline-block; 
+    display: inline-flex;
+    width: 100%;
+    /* border: 1px solid black; */
+    justify-content: space-between; 
 }
 #infotitle, #infonoti {
     width: max-content;
@@ -373,9 +383,13 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     font-weight: bold;
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 16px;
-    margin-left: 10px;
-    margin: 0 auto;
     color: #000;
+}
+.requirednotiTitle{
+    display: inline-flex;
+    width: fit-content;
+    /* border: 1px solid black; */
+    align-items: center;
 }
 .required{
     display: block;
@@ -387,13 +401,13 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
     margin-right: 6px;
 }
 #infonoti{
-    position: absolute;
+    /* position: absolute; */
     font-family: Dotum,Arial, sans-serif;
     font-size: 14px;
     color: rgb(104, 104, 104);
     display: inline-block;
 }
-.requirednoti{
+.Title{
     display: inline-block;
     transform: translateX(750px);
     margin-bottom: 20px;
@@ -401,7 +415,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
 
 /* 구분선 */
 .divider{
-    margin-top: 10px;
+    margin-top: 18px;
     margin-bottom: 20px;
     height: 1px;
     background-color: black;
@@ -419,7 +433,8 @@ col{
 table{
     text-align: left;
     /* width: 900px; */
-    padding: 20px;
+    /* padding: 20px; */
+    padding: 10px 0px 10px 0px;
     font-weight: 200px;
     border-bottom: 1px solid #e7e7e7;
 }
@@ -431,7 +446,7 @@ table{
 }
 th{
     width: 150px;
-    height: none;
+    height: 50px;
     font-family: Arial, sans-serif;
     font-size : 15px;
     font-weight: 100px;
@@ -471,6 +486,9 @@ input{
 /* 아이디 */
 .userid{
     border: 0;
+}
+#id_text:focus {
+    outline-style: none;
 }
 
 /* 이메일 선택 */
@@ -577,14 +595,14 @@ input[type="checkbox"]{
 
 /* 주소 */
 .mainaddress{
-    width: 270px;
+    width: 300px;
     margin-bottom: 0;
 }
 .txt-field-adress{
     margin-top: 10px;
 }
 .txt-field-adress input{
-    width: 430px;
+    width: 380px;
     display: inline-flex;
     flex-direction: row;
     margin-bottom: 10px;
@@ -604,7 +622,7 @@ input[type="checkbox"]{
     margin-bottom: 5px;
 }
 .Btn{
-    padding: 40px 0 0;
+    padding: 20px 0 0;
     text-align: center;
     margin: 0;
     display: block;
@@ -654,6 +672,7 @@ input[type="checkbox"]{
     margin-right: 10px;
     background: #f3f3f3;
     font-size: 12px;
+    cursor : pointer;
 }
 .pass-btn1{
     height: 28px;
@@ -665,8 +684,7 @@ input[type="checkbox"]{
     background: #f3f3f3;
     font-size: 12px;
     margin-left: 10px;
-    position: absolute;
-    top: 480px;
+    margin-top: 5px;
 }
 #PassDiv{
     padding-top: 10px;
