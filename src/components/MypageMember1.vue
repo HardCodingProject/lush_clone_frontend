@@ -32,7 +32,7 @@
                         <th aria-required="true"><span class="required"></span>비밀번호</th>
                         <td>
                             <div class="txt-field">
-                                <input type="text" class="text" v-model="Password" maxlength="30">
+                                <input type="password" class="text" v-model="Password" maxlength="30">
                             </div>
                         </td>
                     </tr>
@@ -61,7 +61,7 @@ import axios from 'axios';
                 OpenHelp : false,
                 Password : '',
                 Check : '',
-                toekn : sessionStorage.getItem("TOKEN")
+                token : sessionStorage.getItem("TOKEN")
             }
         },
         mounted() {
@@ -70,10 +70,10 @@ import axios from 'axios';
         methods : {
             async handleLeave(){
                 const headers = { 
-                    "Content-Type" : "application/x-www-form-urlencoded",
+                    "Content-Type" : "application/json",
                     "token"        : this.token
                 };
-                const body = {Password : this.Password };
+                const body = {password : this.Password };
                 console.log(body);
                 const url = '/member/checkpw';
                 const response = await axios.post(url, body, {headers});
@@ -85,7 +85,7 @@ import axios from 'axios';
                     alert("비밀번호 확인 실패");
                 }
 
-                if(this.Check == 1){
+                if(this.Check === 1){
                     const ret = confirm('탈퇴 할까요?'); // Y or N
                     if(ret){
                         if(this.token !== null){
@@ -99,6 +99,8 @@ import axios from 'axios';
                             if(response.data.ret === 1){
                                 alert(response.data.data);
                                 this.$router.push({path:'/'});
+                                sessionStorage.removeItem("TOKEN");
+                                this.$emit('changeLogged', false);
                             }
                         }
                     }

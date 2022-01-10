@@ -53,16 +53,16 @@
                             <div id="PassDiv" v-if="OpenPasswd===true">
                                 <div style="display:flex; flex-direction:row;">
                                     <label class="label">현재 비밀번호</label>
-                                    <input class="inputpass" type="text" v-model="orgPass" ref="orgPass">
+                                    <input class="inputpass" type="password" v-model="orgPass" ref="orgPass">
                                     <button class="pass-btn1" @click="CheckPw">비밀번호 확인</button>
                                 </div>
                                 <div id="PassDivCheck">
                                     <label class="label">새 비밀번호</label>
-                                    <input class="inputpass" type="text" v-model="newPass" ref="newPass">
+                                    <input class="inputpass" type="password" v-model="newPass" ref="newPass">
                                 </div>
                                 <div id="PassDivCheck">
                                     <label class="label">새 비밀번호 확인</label>
-                                    <input class="inputpass" type="text" v-model="newPassCheck" ref="newPassCheck">
+                                    <input class="inputpass" type="password" v-model="newPassCheck" ref="newPassCheck">
                                 </div>
                             </div>
                         </td>
@@ -231,6 +231,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                 console.log(response);
                 if(response.data.ret === 1){
                     this.Check = response.data.data;
+                    alert("비밀번호 확인 완료");
                 }
                 else{
                     alert("비밀번호 확인 실패");
@@ -269,7 +270,7 @@ import select_arrow_down from '@/assets/select_arrow_down.png';
                     console.log(response);
                     if(response.data.ret === 1){
                         alert(response.data.data);
-                        this.$router.push({path:'/'});
+                        this.$router.push({path:'/mypage'});
                     }
                     else{
                         alert(response.data.data);
@@ -685,6 +686,7 @@ input[type="checkbox"]{
     font-size: 12px;
     margin-left: 10px;
     margin-top: 5px;
+    cursor: pointer;
 }
 #PassDiv{
     padding-top: 10px;

@@ -405,7 +405,7 @@ import policy2 from '@/assets/policy2.png';
                 console.log(response);
                 if(response.data.ret === 1){
                     alert(response.data.data);
-                    this.$router.push({path:'/'})
+                    await this.handleContent();
                 }
                 else{
                     alert(response.data.data);
