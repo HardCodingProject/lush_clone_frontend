@@ -41,7 +41,7 @@
                     </li>
                     <li>
                         <div class="num">
-                            <span>0</span>
+                            <span>{{orderCount}}</span>
                         </div>
                         <p class="num-text">결제완료</p>
                         <span class="icon-arr">&nbsp;</span>
@@ -116,8 +116,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td colspan="5" class="no-data">조회내역이 없습니다.</td>
+                        <tr v-for="orderItem in orderList" v-bind:key="orderItem">
+                            <td>{{orderItem._id}}</td>
+                            <td>{{orderItem.product_name}} / {{orderItem.product_category}}</td>
+                            <td>₩{{orderItem.product_price}} / {{orderItem.product_count}}</td>
+                            <td>결제완료</td>
+                            <td>해당리뷰없음</td>
                         </tr>
                     </tbody>
                 </table>
@@ -153,7 +157,9 @@ import icon3 from '@/assets/qna.png';
                 icon1 : icon1,
                 icon2 : icon2,
                 icon3 : icon3,
-                memberName : ''
+                memberName : '',
+                orderCount : 0,
+                orderList : [],
             }
         },
         async created(){
@@ -163,6 +169,20 @@ import icon3 from '@/assets/qna.png';
             console.log(result);
             if(result.data.ret === 1){
                 this.memberName = result.data.data.name;
+            }
+
+            await this.handleOrderList();
+        },
+        methods : {
+            async handleOrderList(){
+                const url = `/order/past-order`;
+                const headers = { "token": this.token};
+                const result = await axios.get(url, {headers});
+                console.log(result);
+                if(result.data.ret === 1){
+                    this.orderList = result.data.data;
+                    this.orderCount = this.orderList.length;
+                }
             }
         }
     }
@@ -283,6 +303,8 @@ img{
 .menu3-body{
     padding: 0px 10px 10px 0;
     display: inline-block;
+    height: 150px;
+    overflow-y: scroll;
 }
 .menu4{
     width : 905px;

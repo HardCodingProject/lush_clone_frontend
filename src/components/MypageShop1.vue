@@ -74,8 +74,8 @@
             </div>
         </div>
         <div class="menu2">
-             <div class="header3">
-                <h2>주문목록/배송조회 내역 총<b class="c-red">0</b>건</h2>
+            <div class="header3">
+                <h2>주문목록/배송조회 내역 총<b class="c-red">{{orderCount}}</b>건</h2>
             </div>
             <div class="menu3-body">
                 <table class="goods-board"> 
@@ -89,8 +89,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td colspan="5" class="no-data">조회내역이 없습니다.</td>
+                        <tr v-for="orderItem in orderList" v-bind:key="orderItem">
+                            <td>{{orderItem._id}}</td>
+                            <td>{{orderItem.product_name}} / {{orderItem.product_category}}</td>
+                            <td>₩{{orderItem.product_price}} / {{orderItem.product_count}}</td>
+                            <td>결제완료</td>
+                            <td>해당리뷰없음</td>
                         </tr>
                     </tbody>
                 </table>
@@ -134,6 +138,8 @@ import icon3 from '@/assets/qna.png';
                 value1 : '',
                 value2 : '',
                 memberName : '',
+                orderCount : 0,
+                orderList : [],
                 token : sessionStorage.getItem("TOKEN"),
             }
         },
@@ -148,12 +154,24 @@ import icon3 from '@/assets/qna.png';
             if(result.data.ret === 1){
                 this.memberName = result.data.data.name;
             }
+
+            await this.handleOrderList();
         },
         methods: {
             updateValue(event) {
                 console.log('update-----', event)
                 this.$emit('update:fieldValue', event);
             },
+            async handleOrderList(){
+                const url = `/order/past-order`;
+                const headers = { "token": this.token};
+                const result = await axios.get(url, {headers});
+                console.log(result);
+                if(result.data.ret === 1){
+                    this.orderList = result.data.data;
+                    this.orderCount = this.orderList.length;
+                }
+            }
         },
     }
 </script>
@@ -314,6 +332,8 @@ img{
 .menu3-body{
     padding: 0px 10px 10px 0;
     display: block;
+    height : 350px;
+    overflow-y: scroll;
 }
 .goods-board{
     width: 100%;
