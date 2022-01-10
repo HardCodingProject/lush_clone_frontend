@@ -35,7 +35,7 @@
                                 </div>
                                 <button type="button" class="loginbtn point2 login" @click="handleLogin"><em>로그인</em></button>
                                 <div class="login_menus">
-                                    <button type="button" class="loginbtn" id="btnJoin"><em>회원가입</em></button>
+                                    <button type="button" class="loginbtn" id="btnJoin" @click="goJoin"><em>회원가입</em></button>
                                     <button type="button" class="loginbtn" id="btnFindId"><em>아이디 찾기</em></button>
                                     <button type="button" class="loginbtn" id="btnFindPw"><em>비밀번호 찾기</em></button>
                                 </div>
@@ -99,6 +99,9 @@ import logo_naver from '@/assets/logo_naver.gif';
                         this.$router.push({path:'/'})
                     }
                 }
+            },
+            goJoin(){
+                this.$router.push({path:'/join'});
             }
         }
     }

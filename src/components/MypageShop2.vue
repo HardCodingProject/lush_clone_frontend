@@ -6,7 +6,7 @@
                     <img src="https://lush.co.kr/data/icon/group_image/ico_member_upload1.png" alt="">
                 </div>
                 <div class="member-text">
-                    <p>정지희님의</p>
+                    <p>{{memberName}}님의</p>
                     <p>회원등급은 일반회원등급 입니다.</p>
                 </div>
             </div>
@@ -104,6 +104,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import icon1 from '@/assets/ticket.png';
 import icon2 from '@/assets/duczzi.png';
 import icon3 from '@/assets/qna.png';
@@ -136,12 +137,22 @@ import icon3 from '@/assets/qna.png';
                 icon3 : icon3,
                 value1 : '',
                 value2 : '',
+                memberName : '',
+                token : sessionStorage.getItem("TOKEN"),
             }
         },
-         props: {
+        props: {
             fieldValue: [String, Boolean]
         },
-
+        async created(){
+            const url =  `/member/detail`;
+            const headers = { "token": this.token};
+            const result = await axios.get(url, {headers});
+            console.log(result);
+            if(result.data.ret === 1){
+                this.memberName = result.data.data.name;
+            }
+        },
         methods: {
             updateValue(event) {
                 console.log('update-----', event)
